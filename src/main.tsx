@@ -11,6 +11,7 @@ import AdminPatientPanel from './components/patient/AdminPatientPanel.tsx'
 import WorkingOnIt from './components/WorkingOnIt.tsx'
 import Settings from './components/settings/Settings.tsx'
 import Profile, { MedicalRecords, ProfileOverview, VaccinationDetails } from './components/patient/Profile.tsx'
+import ProfileReports from './components/patient/ProfileReports.tsx'
 
 const router = createBrowserRouter([
   {
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
                 element: <MedicalRecords />
               }
             ]
+          },
+          {
+            path: '/patient/:patientId/reports',
+            element: <ProfileReports />
           }
         ]
       }

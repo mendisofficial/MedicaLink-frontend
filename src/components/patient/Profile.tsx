@@ -409,7 +409,7 @@ export function ProfileOverview() {
                     <div className="section-controls py-3">
 
                         <div className="section-links">
-                            <NavLink to="/patient/1" className={({ isActive, isPending }) =>
+                            <NavLink to="/patient/1/overview" className={({ isActive, isPending }) =>
                                 isActive
                                     ? "active me-2 px-3 py-2"
                                     : isPending
@@ -479,7 +479,7 @@ function Profile() {
 
                 <div className="profile-nav mb-4" id="profile-nav">
 
-                    <NavLink to="/patient/1" className="nav-link">Overview</NavLink>
+                    <NavLink to="/patient/1/overview" className="nav-link">Overview</NavLink>
 
                     <NavLink to="/patient/1/reports" className="nav-link">Reports</NavLink>
 

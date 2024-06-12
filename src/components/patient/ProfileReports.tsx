@@ -1,4 +1,5 @@
 import Searchbar, { FilterCategory, FilterGroup, FilterList, FilterTitle, SearchFilter } from '../search/Searchbar';
+import './ProfileReports.css';
 
 function ProfileReports() {
 
@@ -14,20 +15,9 @@ function ProfileReports() {
 
                             <FilterTitle>Select search type</FilterTitle>
                             <FilterList>
-                                <FilterCategory key="reference_no"># Reference Number</FilterCategory>
-                                <FilterCategory key="patient_name"># Patient Name</FilterCategory>
-                                <FilterCategory key="registered_hospital"># Registered Hospital</FilterCategory>
-                            </FilterList>
-
-                        </FilterGroup>
-
-                        <FilterGroup>
-
-                            <FilterTitle>Select registration type</FilterTitle>
-                            <FilterList>
-                                <FilterCategory key="hospital"># Your Hospital</FilterCategory>
-                                <FilterCategory key="associated"># Associated With</FilterCategory>
-                                <FilterCategory key="all"># All</FilterCategory>
+                                <FilterCategory key={1} name='type' value='name' checked={true}># Record Type/ Name</FilterCategory>
+                                <FilterCategory key={2} name='type' value='location'># Record Location</FilterCategory>
+                                <FilterCategory key={1} name='type' value='all'># All</FilterCategory>
                             </FilterList>
 
                         </FilterGroup>
