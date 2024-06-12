@@ -6,11 +6,11 @@ function AdminPatientPanel() {
 
     const patientList = [
         {
-            referenceNo: '200331020128', name: 'Jane Cooper', registeredHospital: 'Hemas pvt ltd',
+            referenceNo: '200311513520', name: 'Chiranga Shalitha', registeredHospital: 'Hemas pvt ltd',
             registeredDate: '20/05/2022', lastUpdated: '10/05/2024', firstUpdated: '20/05/2022'
         },
         {
-            referenceNo: '200331020128', name: 'Jane Cooper', registeredHospital: 'Hemas pvt ltd',
+            referenceNo: '200331012273', name: 'Nisala Develigoda', registeredHospital: 'Hemas pvt ltd',
             registeredDate: '20/05/2022', lastUpdated: '10/05/2024', firstUpdated: '20/05/2022'
         },
         {

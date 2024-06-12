@@ -12,6 +12,7 @@ import WorkingOnIt from './components/WorkingOnIt.tsx'
 import Settings from './components/settings/Settings.tsx'
 import Profile, { MedicalRecords, ProfileOverview, VaccinationDetails } from './components/patient/Profile.tsx'
 import ProfileReports from './components/patient/ProfileReports.tsx'
+import { AdminOverview } from './components/admin/AdminOverview.tsx'
 
 const router = createBrowserRouter([
   {
@@ -60,6 +61,10 @@ const router = createBrowserRouter([
             element: <ProfileReports />
           }
         ]
+      },
+      {
+        path:'/profile',
+        element: <AdminOverview/>
       }
     ],
     errorElement: <NotFound />
