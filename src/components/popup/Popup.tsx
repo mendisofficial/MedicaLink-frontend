@@ -1,6 +1,6 @@
 import './Popup.css'
-import { createContext, useContext, useState, useEffect, ReactNode, useCallback } from 'react';
-import { motion, useAnimation, cubicBezier } from "framer-motion"
+import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { motion, useAnimation } from "framer-motion"
 
 interface PopupContextProps {
     isOpen: boolean;
