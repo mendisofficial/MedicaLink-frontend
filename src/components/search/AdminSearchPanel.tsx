@@ -1,7 +1,27 @@
 import './AdminSearchPanel.css';
+import SearchResult, { SearchType } from './SearchResult';
 import Searchbar, { FilterCategory, FilterGroup, FilterList, FilterTitle, SearchFilter } from './Searchbar';
 
 function AdminSearchPanel() {
+
+    const patientList = [
+        {
+            id:1, referenceNo: '200331020128', name: 'Jane Cooper', registeredHospital: 'Hemas pvt ltd',
+            registeredDate: '20/05/2022', lastUpdated: '10/05/2024', firstUpdated: '20/05/2022'
+        },
+        {
+            id:2, referenceNo: '200331020128', name: 'Jane Cooper', registeredHospital: 'Hemas pvt ltd',
+            registeredDate: '20/05/2022', lastUpdated: '10/05/2024', firstUpdated: '20/05/2022'
+        },
+        {
+            id:3, referenceNo: '200331020128', name: 'Jane Cooper', registeredHospital: 'Hemas pvt ltd',
+            registeredDate: '20/05/2022', lastUpdated: '10/05/2024', firstUpdated: '20/05/2022'
+        },
+        {
+            id:4, referenceNo: '200331020128', name: 'Jane Cooper', registeredHospital: 'Hemas pvt ltd',
+            registeredDate: '20/05/2022', lastUpdated: '10/05/2024', firstUpdated: '20/05/2022'
+        }
+    ];
 
     return (
         <>
@@ -18,10 +38,10 @@ function AdminSearchPanel() {
                         <FilterGroup>
 
                             <FilterTitle>Select search type</FilterTitle>
-                            <FilterList activeCategoryKey="reference_no">
-                                <FilterCategory key="reference_no"># Reference Number</FilterCategory>
-                                <FilterCategory key="patient_name"># Patient Name</FilterCategory>
-                                <FilterCategory key="registered_hospital"># Registered Hospital</FilterCategory>
+                            <FilterList>
+                                <FilterCategory key={1} name='type' value='nic' checked={true}># Reference Number</FilterCategory>
+                                <FilterCategory key={2} name='type' value='name'># Patient Name</FilterCategory>
+                                <FilterCategory key={3} name='type' value='hospital'># Registered Hospital</FilterCategory>
                             </FilterList>
 
                         </FilterGroup>
@@ -29,10 +49,10 @@ function AdminSearchPanel() {
                         <FilterGroup>
 
                             <FilterTitle>Select registration type</FilterTitle>
-                            <FilterList activeCategoryKey="all">
-                                <FilterCategory key="hospital"># Your Hospital</FilterCategory>
-                                <FilterCategory key="associated"># Associated With</FilterCategory>
-                                <FilterCategory key="all"># All</FilterCategory>
+                            <FilterList>
+                                <FilterCategory key={1} name='reg_type' value='your'># Your Hospital</FilterCategory>
+                                <FilterCategory key={2} name='reg_type' value='associated'># Associated With</FilterCategory>
+                                <FilterCategory key={3} name='reg_type' value='all' checked={true}># All</FilterCategory>
                             </FilterList>
 
                         </FilterGroup>
@@ -41,11 +61,11 @@ function AdminSearchPanel() {
 
                             <div className="control mb-2">
                                 <h6 className="me-2">Select Start Date: </h6>
-                                <input type="date"/>
+                                <input type="date" />
                             </div>
                             <div className="control">
                                 <h6 className="me-2">Select End Date: </h6>
-                                <input type="date"/>
+                                <input type="date" />
                             </div>
 
                         </FilterGroup>
@@ -62,120 +82,22 @@ function AdminSearchPanel() {
 
                     <div className="d-flex align-items-center">
                         <h4 className="mb-0">Patient Details</h4>
-                        <span className="ms-auto">Showing 10 results</span>
+                        <span className="ms-auto">Showing {patientList.length} results</span>
                     </div>
 
                     <hr />
 
                     <div className="patient-list">
 
-                        <div className="patient">
-
-                            <img src="/assets/img/profile/profile-image.jpg" alt="profile-image" />
-
-                            <div className="info">
-                                <span className="highlight">Reference No: 200331020128</span>
-                                <span>Name: Jane Cooper</span>
-                            </div>
-
-                            <div className="info temp">
-                                <span>Registered Hospital: Hemas pvt ltd</span>
-                                <span>Registered Date: 20/05/2022</span>
-                            </div>
-
-                            <div className="info temp">
-                                <span>Last Updated Date: 10/05/2024</span>
-                                <span>First Updated Date: 20/05/2022</span>
-                            </div>
-
-                            <a className="view-btn d-none d-md-flex" href="/admin-profile-overview.html">
-                                <span className="me-2">View Profile</span>
-                                <span className="material-symbols-outlined">
-                                    visibility
-                                </span>
-                            </a>
-                        </div>
-
-                        <div className="patient">
-
-                            <img src="/assets/img/profile/profile-image.jpg" alt="profile-image" />
-
-                            <div className="info">
-                                <span className="highlight">Reference No: 200331020128</span>
-                                <span>Name: Jane Cooper</span>
-                            </div>
-
-                            <div className="info temp">
-                                <span>Registered Hospital: Hemas pvt ltd</span>
-                                <span>Registered Date: 20/05/2022</span>
-                            </div>
-
-                            <div className="info temp">
-                                <span>Last Updated Date: 10/05/2024</span>
-                                <span>First Updated Date: 20/05/2022</span>
-                            </div>
-
-                            <a className="view-btn d-none d-md-flex" href="/admin-profile-overview.html">
-                                <span className="me-2">View Profile</span>
-                                <span className="material-symbols-outlined">
-                                    visibility
-                                </span>
-                            </a>
-                        </div>
-
-                        <div className="patient">
-
-                            <img src="/assets/img/profile/profile-image.jpg" alt="profile-image" />
-
-                            <div className="info">
-                                <span className="highlight">Reference No: 200331020128</span>
-                                <span>Name: Jane Cooper</span>
-                            </div>
-
-                            <div className="info temp">
-                                <span>Registered Hospital: Hemas pvt ltd</span>
-                                <span>Registered Date: 20/05/2022</span>
-                            </div>
-
-                            <div className="info temp">
-                                <span>Last Updated Date: 10/05/2024</span>
-                                <span>First Updated Date: 20/05/2022</span>
-                            </div>
-
-                            <a className="view-btn d-none d-md-flex" href="/admin-profile-overview.html">
-                                <span className="me-2">View Profile</span>
-                                <span className="material-symbols-outlined">
-                                    visibility
-                                </span>
-                            </a>
-                        </div>
-
-                        <div className="patient">
-
-                            <img src="/assets/img/profile/profile-image.jpg" alt="profile-image" />
-
-                            <div className="info">
-                                <span className="highlight">Reference No: 200331020128</span>
-                                <span>Name: Jane Cooper</span>
-                            </div>
-
-                            <div className="info temp">
-                                <span>Registered Hospital: Hemas pvt ltd</span>
-                                <span>Registered Date: 20/05/2022</span>
-                            </div>
-
-                            <div className="info temp">
-                                <span>Last Updated Date: 10/05/2024</span>
-                                <span>First Updated Date: 20/05/2022</span>
-                            </div>
-
-                            <a className="view-btn d-none d-md-flex" href="/admin-profile-overview.html">
-                                <span className="me-2">View Profile</span>
-                                <span className="material-symbols-outlined">
-                                    visibility
-                                </span>
-                            </a>
-                        </div>
+                        {
+                            patientList.map(patient => {
+                                return (
+                                    <SearchResult key={patient.id} referenceNo={patient.referenceNo} name={patient.name} registeredHospital={patient.registeredHospital}
+                                        registeredDate={patient.registeredDate} lastUpdated={patient.lastUpdated} firstUpdated={patient.firstUpdated}
+                                        searchType={SearchType.VIEW}></SearchResult>
+                                );
+                            })
+                        }
 
                     </div>
                 </div>

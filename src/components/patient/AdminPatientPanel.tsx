@@ -1,7 +1,27 @@
 import './AdminPatientPanel.css';
+import SearchResult, { SearchType } from '../search/SearchResult';
 import Searchbar, { FilterCategory, FilterGroup, FilterList, FilterTitle, SearchFilter } from '../search/Searchbar';
 
 function AdminPatientPanel() {
+
+    const patientList = [
+        {
+            referenceNo: '200331020128', name: 'Jane Cooper', registeredHospital: 'Hemas pvt ltd',
+            registeredDate: '20/05/2022', lastUpdated: '10/05/2024', firstUpdated: '20/05/2022'
+        },
+        {
+            referenceNo: '200331020128', name: 'Jane Cooper', registeredHospital: 'Hemas pvt ltd',
+            registeredDate: '20/05/2022', lastUpdated: '10/05/2024', firstUpdated: '20/05/2022'
+        },
+        {
+            referenceNo: '200331020128', name: 'Jane Cooper', registeredHospital: 'Hemas pvt ltd',
+            registeredDate: '20/05/2022', lastUpdated: '10/05/2024', firstUpdated: '20/05/2022'
+        },
+        {
+            referenceNo: '200331020128', name: 'Jane Cooper', registeredHospital: 'Hemas pvt ltd',
+            registeredDate: '20/05/2022', lastUpdated: '10/05/2024', firstUpdated: '20/05/2022'
+        }
+    ];
 
     return (
         <>
@@ -18,10 +38,10 @@ function AdminPatientPanel() {
                         <FilterGroup>
 
                             <FilterTitle>Select search type</FilterTitle>
-                            <FilterList>
-                                <FilterCategory active={true}># Reference Number</FilterCategory>
-                                <FilterCategory># Patient Name</FilterCategory>
-                                <FilterCategory># Registered Hospital</FilterCategory>
+                            <FilterList activeCategoryKey="reference_no">
+                                <FilterCategory key="reference_no"># Reference Number</FilterCategory>
+                                <FilterCategory key="patient_name"># Patient Name</FilterCategory>
+                                <FilterCategory key="registered_hospital"># Registered Hospital</FilterCategory>
                             </FilterList>
 
                         </FilterGroup>
@@ -29,10 +49,10 @@ function AdminPatientPanel() {
                         <FilterGroup>
 
                             <FilterTitle>Select registration type</FilterTitle>
-                            <FilterList>
-                                <FilterCategory># Your Hospital</FilterCategory>
-                                <FilterCategory># Associated With</FilterCategory>
-                                <FilterCategory active={true}># All</FilterCategory>
+                            <FilterList activeCategoryKey="all">
+                                <FilterCategory key="hospital"># Your Hospital</FilterCategory>
+                                <FilterCategory key="associated"># Associated With</FilterCategory>
+                                <FilterCategory key="all"># All</FilterCategory>
                             </FilterList>
 
                         </FilterGroup>
@@ -63,7 +83,7 @@ function AdminPatientPanel() {
                     <div className="d-flex align-items-center">
                         <h4 className="mb-0">Your Patients</h4>
                         <div className="ms-auto d-flex align-items-center">
-                            <span className="me-2 me-md-3 text-nowrap">Showing 10 results</span>
+                            <span className="me-2 me-md-3 text-nowrap">Showing {patientList.length} results</span>
                             <a className="add-btn" href="./admin-registration-form.html">
                                 <span className="me-2 d-none d-md-block">Add Patient</span>
                                 <span className="material-symbols-outlined">
@@ -77,137 +97,15 @@ function AdminPatientPanel() {
 
                     <div className="patient-list">
 
-                        <div className="patient">
-
-                            <img src="/assets/img/profile/profile-image.jpg" alt="profile-image" />
-
-                            <div className="info">
-                                <span className="highlight">Reference No: 200331020128</span>
-                                <span>Name: Jane Cooper</span>
-                            </div>
-
-                            <div className="info temp">
-                                <span>Registered Hospital: Hemas pvt ltd</span>
-                                <span>Registered Date: 20/05/2022</span>
-                            </div>
-
-                            <div className="info temp">
-                                <span>Last Updated Date: 10/05/2024</span>
-                                <span>First Updated Date: 20/05/2022</span>
-                            </div>
-
-                            <div className="controls">
-                                <button className="edit mb-2 mb-md-0 me-md-2">
-                                    <span className="material-symbols-outlined">
-                                        edit_square
-                                    </span>
-                                </button>
-                                <button className="delete">
-                                    <span className="material-symbols-outlined">
-                                        delete
-                                    </span>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div className="patient">
-
-                            <img src="/assets/img/profile/profile-image.jpg" alt="profile-image" />
-
-                            <div className="info">
-                                <span className="highlight">Reference No: 200331020128</span>
-                                <span>Name: Jane Cooper</span>
-                            </div>
-
-                            <div className="info temp">
-                                <span>Registered Hospital: Hemas pvt ltd</span>
-                                <span>Registered Date: 20/05/2022</span>
-                            </div>
-
-                            <div className="info temp">
-                                <span>Last Updated Date: 10/05/2024</span>
-                                <span>First Updated Date: 20/05/2022</span>
-                            </div>
-
-                            <div className="controls">
-                                <button className="edit mb-2 mb-md-0 me-md-2">
-                                    <span className="material-symbols-outlined">
-                                        edit_square
-                                    </span>
-                                </button>
-                                <button className="delete">
-                                    <span className="material-symbols-outlined">
-                                        delete
-                                    </span>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div className="patient">
-
-                            <img src="/assets/img/profile/profile-image.jpg" alt="profile-image" />
-
-                            <div className="info">
-                                <span className="highlight">Reference No: 200331020128</span>
-                                <span>Name: Jane Cooper</span>
-                            </div>
-
-                            <div className="info temp">
-                                <span>Registered Hospital: Hemas pvt ltd</span>
-                                <span>Registered Date: 20/05/2022</span>
-                            </div>
-
-                            <div className="info temp">
-                                <span>Last Updated Date: 10/05/2024</span>
-                                <span>First Updated Date: 20/05/2022</span>
-                            </div>
-
-                            <div className="controls">
-                                <button className="edit mb-2 mb-md-0 me-md-2">
-                                    <span className="material-symbols-outlined">
-                                        edit_square
-                                    </span>
-                                </button>
-                                <button className="delete">
-                                    <span className="material-symbols-outlined">
-                                        delete
-                                    </span>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div className="patient">
-
-                            <img src="/assets/img/profile/profile-image.jpg" alt="profile-image" />
-
-                            <div className="info">
-                                <span className="highlight">Reference No: 200331020128</span>
-                                <span>Name: Jane Cooper</span>
-                            </div>
-
-                            <div className="info temp">
-                                <span>Registered Hospital: Hemas pvt ltd</span>
-                                <span>Registered Date: 20/05/2022</span>
-                            </div>
-
-                            <div className="info temp">
-                                <span>Last Updated Date: 10/05/2024</span>
-                                <span>First Updated Date: 20/05/2022</span>
-                            </div>
-
-                            <div className="controls">
-                                <button className="edit mb-2 mb-md-0 me-md-2">
-                                    <span className="material-symbols-outlined">
-                                        edit_square
-                                    </span>
-                                </button>
-                                <button className="delete">
-                                    <span className="material-symbols-outlined">
-                                        delete
-                                    </span>
-                                </button>
-                            </div>
-                        </div>
+                        {
+                            patientList.map(patient => {
+                                return (
+                                    <SearchResult referenceNo={patient.referenceNo} name={patient.name} registeredHospital={patient.registeredHospital}
+                                        registeredDate={patient.registeredDate} lastUpdated={patient.lastUpdated} firstUpdated={patient.firstUpdated}
+                                        searchType={SearchType.EDIT}></SearchResult>
+                                );
+                            })
+                        }
 
                     </div>
                 </div>

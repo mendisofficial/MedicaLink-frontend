@@ -1,57 +1,48 @@
-import React, { MouseEventHandler, MouseEvent, useState, ReactElement } from 'react';
+import React, { useState } from 'react';
 import { Collapse } from 'react-bootstrap';
 import { Search, UiChecksGrid } from 'react-bootstrap-icons';
 import './Searchbar.css';
 
-interface FilterCategoryProps {
+interface BaseProps {
     children?: React.ReactNode,
-    activeCategoryKey? : string | number | null,
-    onClick?: MouseEventHandler<HTMLElement>,
     className?: string,
-    value? : string
+    value? : string,
+    name? : string
 }
 
-export function FilterCategory({ children, className, value = '', onClick }: FilterCategoryProps) {
-    console.log(value);
-    return <li key={value} className={`category ${className}`} onClick={onClick}>{children}</li>;
+interface FilterCategoryProps extends BaseProps{
+    checked? : boolean
 }
 
-type ValidChild = ReactElement<React.ComponentProps<typeof FilterCategory>>;
-
-export function FilterList({ children, activeCategoryKey = null }: FilterCategoryProps) {
-    const [activeKey, setActiveKey] = useState<string | number | null>((activeCategoryKey !== null)? activeCategoryKey.toString() : activeCategoryKey);
-
-    //click event handler for a category
-    const handleClick = (key: number | string | null) => {
-        setActiveKey(key);
-    };
-
-    const updatedChildren = React.Children.map(children, (child) => {
-
-        if (React.isValidElement(child) && child.type == FilterCategory) {
-            const isActive = child.key === activeKey;
-            
-            return React.cloneElement(child as ValidChild, {
-
-                onClick: (e: MouseEvent<HTMLElement>) => handleClick(child.key),
-                className: isActive ? 'active' : '',
-            });
-        }
-        return child;
-    });
+export function FilterCategory({className, children, name,  value = '', checked}: FilterCategoryProps) {
 
     return (
+        <li className="category">
+            <input type="radio" 
+            id={`radio-${name}-${value}`} 
+            name={name} value={value} 
+            className={`radio ${className}`} 
+            defaultChecked={checked}/>
+
+            <label htmlFor={`radio-${name}-${value}`}>{children}</label>
+        </li>
+    );
+}
+
+export function FilterList({ children }: BaseProps) {
+    
+    return (
         <ul>
-            {updatedChildren}
+            {children}
         </ul>
     );
 }
 
-export function FilterTitle({ children }: FilterCategoryProps) {
+export function FilterTitle({ children }: BaseProps) {
     return <h6>{children}</h6>;
 }
 
-export function FilterGroup({ children }: FilterCategoryProps) {
+export function FilterGroup({ children }: BaseProps) {
 
     return (
         <div className="col">
@@ -60,7 +51,7 @@ export function FilterGroup({ children }: FilterCategoryProps) {
     );
 }
 
-export function SearchFilter({ children }: FilterCategoryProps) {
+export function SearchFilter({ children }: BaseProps) {
 
     return (
         <div className="container-fluid search-filter" id="search-filter">

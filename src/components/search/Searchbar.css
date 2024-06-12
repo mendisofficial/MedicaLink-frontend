@@ -57,7 +57,15 @@
     border-color: var(--profile-primary);
 }
 
-.search-filter .category.active{
+.search-filter .category .radio{
+    display: none;
+}
+
+.search-filter .category label{
+    cursor: pointer;
+}
+
+.search-filter .category:has(.radio:checked){
     color: #ffffff;
     background-color: var(--profile-primary);
     border-color: var(--profile-primary);

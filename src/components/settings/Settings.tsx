@@ -1,4 +1,5 @@
 import './Settings.css';
+import { Search } from 'react-bootstrap-icons';
 
 function Settings() {
 
@@ -16,7 +17,7 @@ function Settings() {
                         <h4 className="mb-0">Settings</h4>
                         <div className="search-box">
                             <button>
-                                <i className="bi bi-search"></i>
+                                <Search color='black' size={16} />
                             </button>
                             <input type="text" id="search-bar" placeholder="Search settings..." />
                         </div>

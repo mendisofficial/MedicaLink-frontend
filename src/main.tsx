@@ -10,39 +10,59 @@ import NotFound from './NotFound.tsx'
 import AdminPatientPanel from './components/patient/AdminPatientPanel.tsx'
 import WorkingOnIt from './components/WorkingOnIt.tsx'
 import Settings from './components/settings/Settings.tsx'
+import Profile, { MedicalRecords, ProfileOverview, VaccinationDetails } from './components/patient/Profile.tsx'
 
 const router = createBrowserRouter([
   {
-    path:'/',
-    element : <App/>,
-    children : [
+    path: '/',
+    element: <App />,
+    children: [
       {
-        path : '/',
-        element : <Dashboard/>
+        path: '/',
+        element: <Dashboard />
       },
       {
-        path : '/search',
-        element : <AdminSearchPanel/>
+        path: '/search',
+        element: <AdminSearchPanel />
       },
       {
-        path : '/patient',
-        element : <AdminPatientPanel/>
+        path: '/patient',
+        element: <AdminPatientPanel />
       },
       {
-        path : '/comments',
-        element : <WorkingOnIt/>
+        path: '/comments',
+        element: <WorkingOnIt />
       },
       {
-        path : '/settings',
-        element : <Settings/>
+        path: '/settings',
+        element: <Settings />
+      },
+      {
+        path: '/patient/:patientId',
+        element: <Profile />,
+        children : [
+          {
+            element: <ProfileOverview />,
+            children: [
+              {
+                path: '/patient/:patientId/overview',
+                element: <VaccinationDetails />
+              },
+              {
+                path: '/patient/:patientId/records',
+                element: <MedicalRecords />
+              }
+            ]
+          }
+        ]
       }
     ],
-    errorElement : <NotFound/>
+    errorElement: <NotFound />
   }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <RouterProvider router={router}/>
+    <RouterProvider router={router} />
   </React.StrictMode>,
 )
