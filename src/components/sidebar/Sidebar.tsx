@@ -49,7 +49,7 @@ const Sidebar = forwardRef<SidebarHandle ,SidbarProps>((props, ref) => {
 
     return (
         <>
-            <div ref={sidebarRef} className="px-0 section-blur shadow-lg" id="sidebar-container">
+            <div ref={sidebarRef} className="px-0 section-blur" id="sidebar-container">
                 <div className="sidebar" id="sidebar">
 
                     <div className="sidebar-header mb-md-4 d-none d-md-block">

@@ -1,12 +1,187 @@
+import { ClipboardPulse, Virus2 } from 'react-bootstrap-icons';
+import { NavLink, Outlet, useParams } from 'react-router-dom';
 import Searchbar, { FilterCategory, FilterGroup, FilterList, FilterTitle, SearchFilter } from '../search/Searchbar';
+import { usePopup } from '../popup/Popup';
 import './ProfileReports.css';
 
+interface Vaccination {
+    id: number;
+    type: string;
+    brand: string;
+    location: string;
+    date: string;
+    dose: string;
+}
+
+interface MedicalRecord {
+    id: number;
+    type: string;
+    location: string;
+    date: string;
+}
+
+export function MedicalRecordsTable() {
+
+    const medicalRecords : MedicalRecord[] = [
+        {id: 1, type:'Diagnosis', location: 'Heymas Hospitals', date:'10/06/2024'},
+        {id: 2, type:'Diagnosis', location: 'Heymas Hospitals', date:'10/06/2024'},
+        {id: 3, type:'Diagnosis', location: 'Heymas Hospitals', date:'10/06/2024'},
+        {id: 4, type:'Diagnosis', location: 'Heymas Hospitals', date:'10/06/2024'}
+    ];
+
+    return (
+        <>
+            <h5>Medical Reports</h5>
+
+            <div className="table-container mt-2 py-2 px-md-4">
+                <table className="table mt-md-2 mb-0">
+                    <thead>
+                        <tr>
+                            <th scope="col" className="d-none d-lg-table-cell">#</th>
+                            <th scope="col">Report Type</th>
+                            <th scope="col" className="d-none d-md-table-cell">Medical Institution</th>
+                            <th scope="col">Date</th>
+                            <th scope="col" className="d-none d-lg-table-cell"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        {
+                            medicalRecords.map((medicalRecord : MedicalRecord) => {
+                                return (
+                                    <tr key={medicalRecord.id}>
+                                        <th scope="row" className="d-none d-lg-table-cell">22 : 25</th>
+                                        <td>{medicalRecord.type}</td>
+                                        <td className="d-none d-md-table-cell">{medicalRecord.location}</td>
+                                        <td>{medicalRecord.date}</td>
+                                        <td className="d-none d-lg-table-cell">
+                                            <div className="d-none d-lg-flex justify-content-end align-items-center">
+                                                <button className="view-more">
+                                                    <span className="material-symbols-outlined">
+                                                        read_more
+                                                    </span>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                )
+                            })
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <div className="result-nav my-4" id="result-navigation">
+                <button>
+                    <span className="material-symbols-outlined">
+                        chevron_left
+                    </span>
+                </button>
+                <div className="numbers">
+                    <div className="active">1</div>
+                    <div>2</div>
+                    <div>3</div>
+                </div>
+                <button>
+                    <span className="material-symbols-outlined">
+                        chevron_right
+                    </span>
+                </button>
+            </div>
+        </>
+    );
+}
+
+export function VaccinationTable() {
+    const { openPopup } = usePopup();
+
+    const vaccinations: Vaccination[] = [
+        { id: 1, type: 'BCG', brand: 'TheraCys® BCG', location: 'Heymas Hospitals', date: '12/06/2003', dose: '10 Liters' },
+        { id: 2, type: 'BCG', brand: 'TheraCys® BCG', location: 'Heymas Hospitals', date: '12/06/2003', dose: '10 Liters' },
+        { id: 3, type: 'BCG', brand: 'TheraCys® BCG', location: 'Heymas Hospitals', date: '12/06/2003', dose: '10 Liters' },
+        { id: 4, type: 'BCG', brand: 'TheraCys® BCG', location: 'Heymas Hospitals', date: '12/06/2003', dose: '10 Liters' }
+    ];
+
+    const handleClick = () => {
+        openPopup(<div>Hellow Guys</div>);
+    }
+
+    return (
+        <>
+
+            <h5>Vaccination Details</h5>
+
+            <div className="table-container mt-2 py-2 px-md-4">
+                <table className="table mt-md-2 mb-0">
+                    <thead>
+                        <tr>
+                            <th scope="col" className="d-none d-lg-table-cell">#</th>
+                            <th scope="col">Vaccine Type</th>
+                            <th scope="col" className="d-none d-md-table-cell">Brand</th>
+                            <th scope="col">Location</th>
+                            <th scope="col">Date</th>
+                            <th scope="col" className="d-none d-md-table-cell">Dose</th>
+                            <th scope="col" className="d-none d-lg-table-cell"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        {
+                            vaccinations.map((vaccination: Vaccination) => {
+                                return (
+                                    <tr key={vaccination.id}>
+                                        <th scope="row" className="d-none d-lg-table-cell">22 : 25</th>
+                                        <td>{vaccination.type}</td>
+                                        <td className="d-none d-md-table-cell">{vaccination.brand}</td>
+                                        <td>{vaccination.location}</td>
+                                        <td>{vaccination.date}</td>
+                                        <td className="d-none d-md-table-cell">{vaccination.dose}</td>
+                                        <td className="d-none d-lg-table-cell">
+                                            <div className="d-none d-lg-flex justify-content-end align-items-center">
+                                                <button className="view-more" onClick={handleClick}>
+                                                    <span className="material-symbols-outlined">
+                                                        read_more
+                                                    </span>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                )
+                            })
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <div className="result-nav my-4" id="result-navigation">
+                <button>
+                    <span className="material-symbols-outlined">
+                        chevron_left
+                    </span>
+                </button>
+                <div className="numbers">
+                    <div className="active">1</div>
+                    <div>2</div>
+                    <div>3</div>
+                </div>
+                <button>
+                    <span className="material-symbols-outlined">
+                        chevron_right
+                    </span>
+                </button>
+            </div>
+
+        </>
+    );
+}
+
 function ProfileReports() {
+    const { patientId } = useParams(); //Use this for all the backend requests
 
     return (
         <>
             <div className="col-12">
-                
+
                 <Searchbar className='mb-4'>
 
                     <SearchFilter>
@@ -17,7 +192,7 @@ function ProfileReports() {
                             <FilterList>
                                 <FilterCategory key={1} name='type' value='name' checked={true}># Record Type/ Name</FilterCategory>
                                 <FilterCategory key={2} name='type' value='location'># Record Location</FilterCategory>
-                                <FilterCategory key={1} name='type' value='all'># All</FilterCategory>
+                                <FilterCategory key={3} name='type' value='all'># All</FilterCategory>
                             </FilterList>
 
                         </FilterGroup>
@@ -48,14 +223,14 @@ function ProfileReports() {
                     <div className="section-controls py-3">
 
                         <div className="section-links">
-                            <a href="/vaccinations" className="me-2 active px-3 py-2">
+                            <NavLink to="." className="me-2 px-3 py-2 d-flex align-items-center" end>
                                 <span className="d-none d-md-inline">Vaccinations</span>
-                                <i className="bi bi-virus2 ms-md-2"></i>
-                            </a>
-                            <a href="/reports" className="me-2 px-3 py-2">
+                                <Virus2 className='ms-3' size={18}/>
+                            </NavLink>
+                            <NavLink to="medicals" className="me-2 px-3 py-2 d-flex align-items-center">
                                 <span className="d-none d-md-inline">Medical Reports</span>
-                                <i className="bi bi-clipboard2-pulse ms-md-2"></i>
-                            </a>
+                                <ClipboardPulse className='ms-3' size={18}/>
+                            </NavLink>
                         </div>
 
                         <div className="tag-links">
@@ -70,145 +245,8 @@ function ProfileReports() {
 
                     <div className="record-data mt-4" id="record-data-container">
 
-                        <h5>Vaccination Details</h5>
+                        <Outlet/>
 
-                        <div className="table-container mt-2 py-2 px-md-4">
-                            <table className="table mt-md-2 mb-0">
-                                <thead>
-                                    <tr>
-                                        <th scope="col" className="d-none d-lg-table-cell">#</th>
-                                        <th scope="col">Vaccine Type</th>
-                                        <th scope="col" className="d-none d-md-table-cell">Brand</th>
-                                        <th scope="col">Location</th>
-                                        <th scope="col">Date</th>
-                                        <th scope="col" className="d-none d-md-table-cell">Dose</th>
-                                        <th scope="col" className="d-none d-lg-table-cell"></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row" className="d-none d-lg-table-cell">22 : 25</th>
-                                        <td>BCG</td>
-                                        <td className="d-none d-md-table-cell">TheraCys® BCG</td>
-                                        <td>Heymas Hospitals</td>
-                                        <td>12/06/2003</td>
-                                        <td className="d-none d-md-table-cell">10 Liters</td>
-                                        <td className="d-none d-lg-table-cell">
-                                            <div className="d-none d-lg-flex justify-content-end align-items-center">
-                                                <button className="view-more">
-                                                    <span className="material-symbols-outlined">
-                                                        read_more
-                                                    </span>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row" className="d-none d-lg-table-cell">22 : 25</th>
-                                        <td>BCG</td>
-                                        <td className="d-none d-md-table-cell">TheraCys® BCG</td>
-                                        <td>Heymas Hospitals</td>
-                                        <td>12/06/2003</td>
-                                        <td className="d-none d-md-table-cell">10 Liters</td>
-                                        <td className="d-none d-lg-table-cell">
-                                            <div className="d-none d-lg-flex justify-content-end align-items-center">
-                                                <button className="view-more">
-                                                    <span className="material-symbols-outlined">
-                                                        read_more
-                                                    </span>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row" className="d-none d-lg-table-cell">22 : 25</th>
-                                        <td>BCG</td>
-                                        <td className="d-none d-md-table-cell">TheraCys® BCG</td>
-                                        <td>Heymas Hospitals</td>
-                                        <td>12/06/2003</td>
-                                        <td className="d-none d-md-table-cell">10 Liters</td>
-                                        <td className="d-none d-lg-table-cell">
-                                            <div className="d-none d-lg-flex justify-content-end align-items-center">
-                                                <button className="view-more">
-                                                    <span className="material-symbols-outlined">
-                                                        read_more
-                                                    </span>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row" className="d-none d-lg-table-cell">22 : 25</th>
-                                        <td>BCG</td>
-                                        <td className="d-none d-md-table-cell">TheraCys® BCG</td>
-                                        <td>Heymas Hospitals</td>
-                                        <td>12/06/2003</td>
-                                        <td className="d-none d-md-table-cell">10 Liters</td>
-                                        <td className="d-none d-lg-table-cell">
-                                            <div className="d-none d-lg-flex justify-content-end align-items-center">
-                                                <button className="view-more">
-                                                    <span className="material-symbols-outlined">
-                                                        read_more
-                                                    </span>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row" className="d-none d-lg-table-cell">22 : 25</th>
-                                        <td>BCG</td>
-                                        <td className="d-none d-md-table-cell">TheraCys® BCG</td>
-                                        <td>Heymas Hospitals</td>
-                                        <td>12/06/2003</td>
-                                        <td className="d-none d-md-table-cell">10 Liters</td>
-                                        <td className="d-none d-lg-table-cell">
-                                            <div className="d-none d-lg-flex justify-content-end align-items-center">
-                                                <button className="view-more">
-                                                    <span className="material-symbols-outlined">
-                                                        read_more
-                                                    </span>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row" className="d-none d-lg-table-cell">22 : 25</th>
-                                        <td>BCG</td>
-                                        <td className="d-none d-md-table-cell">TheraCys® BCG</td>
-                                        <td>Heymas Hospitals</td>
-                                        <td>12/06/2003</td>
-                                        <td className="d-none d-md-table-cell">10 Liters</td>
-                                        <td className="d-none d-lg-table-cell">
-                                            <div className="d-none d-lg-flex justify-content-end align-items-center">
-                                                <button className="view-more">
-                                                    <span className="material-symbols-outlined">
-                                                        read_more
-                                                    </span>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <div className="result-nav my-4" id="result-navigation">
-                            <button>
-                                <span className="material-symbols-outlined">
-                                    chevron_left
-                                </span>
-                            </button>
-                            <div className="numbers">
-                                <div className="active">1</div>
-                                <div>2</div>
-                                <div>3</div>
-                            </div>
-                            <button>
-                                <span className="material-symbols-outlined">
-                                    chevron_right
-                                </span>
-                            </button>
-                        </div>
                     </div>
                 </div>
 

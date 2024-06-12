@@ -325,7 +325,7 @@ export function ProfileOverview() {
     return (
         <>
             <div className="col-12 col-lg-3">
-                <div className="profile-main section-blur shadow">
+                <div className="profile-main section-blur">
                     <div className="profile-image p-4">
                         <img src={avatar} alt="profile" />
                     </div>
@@ -404,23 +404,23 @@ export function ProfileOverview() {
 
             <div className="col mt-4 mt-lg-0">
 
-                <div className="record-container px-4 py-3 section-blur shadow">
+                <div className="record-container px-4 py-3 section-blur">
 
                     <div className="section-controls py-3">
 
                         <div className="section-links">
-                            <NavLink to="/patient/1/overview" className={({ isActive, isPending }) =>
+                            <NavLink to="." className={({ isActive, isPending }) =>
                                 isActive
                                     ? "active me-2 px-3 py-2"
                                     : isPending
                                     ? "pending me-2 px-3 py-2"
                                     : "me-2 px-3 py-2"
-                            }>
+                            } end>
                                 <span className="d-none d-md-inline">Vaccinations</span>
                                 <Virus2 />
                             </NavLink>
 
-                            <NavLink to="/patient/1/records" className={({ isActive, isPending }) =>
+                            <NavLink to="records" className={({ isActive, isPending }) =>
                                 isActive
                                     ? "active me-2 px-3 py-2"
                                     : isPending
@@ -449,7 +449,7 @@ export function ProfileOverview() {
                     </div>
                 </div>
 
-                <div className="ad-container my-4 py-2 px-4 section-blur shadow">
+                <div className="ad-container my-4 py-2 px-4 section-blur">
 
                     <div className="ad-text">
                         <h5 className="fw-bold">Get MedicaLink on your mobile phone</h5>
@@ -479,9 +479,9 @@ function Profile() {
 
                 <div className="profile-nav mb-4" id="profile-nav">
 
-                    <NavLink to="/patient/1/overview" className="nav-link">Overview</NavLink>
+                    <NavLink to="overview" className="nav-link">Overview</NavLink>
 
-                    <NavLink to="/patient/1/reports" className="nav-link">Reports</NavLink>
+                    <NavLink to="reports" className="nav-link">Reports</NavLink>
 
                 </div>
 

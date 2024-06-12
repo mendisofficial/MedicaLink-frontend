@@ -2,6 +2,7 @@ import './App.css'
 import { useEffect, useRef } from 'react';
 import { Outlet } from "react-router-dom";
 import Sidebar, { SidebarHandle } from './components/sidebar/Sidebar.tsx'
+import Popup, { PopupProvider } from './components/popup/Popup.tsx';
 
 function App() {
   const sidebarRef = useRef<SidebarHandle>(null);
@@ -32,19 +33,22 @@ function App() {
   }, []);
 
   return (
-    <div id="main" className="py-0">
+    <PopupProvider>
+      <div id="main" className="py-0">
 
-      <div ref={mainContainerRef} id="main-container" className="container-fluid px-md-4 pt-4 pb-1 pb-md-4">
-        <div className="row p-0">
+        <div ref={mainContainerRef} id="main-container" className="container-fluid px-md-4 pt-4 pb-1 pb-md-4">
+          <div className="row p-0">
 
-          <Outlet />
+            <Outlet />
 
+          </div>
         </div>
+
+        <Sidebar ref={sidebarRef} />
+
       </div>
-
-      <Sidebar ref={sidebarRef} />
-
-    </div>
+      <Popup/>
+    </PopupProvider>
   )
 }
 
