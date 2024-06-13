@@ -13,6 +13,8 @@ import Settings from './components/settings/Settings.tsx'
 import Profile, { MedicalRecords, ProfileOverview, VaccinationDetails } from './components/patient/Profile.tsx'
 import ProfileReports from './components/patient/ProfileReports.tsx'
 import { AdminOverview } from './components/admin/AdminOverview.tsx'
+// import AdminLogIn from './components/login/AdminLogIn.tsx'
+import UserLogIn from './components/login/UserLogIn.tsx'
 
 const router = createBrowserRouter([
   {
@@ -68,6 +70,10 @@ const router = createBrowserRouter([
       }
     ],
     errorElement: <NotFound />
+  },
+  {
+    path:'/login',
+    element: <UserLogIn/>
   }
 ]);
 
