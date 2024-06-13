@@ -10,7 +10,7 @@
 }
 
 .profile-image{
-    background: url(../../assets/img/profie/profile-background.jpg);
+    background: url(../../../assets/img/profie/profile-background.jpg);
     background-size: cover;
     display: flex;
     justify-content: center;

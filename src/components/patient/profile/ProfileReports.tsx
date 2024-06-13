@@ -1,8 +1,10 @@
 import { ClipboardPulse, Virus2 } from 'react-bootstrap-icons';
 import { NavLink, Outlet, useParams } from 'react-router-dom';
-import Searchbar, { FilterCategory, FilterGroup, FilterList, FilterTitle, SearchFilter } from '../search/Searchbar';
-import { usePopup } from '../popup/Popup';
+import Searchbar, { FilterCategory, FilterGroup, FilterList, FilterTitle, SearchFilter } from '../../search/Searchbar';
+import { usePopup } from '../../popup/Popup';
+import { VaccinationForm } from './VaccinationForm';
 import './ProfileReports.css';
+import { RecordForm } from './RecordForm';
 
 interface Vaccination {
     id: number;
@@ -21,6 +23,7 @@ interface MedicalRecord {
 }
 
 export function MedicalRecordsTable() {
+    const { openPopup } = usePopup();
 
     const medicalRecords : MedicalRecord[] = [
         {id: 1, type:'Diagnosis', location: 'Heymas Hospitals', date:'10/06/2024'},
@@ -29,9 +32,24 @@ export function MedicalRecordsTable() {
         {id: 4, type:'Diagnosis', location: 'Heymas Hospitals', date:'10/06/2024'}
     ];
 
+    const handleClick = () => {
+        openPopup(<RecordForm/>);
+    }
+
     return (
         <>
-            <h5>Medical Reports</h5>
+            <div className="d-flex align-items-center" id="result-titles">
+                <h5 className="mb-0">Medical Reports</h5>
+                <div className="ms-auto d-flex align-items-center">
+                    <span className="me-2 me-md-3 text-nowrap">Showing <span className="result-count">10</span> results</span>
+                    <button className="add-btn">
+                        <span className="me-2 d-none d-md-block">Add Record</span>
+                        <span className="material-symbols-outlined">
+                            note_add
+                        </span>
+                    </button>
+                </div>
+            </div>
 
             <div className="table-container mt-2 py-2 px-md-4">
                 <table className="table mt-md-2 mb-0">
@@ -56,7 +74,7 @@ export function MedicalRecordsTable() {
                                         <td>{medicalRecord.date}</td>
                                         <td className="d-none d-lg-table-cell">
                                             <div className="d-none d-lg-flex justify-content-end align-items-center">
-                                                <button className="view-more">
+                                                <button className="view-more" onClick={handleClick}>
                                                     <span className="material-symbols-outlined">
                                                         read_more
                                                     </span>
@@ -103,13 +121,24 @@ export function VaccinationTable() {
     ];
 
     const handleClick = () => {
-        openPopup(<div>Hellow Guys</div>);
+        openPopup(<VaccinationForm/>);
     }
 
     return (
         <>
 
-            <h5>Vaccination Details</h5>
+            <div className="d-flex align-items-center" id="result-titles">
+                <h5 className="mb-0">Vaccination Details</h5>
+                <div className="ms-auto d-flex align-items-center">
+                    <span className="me-2 me-md-3 text-nowrap">Showing <span className="result-count">10</span> results</span>
+                    <button className="add-btn">
+                        <span className="me-2 d-none d-md-block">Add Vaccination</span>
+                        <span className="material-symbols-outlined">
+                            note_add
+                        </span>
+                    </button>
+                </div>
+            </div>
 
             <div className="table-container mt-2 py-2 px-md-4">
                 <table className="table mt-md-2 mb-0">

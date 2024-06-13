@@ -22,7 +22,7 @@
 
 /*===== Advertisement Section =====*/
 .ad-container{
-    background: url(../../assets/img/profie/ad-bg.jpg);
+    background: url(../../../assets/img/profie/ad-bg.jpg);
     background-size: cover;
     border-radius: 10px;
     display: flex;

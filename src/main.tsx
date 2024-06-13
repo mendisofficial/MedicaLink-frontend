@@ -10,8 +10,8 @@ import NotFound from './NotFound.tsx'
 import AdminPatientPanel from './components/patient/AdminPatientPanel.tsx'
 import WorkingOnIt from './components/WorkingOnIt.tsx'
 import Settings from './components/settings/Settings.tsx'
-import Profile, { MedicalRecords, ProfileOverview, VaccinationDetails } from './components/patient/Profile.tsx'
-import ProfileReports, { MedicalRecordsTable, VaccinationTable } from './components/patient/ProfileReports.tsx'
+import Profile, { MedicalRecords, ProfileOverview, VaccinationDetails } from './components/patient/profile/Profile.tsx'
+import ProfileReports, { MedicalRecordsTable, VaccinationTable } from './components/patient/profile/ProfileReports.tsx'
 
 const router = createBrowserRouter([
   {

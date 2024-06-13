@@ -1,8 +1,8 @@
 import './Profile.css';
 import './ProfileOverview.css';
 import { ChevronDown, Virus2, Clipboard2Pulse } from 'react-bootstrap-icons';
-import avatar from '../../assets/img/profie/profile-image.jpg';
-import advertisement from '../../assets/img/profie/ad-image.png';
+import avatar from '../../../assets/img/profie/profile-image.jpg';
+import advertisement from '../../../assets/img/profie/ad-image.png';
 import { Outlet, NavLink } from 'react-router-dom';
 
 export function MedicalRecords() {
