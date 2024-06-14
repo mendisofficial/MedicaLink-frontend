@@ -15,13 +15,14 @@ interface SearchResultProps{
     registeredDate : string, // Should be date but went with string for testing
     lastUpdated : string, // Should be date but went with string for testing
     firstUpdated : string // Should be date but went with string for testing
+    imagePath? : string
 }
 
-function SearchResult({ searchType, referenceNo, name, registeredHospital, registeredDate, lastUpdated, firstUpdated} : SearchResultProps) {
+function SearchResult({ searchType, referenceNo, name, registeredHospital, registeredDate, lastUpdated, firstUpdated, imagePath} : SearchResultProps) {
     return (
         <div className="patient">
 
-            <img src={avatar} alt="profile-image" />
+            <img src={imagePath} alt="profile-image" />
 
             <div className="info">
                 <span className="highlight">Reference No: {referenceNo}</span>

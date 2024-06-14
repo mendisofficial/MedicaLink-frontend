@@ -13,6 +13,7 @@ import Settings from './components/settings/Settings.tsx'
 import Profile, { MedicalRecords, ProfileOverview, VaccinationDetails } from './components/patient/profile/Profile.tsx'
 import ProfileReports, { MedicalRecordsTable, VaccinationTable } from './components/patient/profile/ProfileReports.tsx'
 import { AdminOverview } from './components/admin/AdminOverview.tsx'
+import { PatientRegistrationForm } from './components/patient/PatientRegistrationForm.tsx'
 // import AdminLogIn from './components/login/AdminLogIn.tsx'
 import UserLogIn from './components/login/UserLogIn.tsx'
 
@@ -31,7 +32,11 @@ const router = createBrowserRouter([
       },
       {
         path: '/patient',
-        element: <AdminPatientPanel />
+        element: <AdminPatientPanel />,
+      },
+      {
+        path:'/patient/add',
+        element: <PatientRegistrationForm />
       },
       {
         path: '/comments',
