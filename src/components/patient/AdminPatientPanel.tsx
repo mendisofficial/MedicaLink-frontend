@@ -6,19 +6,19 @@ function AdminPatientPanel() {
 
     const patientList = [
         {
-            referenceNo: '200311513520', name: 'Chiranga Shalitha', registeredHospital: 'Hemas pvt ltd',
+            id:1, referenceNo: '200331020128', name: 'Jane Cooper', registeredHospital: 'Hemas pvt ltd',
             registeredDate: '20/05/2022', lastUpdated: '10/05/2024', firstUpdated: '20/05/2022'
         },
         {
-            referenceNo: '200331012273', name: 'Nisala Develigoda', registeredHospital: 'Hemas pvt ltd',
+            id:2, referenceNo: '200331020128', name: 'Jane Cooper', registeredHospital: 'Hemas pvt ltd',
             registeredDate: '20/05/2022', lastUpdated: '10/05/2024', firstUpdated: '20/05/2022'
         },
         {
-            referenceNo: '200331020128', name: 'Jane Cooper', registeredHospital: 'Hemas pvt ltd',
+            id:3, referenceNo: '200331020128', name: 'Jane Cooper', registeredHospital: 'Hemas pvt ltd',
             registeredDate: '20/05/2022', lastUpdated: '10/05/2024', firstUpdated: '20/05/2022'
         },
         {
-            referenceNo: '200331020128', name: 'Jane Cooper', registeredHospital: 'Hemas pvt ltd',
+            id:4, referenceNo: '200331020128', name: 'Jane Cooper', registeredHospital: 'Hemas pvt ltd',
             registeredDate: '20/05/2022', lastUpdated: '10/05/2024', firstUpdated: '20/05/2022'
         }
     ];
@@ -38,7 +38,7 @@ function AdminPatientPanel() {
                         <FilterGroup>
 
                             <FilterTitle>Select search type</FilterTitle>
-                            <FilterList activeCategoryKey="reference_no">
+                            <FilterList>
                                 <FilterCategory key="reference_no"># Reference Number</FilterCategory>
                                 <FilterCategory key="patient_name"># Patient Name</FilterCategory>
                                 <FilterCategory key="registered_hospital"># Registered Hospital</FilterCategory>
@@ -49,7 +49,7 @@ function AdminPatientPanel() {
                         <FilterGroup>
 
                             <FilterTitle>Select registration type</FilterTitle>
-                            <FilterList activeCategoryKey="all">
+                            <FilterList>
                                 <FilterCategory key="hospital"># Your Hospital</FilterCategory>
                                 <FilterCategory key="associated"># Associated With</FilterCategory>
                                 <FilterCategory key="all"># All</FilterCategory>
@@ -100,7 +100,7 @@ function AdminPatientPanel() {
                         {
                             patientList.map(patient => {
                                 return (
-                                    <SearchResult referenceNo={patient.referenceNo} name={patient.name} registeredHospital={patient.registeredHospital}
+                                    <SearchResult key={patient.id} referenceNo={patient.referenceNo} name={patient.name} registeredHospital={patient.registeredHospital}
                                         registeredDate={patient.registeredDate} lastUpdated={patient.lastUpdated} firstUpdated={patient.firstUpdated}
                                         searchType={SearchType.EDIT}></SearchResult>
                                 );

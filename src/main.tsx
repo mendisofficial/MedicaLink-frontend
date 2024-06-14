@@ -10,8 +10,8 @@ import NotFound from './NotFound.tsx'
 import AdminPatientPanel from './components/patient/AdminPatientPanel.tsx'
 import WorkingOnIt from './components/WorkingOnIt.tsx'
 import Settings from './components/settings/Settings.tsx'
-import Profile, { MedicalRecords, ProfileOverview, VaccinationDetails } from './components/patient/Profile.tsx'
-import ProfileReports from './components/patient/ProfileReports.tsx'
+import Profile, { MedicalRecords, ProfileOverview, VaccinationDetails } from './components/patient/profile/Profile.tsx'
+import ProfileReports, { MedicalRecordsTable, VaccinationTable } from './components/patient/profile/ProfileReports.tsx'
 import { AdminOverview } from './components/admin/AdminOverview.tsx'
 // import AdminLogIn from './components/login/AdminLogIn.tsx'
 import UserLogIn from './components/login/UserLogIn.tsx'
@@ -46,21 +46,32 @@ const router = createBrowserRouter([
         element: <Profile />,
         children : [
           {
+            path:'overview',
             element: <ProfileOverview />,
             children: [
               {
-                path: '/patient/:patientId/overview',
+                index: true,
                 element: <VaccinationDetails />
               },
               {
-                path: '/patient/:patientId/records',
+                path: 'records',
                 element: <MedicalRecords />
               }
             ]
           },
           {
             path: '/patient/:patientId/reports',
-            element: <ProfileReports />
+            element: <ProfileReports />,
+            children : [
+              {
+                index: true,
+                element: <VaccinationTable />
+              },
+              {
+                path: 'medicals',
+                element: <MedicalRecordsTable />
+              }
+            ]
           }
         ]
       },
