@@ -168,6 +168,23 @@
     color: white;
 }
 
+/* Report Table */
+#report-table-container table thead tr td{
+    font-size: 16px !important;
+    font-weight: 500 !important;
+}
+
+#report-table-container table tbody{
+    font-size: 15px;
+}
+
+#report-table-container table tbody tr{
+    margin: 5px 0px;
+    background-color: #f4f4f4ec;
+    border-radius: 8px;
+}
+/* Report Table End */
+
 .vaccination-table .vhead .vtr, .vaccination-table .vbody .vtr .tr{
     display: inline-flex;
     justify-content: space-evenly;

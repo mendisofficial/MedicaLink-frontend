@@ -1,7 +1,5 @@
-import { useState } from 'react';
 
 export function RecordForm() {
-    const [visible, setVisible] = useState(false);
 
     return (
         <div className="container-fluid mt-3 px-0">
@@ -52,16 +50,6 @@ export function RecordForm() {
                     No attachments
                     </span>
                 </div>
-            </div>
-
-            <div className="col-12">
-
-            <div>
-
-
-
-            </div>
-
             </div>
 
             </div>

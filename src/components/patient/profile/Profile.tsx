@@ -1,9 +1,21 @@
 import './Profile.css';
 import './ProfileOverview.css';
-import { ChevronDown, Virus2, Clipboard2Pulse } from 'react-bootstrap-icons';
+import { ChevronDown, Virus2, Clipboard2Pulse, ChevronUp } from 'react-bootstrap-icons';
 import avatar from '../../../assets/img/profie/profile-image.jpg';
 import advertisement from '../../../assets/img/profie/ad-image.png';
 import { Outlet, NavLink } from 'react-router-dom';
+import Collapse from '@mui/material/Collapse';
+import IconButton from '@mui/material/IconButton';
+import * as React from 'react';
+import { Card } from '@mui/material';
+import Box from '@mui/material/Box';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import Typography from '@mui/material';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
 
 export function MedicalRecords() {
 
@@ -12,7 +24,7 @@ export function MedicalRecords() {
             <h5>Medical Records</h5>
 
             <div className="table-container mt-2 py-2 px-md-4">
-                <div className="vaccination-table mt-2">
+                {/* <div className="vaccination-table mt-2">
                     <div className="vhead">
                         <div className="vtr">
                             <div>#</div>
@@ -156,10 +168,77 @@ export function MedicalRecords() {
 
                         </div>
                     </div>
-                </div>
+                </div> */}
+
+                <TableContainer component={Card} id="report-table-container">
+                    <Table aria-label="collapsible table">
+                        <TableHead>
+                                <TableRow>
+                                    <TableCell>#</TableCell>
+                                    <TableCell>Medical Service</TableCell>
+                                    <TableCell>Location</TableCell>
+                                    <TableCell>Date</TableCell>
+                                    <TableCell>
+                                        <span className="material-symbols-outlined">
+                                            description
+                                        </span>
+                                    </TableCell>
+                                </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            <MedicalTableRow key={1} />
+                            <MedicalTableRow key={2} />
+                        </TableBody>
+                    </Table>
+                </TableContainer>
             </div>
         </>
     );
+}
+
+function MedicalTableRow() {
+    const [open, setOpen] = React.useState(false);
+
+    return (
+        <React.Fragment>
+            <TableRow>
+                <TableCell scope="row">
+                    <div className="d-flex">
+                        <input type="checkbox" className="form-check me-2" />
+                        <span className="d-none d-md-block">22 : 25</span>
+                    </div>
+                </TableCell>
+                <TableCell >Heymas Hospitals</TableCell>
+                <TableCell >Heymas Hospitals</TableCell>
+                <TableCell >20/12/2024</TableCell>
+                <TableCell>
+                    <IconButton
+                        aria-label="expand row"
+                        size="small"
+                        onClick={() => setOpen(!open)} >
+                        {open ? <ChevronUp /> : <ChevronDown />}
+
+                    </IconButton>
+                </TableCell>
+            </TableRow>
+            <TableRow>
+                <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+                    <Collapse in={open} timeout="auto" unmountOnExit>
+                        <Box sx={{ marginTop: 2 }}>
+                            <h6 className="mt-2">Notes : </h6>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                                Dignissimos dicta, cumque deleniti consequatur fugiat asperiores qui
+                                sit
+                                animi beatae ab?
+                                <a href="https://googledrive.com" className='d-block mt-3'>Download Attachment</a>
+                            </p>
+                        </Box>
+                    </Collapse>
+                </TableCell>
+            </TableRow>
+        </React.Fragment>
+    )
 }
 
 export function VaccinationDetails() {
@@ -413,8 +492,8 @@ export function ProfileOverview() {
                                 isActive
                                     ? "active me-2 px-3 py-2"
                                     : isPending
-                                    ? "pending me-2 px-3 py-2"
-                                    : "me-2 px-3 py-2"
+                                        ? "pending me-2 px-3 py-2"
+                                        : "me-2 px-3 py-2"
                             } end>
                                 <span className="d-none d-md-inline">Vaccinations</span>
                                 <Virus2 />
@@ -424,8 +503,8 @@ export function ProfileOverview() {
                                 isActive
                                     ? "active me-2 px-3 py-2"
                                     : isPending
-                                    ? "pending me-2 px-3 py-2"
-                                    : "me-2 px-3 py-2"
+                                        ? "pending me-2 px-3 py-2"
+                                        : "me-2 px-3 py-2"
                             }>
                                 <span className="d-none d-md-inline">Medical Reports</span>
                                 <Clipboard2Pulse />
