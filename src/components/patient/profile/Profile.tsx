@@ -7,183 +7,38 @@ import { Outlet, NavLink } from 'react-router-dom';
 import Collapse from '@mui/material/Collapse';
 import IconButton from '@mui/material/IconButton';
 import * as React from 'react';
-import { Card } from '@mui/material';
 import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
-import Typography from '@mui/material';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 
 export function MedicalRecords() {
 
+    const headingCellStyles = { fontSize: '14px', fontWeight: 600, fontFamily: 'Poppins', paddingBottom: '10px', paddingTop: '6px' };
+
     return (
         <>
             <h5>Medical Records</h5>
 
             <div className="table-container mt-2 py-2 px-md-4">
-                {/* <div className="vaccination-table mt-2">
-                    <div className="vhead">
-                        <div className="vtr">
-                            <div>#</div>
-                            <div>Medical Service</div>
-                            <div className="d-none d-md-block">Location</div>
-                            <div className="d-none d-md-block">Doctor</div>
-                            <div >Date</div>
-                            <div>
-                                <span className="material-symbols-outlined">
-                                    description
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="vbody">
-                        <div className="vtr">
-                            <div className="tr">
-                                <div className="d-flex">
-                                    <input type="checkbox" className="form-check me-2" />
-                                    <span className="d-none d-md-block">22 : 25</span>
-                                </div>
-                                <div>MRI Scan</div>
-                                <div className="d-none d-md-block">Heymas Hospitals</div>
-                                <div className="d-none d-md-block">Dr. Shaggy</div>
-                                <div >12/06/2003</div>
-                                <div>
-                                    <button type="button" className="p-0 border-0 bg-transparent"
-                                        data-bs-toggle="collapse" data-bs-target="#collapse1"
-                                        aria-expanded="false" aria-controls="collapse1">
-                                        <ChevronDown />
-                                    </button>
-                                </div>
-                            </div>
 
-                            <div className="notes px-3 py-2 collapse" id="collapse1">
-                                <h6 className="mt-2">Notes : </h6>
-                                <p>
-                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                                    Dignissimos dicta, cumque deleniti consequatur fugiat asperiores qui
-                                    sit
-                                    animi beatae ab?
-                                    <a href="https://googledrive.com">Download Attachment</a>
-                                </p>
-                            </div>
-
-                        </div>
-
-                        <div className="vtr">
-                            <div className="tr">
-                                <div className="d-flex">
-                                    <input type="checkbox" className="form-check me-2" />
-                                    <span className="d-none d-md-block">22 : 25</span>
-                                </div>
-                                <div>MRI Scan</div>
-                                <div className="d-none d-md-block">Heymas Hospitals</div>
-                                <div className="d-none d-md-block">Dr. Shaggy</div>
-                                <div >12/06/2003</div>
-                                <div>
-                                    <button type="button" className="p-0 border-0 bg-transparent"
-                                        data-bs-toggle="collapse" data-bs-target="#collapse1"
-                                        aria-expanded="false" aria-controls="collapse1">
-                                        <ChevronDown />
-                                    </button>
-                                </div>
-                            </div>
-
-                            <div className="notes px-3 py-2 collapse" id="collapse1">
-                                <h6 className="mt-2">Notes : </h6>
-                                <p>
-                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                                    Dignissimos dicta, cumque deleniti consequatur fugiat asperiores qui
-                                    sit
-                                    animi beatae ab?
-                                    <a href="https://googledrive.com">Download Attachment</a>
-                                </p>
-                            </div>
-
-                        </div>
-
-                        <div className="vtr">
-                            <div className="tr">
-                                <div className="d-flex">
-                                    <input type="checkbox" className="form-check me-2" />
-                                    <span className="d-none d-md-block">22 : 25</span>
-                                </div>
-                                <div>MRI Scan</div>
-                                <div className="d-none d-md-block">Heymas Hospitals</div>
-                                <div className="d-none d-md-block">Dr. Shaggy</div>
-                                <div >12/06/2003</div>
-                                <div>
-                                    <button type="button" className="p-0 border-0 bg-transparent"
-                                        data-bs-toggle="collapse" data-bs-target="#collapse1"
-                                        aria-expanded="false" aria-controls="collapse1">
-                                        <ChevronDown />
-                                    </button>
-                                </div>
-                            </div>
-
-                            <div className="notes px-3 py-2 collapse" id="collapse1">
-                                <h6 className="mt-2">Notes : </h6>
-                                <p>
-                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                                    Dignissimos dicta, cumque deleniti consequatur fugiat asperiores qui
-                                    sit
-                                    animi beatae ab?
-                                    <a href="https://googledrive.com">Download Attachment</a>
-                                </p>
-                            </div>
-
-                        </div>
-
-                        <div className="vtr">
-                            <div className="tr">
-                                <div className="d-flex">
-                                    <input type="checkbox" className="form-check me-2" />
-                                    <span className="d-none d-md-block">22 : 25</span>
-                                </div>
-                                <div>MRI Scan</div>
-                                <div className="d-none d-md-block">Heymas Hospitals</div>
-                                <div className="d-none d-md-block">Dr. Shaggy</div>
-                                <div >12/06/2003</div>
-                                <div>
-                                    <button type="button" className="p-0 border-0 bg-transparent"
-                                        data-bs-toggle="collapse" data-bs-target="#collapse1"
-                                        aria-expanded="false" aria-controls="collapse1">
-                                        <ChevronDown />
-                                    </button>
-                                </div>
-                            </div>
-
-                            <div className="notes px-3 py-2 collapse" id="collapse1">
-                                <h6 className="mt-2">Notes : </h6>
-                                <p>
-                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                                    Dignissimos dicta, cumque deleniti consequatur fugiat asperiores qui
-                                    sit
-                                    animi beatae ab?
-                                    <a href="https://googledrive.com">Download Attachment</a>
-                                </p>
-                            </div>
-
-                        </div>
-                    </div>
-                </div> */}
-
-                <TableContainer component={Card} id="report-table-container">
+                <TableContainer id="report-table-container">
                     <Table aria-label="collapsible table">
                         <TableHead>
-                                <TableRow>
-                                    <TableCell>#</TableCell>
-                                    <TableCell>Medical Service</TableCell>
-                                    <TableCell>Location</TableCell>
-                                    <TableCell>Date</TableCell>
-                                    <TableCell>
-                                        <span className="material-symbols-outlined">
-                                            description
-                                        </span>
-                                    </TableCell>
-                                </TableRow>
+                            <TableRow>
+                                <TableCell sx={headingCellStyles} align='center' className='d-none d-md-table-cell'>#</TableCell>
+                                <TableCell sx={headingCellStyles}>Medical Service</TableCell>
+                                <TableCell sx={headingCellStyles}>Medical Institution</TableCell>
+                                <TableCell sx={headingCellStyles} className="d-none d-md-table-cell">Date</TableCell>
+                                <TableCell sx={headingCellStyles} className='px-2 px-md-3'>
+                                    <span className="material-symbols-outlined">
+                                        description
+                                    </span>
+                                </TableCell>
+                            </TableRow>
                         </TableHead>
                         <TableBody>
                             <MedicalTableRow key={1} />
@@ -198,20 +53,21 @@ export function MedicalRecords() {
 
 function MedicalTableRow() {
     const [open, setOpen] = React.useState(false);
+    const bodyCellStyles = { fontSize: '14px', fontFamily: 'Poppins' };
 
     return (
         <React.Fragment>
             <TableRow>
-                <TableCell scope="row">
-                    <div className="d-flex">
+                <TableCell scope="row" className='d-none d-md-table-cell'>
+                    <div className="d-flex justify-content-center">
                         <input type="checkbox" className="form-check me-2" />
                         <span className="d-none d-md-block">22 : 25</span>
                     </div>
                 </TableCell>
-                <TableCell >Heymas Hospitals</TableCell>
-                <TableCell >Heymas Hospitals</TableCell>
-                <TableCell >20/12/2024</TableCell>
-                <TableCell>
+                <TableCell sx={bodyCellStyles}>Diagnosis</TableCell>
+                <TableCell sx={bodyCellStyles}>Heymas Hospitals</TableCell>
+                <TableCell sx={bodyCellStyles} className="d-none d-md-table-cell">20/12/2024</TableCell>
+                <TableCell sx={bodyCellStyles} className='px-2 px-md-3'>
                     <IconButton
                         aria-label="expand row"
                         size="small"
@@ -221,18 +77,20 @@ function MedicalTableRow() {
                     </IconButton>
                 </TableCell>
             </TableRow>
-            <TableRow>
+            <TableRow className='description'>
                 <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
                     <Collapse in={open} timeout="auto" unmountOnExit>
-                        <Box sx={{ marginTop: 2 }}>
-                            <h6 className="mt-2">Notes : </h6>
-                            <p>
-                                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                                Dignissimos dicta, cumque deleniti consequatur fugiat asperiores qui
-                                sit
-                                animi beatae ab?
-                                <a href="https://googledrive.com" className='d-block mt-3'>Download Attachment</a>
-                            </p>
+                        <Box sx={{ paddingTop: 2, paddingBottom: 2 }}>
+                            <div>
+                                <h6 className="mt-2">Notes : </h6>
+                                <p>
+                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                                    Dignissimos dicta, cumque deleniti consequatur fugiat asperiores qui
+                                    sit
+                                    animi beatae ab?
+                                    <a href="https://googledrive.com" className='d-block mt-3'>Download Attachment</a>
+                                </p>
+                            </div>
                         </Box>
                     </Collapse>
                 </TableCell>
@@ -242,160 +100,90 @@ function MedicalTableRow() {
 }
 
 export function VaccinationDetails() {
+    const headingCellStyles = { fontSize: '14px', fontWeight: 600, fontFamily: 'Poppins', paddingBottom: '10px', paddingTop: '6px' };
 
     return (
         <>
             <h5>Vaccination Details</h5>
 
             <div className="table-container mt-2 py-2 px-md-4">
-                <div className="vaccination-table mt-2">
-                    <div className="vhead">
-                        <div className="vtr">
-                            <div>#</div>
-                            <div>Vaccine Type</div>
-                            <div className="d-none d-md-block">Brand</div>
-                            <div className="d-none d-md-block">Location</div>
-                            <div >Date</div>
-                            <div className="d-none d-md-block">Dose</div>
-                            <div>
-                                <span className="material-symbols-outlined">
-                                    description
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="vbody">
-                        <div className="vtr">
-                            <div className="tr">
-                                <div className="d-flex">
-                                    <input type="checkbox" className="form-check me-2" />
-                                    <span className="d-none d-md-block">22 : 25</span>
-                                </div>
-                                <div>BCG</div>
-                                <div className="d-none d-md-block">TheraCys® BCG</div>
-                                <div className="d-none d-md-block">Heymas Hospitals</div>
-                                <div >12/06/2003</div>
-                                <div className="d-none d-md-block">10 Liters</div>
-                                <div>
-                                    <button type="button" className="p-0 border-0 bg-transparent"
-                                        data-bs-toggle="collapse" data-bs-target="#collapse1"
-                                        aria-expanded="false" aria-controls="collapse1">
-                                        <ChevronDown />
-                                    </button>
-                                </div>
-                            </div>
 
-                            <div className="notes px-3 py-2 collapse" id="collapse1">
-                                <h6 className="mt-2">Notes : </h6>
-                                <p>
-                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                                    Dignissimos dicta, cumque deleniti consequatur fugiat asperiores qui
-                                    sit
-                                    animi beatae ab?
-                                </p>
-                            </div>
+                <TableContainer id="report-table-container">
+                    <Table aria-label="collapsible table">
+                        <TableHead>
+                            <TableRow>
+                                <TableCell sx={headingCellStyles} align='center' className='d-none d-md-table-cell'>#</TableCell>
+                                <TableCell sx={headingCellStyles}>Vaccine Type</TableCell>
+                                <TableCell sx={headingCellStyles} className='d-none d-md-table-cell'>Brand</TableCell>
+                                <TableCell sx={headingCellStyles}>Location</TableCell>
+                                <TableCell sx={headingCellStyles}>Date</TableCell>
+                                <TableCell sx={headingCellStyles} className='d-none d-md-table-cell'>Dose</TableCell>
+                                <TableCell sx={headingCellStyles} className='px-2 px-md-3'>
+                                    <span className="material-symbols-outlined">
+                                        description
+                                    </span>
+                                </TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            <VaccinationTableRow key={1} />
+                            <VaccinationTableRow key={2} />
+                        </TableBody>
+                    </Table>
+                </TableContainer>
 
-                        </div>
-
-                        <div className="vtr">
-                            <div className="tr">
-                                <div className="d-flex">
-                                    <input type="checkbox" className="form-check me-2" />
-                                    <span className="d-none d-md-block">22 : 25</span>
-                                </div>
-                                <div>BCG</div>
-                                <div className="d-none d-md-block">TheraCys® BCG</div>
-                                <div className="d-none d-md-block">Heymas Hospitals</div>
-                                <div >12/06/2003</div>
-                                <div className="d-none d-md-block">10 Liters</div>
-                                <div>
-                                    <button type="button" className="p-0 border-0 bg-transparent"
-                                        data-bs-toggle="collapse" data-bs-target="#collapse1"
-                                        aria-expanded="false" aria-controls="collapse1">
-                                        <ChevronDown />
-                                    </button>
-                                </div>
-                            </div>
-
-                            <div className="notes px-3 py-2 collapse" id="collapse1">
-                                <h6 className="mt-2">Notes : </h6>
-                                <p>
-                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                                    Dignissimos dicta, cumque deleniti consequatur fugiat asperiores qui
-                                    sit
-                                    animi beatae ab?
-                                </p>
-                            </div>
-
-                        </div>
-
-                        <div className="vtr">
-                            <div className="tr">
-                                <div className="d-flex">
-                                    <input type="checkbox" className="form-check me-2" />
-                                    <span className="d-none d-md-block">22 : 25</span>
-                                </div>
-                                <div>BCG</div>
-                                <div className="d-none d-md-block">TheraCys® BCG</div>
-                                <div className="d-none d-md-block">Heymas Hospitals</div>
-                                <div >12/06/2003</div>
-                                <div className="d-none d-md-block">10 Liters</div>
-                                <div>
-                                    <button type="button" className="p-0 border-0 bg-transparent"
-                                        data-bs-toggle="collapse" data-bs-target="#collapse1"
-                                        aria-expanded="false" aria-controls="collapse1">
-                                        <ChevronDown />
-                                    </button>
-                                </div>
-                            </div>
-
-                            <div className="notes px-3 py-2 collapse" id="collapse1">
-                                <h6 className="mt-2">Notes : </h6>
-                                <p>
-                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                                    Dignissimos dicta, cumque deleniti consequatur fugiat asperiores qui
-                                    sit
-                                    animi beatae ab?
-                                </p>
-                            </div>
-
-                        </div>
-
-                        <div className="vtr">
-                            <div className="tr">
-                                <div className="d-flex">
-                                    <input type="checkbox" className="form-check me-2" />
-                                    <span className="d-none d-md-block">22 : 25</span>
-                                </div>
-                                <div>BCG</div>
-                                <div className="d-none d-md-block">TheraCys® BCG</div>
-                                <div className="d-none d-md-block">Heymas Hospitals</div>
-                                <div >12/06/2003</div>
-                                <div className="d-none d-md-block">10 Liters</div>
-                                <div>
-                                    <button type="button" className="p-0 border-0 bg-transparent"
-                                        data-bs-toggle="collapse" data-bs-target="#collapse1"
-                                        aria-expanded="false" aria-controls="collapse1">
-                                        <ChevronDown />
-                                    </button>
-                                </div>
-                            </div>
-
-                            <div className="notes px-3 py-2 collapse" id="collapse1">
-                                <h6 className="mt-2">Notes : </h6>
-                                <p>
-                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                                    Dignissimos dicta, cumque deleniti consequatur fugiat asperiores qui
-                                    sit
-                                    animi beatae ab?
-                                </p>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
             </div>
         </>
+    );
+}
+
+function VaccinationTableRow() {
+    const [open, setOpen] = React.useState(false);
+    const bodyCellStyles = { fontSize: '14px', fontFamily: 'Poppins' };
+
+    return (
+        <React.Fragment>
+            <TableRow>
+                <TableCell scope="row" className='d-none d-md-table-cell'>
+                    <div className="d-flex justify-content-center">
+                        <input type="checkbox" className="form-check me-2" />
+                        <span className="d-none d-md-block">22 : 25</span>
+                    </div>
+                </TableCell>
+                <TableCell sx={bodyCellStyles}>BCG</TableCell>
+                <TableCell sx={bodyCellStyles} className='d-none d-md-table-cell'>TheraCys® BCG</TableCell>
+                <TableCell sx={bodyCellStyles}>Heymas Hospitals</TableCell>
+                <TableCell sx={bodyCellStyles}>12/06/2003</TableCell>
+                <TableCell sx={bodyCellStyles} className='d-none d-md-table-cell'>10 Liters</TableCell>
+                <TableCell sx={bodyCellStyles} className='px-2 px-md-3'>
+                    <IconButton
+                        aria-label="expand row"
+                        size="small"
+                        onClick={() => setOpen(!open)} >
+                        {open ? <ChevronUp /> : <ChevronDown />}
+
+                    </IconButton>
+                </TableCell>
+            </TableRow>
+            <TableRow className='description'>
+                <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={7}>
+                    <Collapse in={open} timeout="auto" unmountOnExit>
+                        <Box sx={{ paddingTop: 2, paddingBottom: 2 }}>
+                            <div>
+                                <h6 className="mt-2">Notes : </h6>
+                                <p>
+                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                                    Dignissimos dicta, cumque deleniti consequatur fugiat asperiores qui
+                                    sit
+                                    animi beatae ab?
+                                    <a href="https://googledrive.com" className='d-block mt-3'>Download Attachment</a>
+                                </p>
+                            </div>
+                        </Box>
+                    </Collapse>
+                </TableCell>
+            </TableRow>
+        </React.Fragment>
     );
 }
 

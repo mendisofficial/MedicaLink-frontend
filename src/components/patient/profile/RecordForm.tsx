@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import medicalReport from '../../../assets/img/record.png'
 
 export function RecordForm() {
@@ -74,25 +73,32 @@ export function RecordForm() {
     )
 }
 
-export function RecordEditForm() {
+interface RecordFormProps{
+    isEdit? : boolean
+}
+
+export function RecordEditForm({isEdit = false}: RecordFormProps) {
 
     return (
         <>
             <h4 className="mt-3 mt-md-0">Medical Record Details - 20/12/2003</h4>
 
-            <div className="d-flex my-3 mt-md-0 cancel-btn-container">
-                <button className="cancel-btn shadow" id="cancel-btn">
-                    <span className="me-2">Cancel</span>
-                    <span className="material-symbols-outlined">
-                        close
-                    </span>
-                </button>
-            </div>
-            <form className="row g-3 mx-0">
+            {isEdit? (
+                <div className="d-flex my-3 mt-md-0 cancel-btn-container">
+                    <button className="cancel-btn shadow" id="cancel-btn">
+                        <span className="me-2">Cancel</span>
+                        <span className="material-symbols-outlined">
+                            close
+                        </span>
+                    </button>
+                </div>
+            ) : null}
+
+            <form className={`row g-3 mx-0 ${isEdit? '' : 'mt-5'}`}>
                 <div className="col-12 col-md-6">
                     <label htmlFor="inputState" className="form-label">Vaccine</label>
                     <select id="inputState" className="form-select">
-                        <option selected>Choose...</option>
+                        <option>Choose...</option>
                         <option>BCG - TheraCys® BCG</option>
                         <option>BCG - TheraCys® BCG</option>
                         <option>BCG - TheraCys® BCG</option>

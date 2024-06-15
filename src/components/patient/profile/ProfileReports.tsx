@@ -2,7 +2,7 @@ import { ClipboardPulse, Virus2 } from 'react-bootstrap-icons';
 import { NavLink, Outlet, useParams } from 'react-router-dom';
 import Searchbar, { FilterCategory, FilterGroup, FilterList, FilterTitle, SearchFilter } from '../../search/Searchbar';
 import { usePopup } from '../../popup/Popup';
-import { VaccinationForm } from './VaccinationForm';
+import { VaccinationEditForm, VaccinationForm } from './VaccinationForm';
 import './ProfileReports.css';
 import { RecordForm, RecordEditForm } from './RecordForm';
 
@@ -69,7 +69,7 @@ export function MedicalRecordsTable() {
                         {
                             medicalRecords.map((medicalRecord : MedicalRecord) => {
                                 return (
-                                    <tr key={medicalRecord.id}>
+                                    <tr key={medicalRecord.id} onTouchStart={handleClick}>
                                         <th scope="row" className="d-none d-lg-table-cell">22 : 25</th>
                                         <td>{medicalRecord.type}</td>
                                         <td className="d-none d-md-table-cell">{medicalRecord.location}</td>
@@ -133,7 +133,9 @@ export function VaccinationTable() {
                 <h5 className="mb-0">Vaccination Details</h5>
                 <div className="ms-auto d-flex align-items-center">
                     <span className="me-2 me-md-3 text-nowrap">Showing <span className="result-count">10</span> results</span>
-                    <button className="add-btn">
+                    <button className="add-btn" onClick={() => {
+                        openPopup(<VaccinationEditForm/>);
+                    }}>
                         <span className="me-2 d-none d-md-block">Add Vaccination</span>
                         <span className="material-symbols-outlined">
                             note_add
@@ -160,7 +162,7 @@ export function VaccinationTable() {
                         {
                             vaccinations.map((vaccination: Vaccination) => {
                                 return (
-                                    <tr key={vaccination.id}>
+                                    <tr key={vaccination.id} onTouchStart={handleClick}>
                                         <th scope="row" className="d-none d-lg-table-cell">22 : 25</th>
                                         <td>{vaccination.type}</td>
                                         <td className="d-none d-md-table-cell">{vaccination.brand}</td>

@@ -169,54 +169,12 @@
 }
 
 /* Report Table */
-#report-table-container table thead tr td{
-    font-size: 16px !important;
-    font-weight: 500 !important;
-}
-
-#report-table-container table tbody{
-    font-size: 15px;
-}
-
 #report-table-container table tbody tr{
-    margin: 5px 0px;
     background-color: #f4f4f4ec;
-    border-radius: 8px;
 }
+
+#report-table-container table .description{
+    background-color: #f7f8ff;
+}
+
 /* Report Table End */
-
-.vaccination-table .vhead .vtr, .vaccination-table .vbody .vtr .tr{
-    display: inline-flex;
-    justify-content: space-evenly;
-    width: 100%;
-}
-
-.vaccination-table .vbody .vtr .tr{
-    padding: 10px 0px;
-}
-
-.vaccination-table .vbody .vtr{
-    position: relative;
-    margin: 5px 0px;
-    background-color: #f4f4f4ec;
-    border-radius: 8px;
-    font-size: 15px;
-}
-
-.vaccination-table .vhead{
-    font-weight: 600;
-    font-size: 16px;
-}
-
-.vaccination-table .vbody .vtr .notes{
-    background-color: #dce9ffdc;
-}
-
-.vbody .vtr .notes h6{
-    font-size: 15px;
-}
-
-.vbody .vtr .notes p{
-    font-size: 14px;
-}
-/*===== Record Section End =====*/
