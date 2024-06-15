@@ -1,6 +1,11 @@
 import './Dashboard.css';
 import Stats from './Stats';
 import PatientList from './PatientList';
+import Chiranga from "../../assets/img/patients/Chiranga.jpg";
+import Nisala from "../../assets/img/patients/Nisala.jpg";
+import Seneli from "../../assets/img/patients/Seneli.jpg";
+import Chathusha from "../../assets/img/patients/Chathusha.jpg";
+import Nishadi from "../../assets/img/patients/Nishadi.jpg";
 
 function Dashboard() {
 
@@ -42,7 +47,7 @@ function Dashboard() {
 
                         <div className="comment mb-2">
 
-                            <img src="/assets/img/profile/profile-image.jpg" alt="profile-image" />
+                            <img src={Nishadi} alt="profile-image" />
 
                             <p>
                                 Lorem ipsum dolor sit, amet consectetur adipisicing elit...
@@ -61,7 +66,7 @@ function Dashboard() {
 
                         <div className="comment mb-2">
 
-                            <img src="/assets/img/profile/profile-image.jpg" alt="profile-image" />
+                            <img src={Chiranga} alt="profile-image" />
 
                             <p>
                                 Lorem ipsum dolor sit, amet consectetur adipisicing elit...
@@ -80,7 +85,7 @@ function Dashboard() {
 
                         <div className="comment">
 
-                            <img src="/assets/img/profile/profile-image.jpg" alt="profile-image" />
+                            <img src={Seneli} alt="profile-image" />
 
                             <p>
                                 Lorem ipsum dolor sit, amet consectetur adipisicing elit...
@@ -126,7 +131,7 @@ function Dashboard() {
                                     <th scope="row" className="d-none d-md-table-cell">1</th>
                                     <td>
                                         <div className="patient">
-                                            <img src="/assets/img/profile/profile-image.jpg" alt="profile-image" />
+                                            <img src={Chathusha} alt="profile-image" />
                                             <div>
                                                 <span className="fw-medium">200331015154</span>
                                                 <span>Jane Cooper</span>
@@ -134,7 +139,7 @@ function Dashboard() {
                                         </div>
                                     </td>
                                     <td>22/10/2024 21:25</td>
-                                    <td>@doctor_Johnny</td>
+                                    <td>@Dr. Suresh</td>
                                     <td>
                                         <p className="update-description">Lorem ipsum dolor sit amet consectetur adipisicing elit.
                                             Doloribus est nesciunt amet quo at in corporis quia ratione sit assumenda.
@@ -150,7 +155,7 @@ function Dashboard() {
                                     <th scope="row" className="d-none d-md-table-cell">2</th>
                                     <td>
                                         <div className="patient">
-                                            <img src="/assets/img/profile/profile-image.jpg" alt="profile-image" />
+                                            <img src={Nisala} alt="profile-image" />
                                             <div>
                                                 <span className="fw-medium">200331015154</span>
                                                 <span>Jane Cooper</span>
@@ -174,7 +179,7 @@ function Dashboard() {
                                     <th scope="row" className="d-none d-md-table-cell">3</th>
                                     <td>
                                         <div className="patient">
-                                            <img src="/assets/img/profile/profile-image.jpg" alt="profile-image" />
+                                            <img src={Nishadi} alt="profile-image" />
                                             <div>
                                                 <span className="fw-medium">200331015154</span>
                                                 <span>Simon Riley</span>

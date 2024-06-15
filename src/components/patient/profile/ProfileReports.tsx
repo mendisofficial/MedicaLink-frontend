@@ -4,7 +4,7 @@ import Searchbar, { FilterCategory, FilterGroup, FilterList, FilterTitle, Search
 import { usePopup } from '../../popup/Popup';
 import { VaccinationForm } from './VaccinationForm';
 import './ProfileReports.css';
-import { RecordForm } from './RecordForm';
+import { RecordForm, RecordEditForm } from './RecordForm';
 
 interface Vaccination {
     id: number;
@@ -42,7 +42,9 @@ export function MedicalRecordsTable() {
                 <h5 className="mb-0">Medical Reports</h5>
                 <div className="ms-auto d-flex align-items-center">
                     <span className="me-2 me-md-3 text-nowrap">Showing <span className="result-count">10</span> results</span>
-                    <button className="add-btn">
+                    <button className="add-btn" onClick={() => {
+                        openPopup(<RecordEditForm/>);
+                    }}>
                         <span className="me-2 d-none d-md-block">Add Record</span>
                         <span className="material-symbols-outlined">
                             note_add

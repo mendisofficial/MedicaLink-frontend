@@ -1,7 +1,7 @@
 import './Profile.css';
 import './ProfileOverview.css';
 import { ChevronDown, Virus2, Clipboard2Pulse, ChevronUp } from 'react-bootstrap-icons';
-import avatar from '../../../assets/img/profie/profile-image.jpg';
+import Chiranga from '../../../assets/img/patients/Chiranga.jpg';
 import advertisement from '../../../assets/img/profie/ad-image.png';
 import { Outlet, NavLink } from 'react-router-dom';
 import Collapse from '@mui/material/Collapse';
@@ -406,9 +406,9 @@ export function ProfileOverview() {
             <div className="col-12 col-lg-3">
                 <div className="profile-main section-blur">
                     <div className="profile-image p-4">
-                        <img src={avatar} alt="profile" />
+                        <img src={Chiranga} alt="profile" />
                     </div>
-                    <h4 className="title text-center">Jane Cooper</h4>
+                    <h4 className="title text-center">Chiranga Shalitha</h4>
 
                     <div className="container-fluid px-0">
 
