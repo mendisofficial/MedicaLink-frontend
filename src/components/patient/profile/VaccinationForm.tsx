@@ -22,14 +22,14 @@ export function VaccinationForm() {
             <div className="col-12 col-md-6">
                 <div className="record">
                     <span className="title">Vaccinated Location :</span>
-                    <span className="value">Heymas Hospitals</span>
+                    <span className="value">Hemas Hospitals</span>
                 </div>
             </div>
 
             <div className="col-12 col-md-6">
                 <div className="record">
                     <span className="title">Dose :</span>
-                    <span className="value">10 Liters</span>
+                    <span className="value">Single Dose</span>
                 </div>
             </div>
 

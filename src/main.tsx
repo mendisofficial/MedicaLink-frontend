@@ -15,7 +15,7 @@ import ProfileReports, { MedicalRecordsTable, VaccinationTable } from './compone
 import { AdminOverview } from './components/admin/AdminOverview.tsx'
 import { PatientRegistrationForm } from './components/patient/PatientRegistrationForm.tsx'
 // import AdminLogIn from './components/login/AdminLogIn.tsx'
-import UserLogIn from './components/login/UserLogIn.tsx'
+import AdminLogIn from './components/login/AdminLogIn.tsx'
 
 const router = createBrowserRouter([
   {
@@ -89,7 +89,7 @@ const router = createBrowserRouter([
   },
   {
     path:'/login',
-    element: <UserLogIn/>
+    element: <AdminLogIn/>
   }
 ]);
 

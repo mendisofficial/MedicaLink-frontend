@@ -36,7 +36,7 @@ export function MedicalRecords() {
                                 </div>
                                 <div>MRI Scan</div>
                                 <div className="d-none d-md-block">Heymas Hospitals</div>
-                                <div className="d-none d-md-block">Dr. Shaggy</div>
+                                <div className="d-none d-md-block">Dr. Banu</div>
                                 <div >12/06/2003</div>
                                 <div>
                                     <button type="button" className="p-0 border-0 bg-transparent"
@@ -68,7 +68,7 @@ export function MedicalRecords() {
                                 </div>
                                 <div>MRI Scan</div>
                                 <div className="d-none d-md-block">Heymas Hospitals</div>
-                                <div className="d-none d-md-block">Dr. Shaggy</div>
+                                <div className="d-none d-md-block">Dr. Banu</div>
                                 <div >12/06/2003</div>
                                 <div>
                                     <button type="button" className="p-0 border-0 bg-transparent"
@@ -99,8 +99,8 @@ export function MedicalRecords() {
                                     <span className="d-none d-md-block">22 : 25</span>
                                 </div>
                                 <div>MRI Scan</div>
-                                <div className="d-none d-md-block">Heymas Hospitals</div>
-                                <div className="d-none d-md-block">Dr. Shaggy</div>
+                                <div className="d-none d-md-block">Nawaloka Hospitals</div>
+                                <div className="d-none d-md-block">Dr. Banu</div>
                                 <div >12/06/2003</div>
                                 <div>
                                     <button type="button" className="p-0 border-0 bg-transparent"
@@ -131,8 +131,8 @@ export function MedicalRecords() {
                                     <span className="d-none d-md-block">22 : 25</span>
                                 </div>
                                 <div>MRI Scan</div>
-                                <div className="d-none d-md-block">Heymas Hospitals</div>
-                                <div className="d-none d-md-block">Dr. Shaggy</div>
+                                <div className="d-none d-md-block">Hemas Hospitals</div>
+                                <div className="d-none d-md-block">Dr. Banu</div>
                                 <div >12/06/2003</div>
                                 <div>
                                     <button type="button" className="p-0 border-0 bg-transparent"
@@ -194,7 +194,7 @@ export function VaccinationDetails() {
                                 </div>
                                 <div>BCG</div>
                                 <div className="d-none d-md-block">TheraCys® BCG</div>
-                                <div className="d-none d-md-block">Heymas Hospitals</div>
+                                <div className="d-none d-md-block">Hemas Hospitals</div>
                                 <div >12/06/2003</div>
                                 <div className="d-none d-md-block">10 Liters</div>
                                 <div>
@@ -226,7 +226,7 @@ export function VaccinationDetails() {
                                 </div>
                                 <div>BCG</div>
                                 <div className="d-none d-md-block">TheraCys® BCG</div>
-                                <div className="d-none d-md-block">Heymas Hospitals</div>
+                                <div className="d-none d-md-block">Hemas Hospitals</div>
                                 <div >12/06/2003</div>
                                 <div className="d-none d-md-block">10 Liters</div>
                                 <div>
@@ -258,7 +258,7 @@ export function VaccinationDetails() {
                                 </div>
                                 <div>BCG</div>
                                 <div className="d-none d-md-block">TheraCys® BCG</div>
-                                <div className="d-none d-md-block">Heymas Hospitals</div>
+                                <div className="d-none d-md-block">Hemas Hospitals</div>
                                 <div >12/06/2003</div>
                                 <div className="d-none d-md-block">10 Liters</div>
                                 <div>
@@ -290,7 +290,7 @@ export function VaccinationDetails() {
                                 </div>
                                 <div>BCG</div>
                                 <div className="d-none d-md-block">TheraCys® BCG</div>
-                                <div className="d-none d-md-block">Heymas Hospitals</div>
+                                <div className="d-none d-md-block">Hemas Hospitals</div>
                                 <div >12/06/2003</div>
                                 <div className="d-none d-md-block">10 Liters</div>
                                 <div>
@@ -341,7 +341,7 @@ export function ProfileOverview() {
                                     <div className="row">
                                         <div className="profile-group col-12">
                                             <li className="title">Date of Birth</li>
-                                            <li>20th May 2003</li>
+                                            <li>24th April 2003</li>
                                         </div>
 
                                         <div className="profile-group col-6">
@@ -351,12 +351,12 @@ export function ProfileOverview() {
 
                                         <div className="profile-group col-6">
                                             <li className="title">Gender</li>
-                                            <li>Female</li>
+                                            <li>Male</li>
                                         </div>
 
                                         <div className="profile-group col-12">
                                             <li className="title">Address</li>
-                                            <li>No 275, Some Road, Some Town, Some District</li>
+                                            <li>No 1125/2 Liyanagoda Road, Pannipitiya</li>
                                         </div>
                                     </div>
                                 </div>
@@ -369,17 +369,17 @@ export function ProfileOverview() {
                                     <div className="row">
                                         <div className="profile-group">
                                             <li className="title">Blood Group</li>
-                                            <li>O positive</li>
+                                            <li>B positive</li>
                                         </div>
 
                                         <div className="profile-group col-6">
                                             <li className="title">Height</li>
-                                            <li>5 ft 11 inch</li>
+                                            <li>5 ft 3 inch</li>
                                         </div>
 
                                         <div className="profile-group col-6">
                                             <li className="title">Weight</li>
-                                            <li>50 kg</li>
+                                            <li>55 kg</li>
                                         </div>
 
                                         <div className="profile-group col-12">

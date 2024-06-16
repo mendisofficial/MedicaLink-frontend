@@ -26,10 +26,10 @@ export function MedicalRecordsTable() {
     const { openPopup } = usePopup();
 
     const medicalRecords : MedicalRecord[] = [
-        {id: 1, type:'Diagnosis', location: 'Heymas Hospitals', date:'10/06/2024'},
-        {id: 2, type:'Diagnosis', location: 'Heymas Hospitals', date:'10/06/2024'},
-        {id: 3, type:'Diagnosis', location: 'Heymas Hospitals', date:'10/06/2024'},
-        {id: 4, type:'Diagnosis', location: 'Heymas Hospitals', date:'10/06/2024'}
+        {id: 1, type:'Diagnosis', location: 'Hemas Hospitals', date:'10/06/2024'},
+        {id: 2, type:'Diagnosis', location: 'Hemas Hospitals', date:'10/06/2024'},
+        {id: 3, type:'Diagnosis', location: 'Hemas Hospitals', date:'10/06/2024'},
+        {id: 4, type:'Diagnosis', location: 'Hemas Hospitals', date:'10/06/2024'}
     ];
 
     const handleClick = () => {
@@ -116,10 +116,10 @@ export function VaccinationTable() {
     const { openPopup } = usePopup();
 
     const vaccinations: Vaccination[] = [
-        { id: 1, type: 'BCG', brand: 'TheraCys® BCG', location: 'Heymas Hospitals', date: '12/06/2003', dose: '10 Liters' },
-        { id: 2, type: 'BCG', brand: 'TheraCys® BCG', location: 'Heymas Hospitals', date: '12/06/2003', dose: '10 Liters' },
-        { id: 3, type: 'BCG', brand: 'TheraCys® BCG', location: 'Heymas Hospitals', date: '12/06/2003', dose: '10 Liters' },
-        { id: 4, type: 'BCG', brand: 'TheraCys® BCG', location: 'Heymas Hospitals', date: '12/06/2003', dose: '10 Liters' }
+        { id: 1, type: 'BCG', brand: 'TheraCys® BCG', location: 'Nawaloka Hospitals', date: '12/06/2003', dose: '1st Dose' },
+        { id: 2, type: 'BCG', brand: 'TheraCys® BCG', location: 'Nawaloka Hospitals', date: '12/06/2003', dose: '2nd Dose' },
+        { id: 3, type: 'BCG', brand: 'TheraCys® BCG', location: 'Nawaloka Hospitals', date: '12/06/2003', dose: '3rd Dose' },
+        { id: 4, type: 'BCG', brand: 'TheraCys® BCG', location: 'Nawaloka Hospitals', date: '12/06/2003', dose: '4th Dose' }
     ];
 
     const handleClick = () => {
