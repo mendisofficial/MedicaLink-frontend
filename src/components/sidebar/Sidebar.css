@@ -107,12 +107,12 @@
 
 .sidebar-list-item:hover a{
     color: var(--color-active);
-    background-color: #000ecc20;
+    background-color: #0b7cbe25;
 }
 
 .sidebar-list-item a.active {
     color: var(--color-active);
-    background-color: #000ecc34;
+    background-color: #0b7cbe30;
 }
 
 .sidebar-list-item:has(a.active)::before {
