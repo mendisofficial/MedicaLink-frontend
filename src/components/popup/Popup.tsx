@@ -73,7 +73,12 @@ function Popup(){
                 transformOrigin:'bottom'
             }} 
             initial={{ scaleY: 0 }}
-            animate={popupControls}>
+            animate={popupControls}
+            transition={{
+                ease: "easeOut",
+                type: "linear",
+                stiffness: 50,
+              }}>
 
                 <button className="close-btn" id="pop-up-close" onClick={handleClosePopup}>
                     <span className="material-symbols-outlined">

@@ -5,6 +5,7 @@ import { usePopup } from '../../popup/Popup';
 import { VaccinationEditForm, VaccinationForm } from './VaccinationForm';
 import './ProfileReports.css';
 import { RecordForm, RecordEditForm } from './RecordForm';
+import { UseUser } from '../../auth/UserContext';
 
 interface Vaccination {
     id: number;
@@ -24,6 +25,7 @@ interface MedicalRecord {
 
 export function MedicalRecordsTable() {
     const { openPopup } = usePopup();
+    const { user } = UseUser();
 
     const medicalRecords : MedicalRecord[] = [
         {id: 1, type:'Diagnosis', location: 'Heymas Hospitals', date:'10/06/2024'},
@@ -42,14 +44,18 @@ export function MedicalRecordsTable() {
                 <h5 className="mb-0">Medical Reports</h5>
                 <div className="ms-auto d-flex align-items-center">
                     <span className="me-2 me-md-3 text-nowrap">Showing <span className="result-count">10</span> results</span>
-                    <button className="add-btn" onClick={() => {
-                        openPopup(<RecordEditForm/>);
-                    }}>
-                        <span className="me-2 d-none d-md-block">Add Record</span>
-                        <span className="material-symbols-outlined">
-                            note_add
-                        </span>
-                    </button>
+                    {
+                        user?.role == 'admin' ? (
+                            <button className="add-btn" onClick={() => {
+                                openPopup(<RecordEditForm/>);
+                            }}>
+                                <span className="me-2 d-none d-md-block">Add Record</span>
+                                <span className="material-symbols-outlined">
+                                    note_add
+                                </span>
+                            </button>
+                        ) : null
+                    }
                 </div>
             </div>
 
@@ -114,6 +120,7 @@ export function MedicalRecordsTable() {
 
 export function VaccinationTable() {
     const { openPopup } = usePopup();
+    const { user } = UseUser();
 
     const vaccinations: Vaccination[] = [
         { id: 1, type: 'BCG', brand: 'TheraCys® BCG', location: 'Heymas Hospitals', date: '12/06/2003', dose: '10 Liters' },
@@ -133,14 +140,18 @@ export function VaccinationTable() {
                 <h5 className="mb-0">Vaccination Details</h5>
                 <div className="ms-auto d-flex align-items-center">
                     <span className="me-2 me-md-3 text-nowrap">Showing <span className="result-count">10</span> results</span>
-                    <button className="add-btn" onClick={() => {
-                        openPopup(<VaccinationEditForm/>);
-                    }}>
-                        <span className="me-2 d-none d-md-block">Add Vaccination</span>
-                        <span className="material-symbols-outlined">
-                            note_add
-                        </span>
-                    </button>
+                    {
+                        user?.role == 'admin' ? (
+                            <button className="add-btn" onClick={() => {
+                                openPopup(<VaccinationEditForm/>);
+                            }}>
+                                <span className="me-2 d-none d-md-block">Add Vaccination</span>
+                                <span className="material-symbols-outlined">
+                                    note_add
+                                </span>
+                            </button>
+                        ) : null
+                    }
                 </div>
             </div>
 
@@ -209,7 +220,7 @@ export function VaccinationTable() {
 }
 
 function ProfileReports() {
-    const { patientId } = useParams(); //Use this for all the backend requests
+    //const { patientId } = useParams(); //Use this for all the backend requests
 
     return (
         <>

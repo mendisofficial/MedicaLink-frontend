@@ -1,8 +1,9 @@
-import SidebarLink from './SidebarLink';
+import SidebarLink, { SidebarAvatar } from './SidebarLink';
 import favicon from '../../assets/img/favicon.png';
 import avatar from '../../assets/img/profie/profile-image.jpg';
 import './Sidebar.css';
 import { forwardRef, useImperativeHandle, useRef } from 'react';
+import { UseUser } from '../auth/UserContext';
 
 export interface SidbarProps {}
 
@@ -13,6 +14,7 @@ export interface SidebarHandle {
 const Sidebar = forwardRef<SidebarHandle ,SidbarProps>((props, ref) => {
 
     const sidebarRef = useRef<HTMLDivElement | null>(null);
+    const { user } = UseUser();
 
     useImperativeHandle(ref, () => {
         
@@ -42,7 +44,7 @@ const Sidebar = forwardRef<SidebarHandle ,SidbarProps>((props, ref) => {
     const sideBarData = [
         { id: 1, link: '/', order: 3, icon: 'home' },
         { id: 2, link: '/search', order: 1, icon: 'search'},
-        { id: 3, link: '/patient', order: 2, icon: 'group'},
+        { id: 3, link: user?.role == 'admin'? '/patient' : '/smarthealth', order: 2, icon: user?.role == 'admin'? 'group' : 'biotech'},
         { id: 4, link: '/comments', order: 4, icon: 'comment'},
         { id: 5, link: '/settings', order: 5, icon: 'settings'}
     ];
@@ -70,9 +72,7 @@ const Sidebar = forwardRef<SidebarHandle ,SidbarProps>((props, ref) => {
 
                     </ul>
                     <div className="account-info mt-md-auto d-none d-md-flex">
-                        <button className="account-info-picture">
-                            <img src={avatar} alt="Account" />
-                        </button>
+                        <SidebarAvatar/>
                     </div>
                 </div>
             </div>

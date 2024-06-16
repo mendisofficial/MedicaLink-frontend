@@ -15,7 +15,7 @@ import { UseUser } from './components/auth/UserContext.tsx'
 import UserLogIn from './components/login/UserLogIn.tsx'
 
 function App() {
-  const { user, setUser } = UseUser();
+  const { user } = UseUser();
 
   // Route definition
   const router = createBrowserRouter([
@@ -25,19 +25,43 @@ function App() {
       children: [
         {
           path: '/',
-          element: user?.role == 'admin' ? <AdminDashboard /> : <Navigate to={`/patient/${user?.userId}/overview`} />
+          element: user?.role == 'admin' ? <AdminDashboard /> : <ProfileOverview />,
+          children: user?.role == 'user' ? [
+            {
+              index: true,
+              element: <VaccinationDetails />
+            },
+            {
+              path: 'records',
+              element: <MedicalRecords />
+            }
+          ] : []
         },
         {
           path: '/search',
-          element: <AdminSearchPanel />
+          element: user?.role == 'admin' ? <AdminSearchPanel /> : <ProfileReports />,
+          children: user?.role == 'user' ? [
+            {
+              index: true,
+              element: <VaccinationTable />
+            },
+            {
+              path: 'medicals',
+              element: <MedicalRecordsTable />
+            }
+          ] : []
         },
         {
           path: '/patient',
-          element: <AdminPatientPanel />,
+          element: user?.role == 'admin' ? <AdminPatientPanel /> : <NotFound />
+        },
+        {
+          path: '/smarthealth',
+          element: user?.role == 'user' ? <WorkingOnIt /> : <NotFound />
         },
         {
           path: '/patient/add',
-          element: <PatientRegistrationForm />
+          element: user?.role == 'admin' ? <PatientRegistrationForm /> : <NotFound />
         },
         {
           path: '/comments',
@@ -49,7 +73,7 @@ function App() {
         },
         {
           path: '/patient/:patientId',
-          element: <Profile />,
+          element: user?.role == 'admin' ? <Profile /> : <Navigate to="/notfound"/>,
           children: [
             {
               path: 'overview',
@@ -66,7 +90,7 @@ function App() {
               ]
             },
             {
-              path: '/patient/:patientId/reports',
+              path: 'reports',
               element: <ProfileReports />,
               children: [
                 {

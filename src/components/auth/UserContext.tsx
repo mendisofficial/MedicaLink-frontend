@@ -18,7 +18,8 @@ interface UserProviderProps{
 const UserContext = createContext<UserContextType | undefined>(undefined);
 
 export const UserProvider = ({children}: UserProviderProps) => {
-    const [user, setUser] = useState<User | null>({userName : '', userId:1, role:'admin'}); // Pass this {userName : '', userId:1, role:''}
+    const tempUser = {userName : '', userId:1, role:'admin'}; // This is just for testing untill the backend is ready
+    const [user, setUser] = useState<User | null>(tempUser);
 
     return (
         <UserContext.Provider value={{user,setUser}}>
