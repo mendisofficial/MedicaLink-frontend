@@ -341,7 +341,7 @@ export function ProfileOverview() {
                                     <div className="row">
                                         <div className="profile-group col-12">
                                             <li className="title">Date of Birth</li>
-                                            <li>24th April 2003</li>
+                                            <li>14th June 2003</li>
                                         </div>
 
                                         <div className="profile-group col-6">
@@ -356,7 +356,7 @@ export function ProfileOverview() {
 
                                         <div className="profile-group col-12">
                                             <li className="title">Address</li>
-                                            <li>No 1125/2 Liyanagoda Road, Pannipitiya</li>
+                                            <li>No 1124 Piliyandala road, Kesbewa</li>
                                         </div>
                                     </div>
                                 </div>
