@@ -1,33 +1,44 @@
-import Chiranga from "../../assets/img/patients/Chiranga.jpg";
+/* import Chiranga from "../../assets/img/patients/Chiranga.jpg";
 import Nisala from "../../assets/img/patients/Nisala.jpg";
 import Seneli from "../../assets/img/patients/Seneli.jpg";
 import Chathusha from "../../assets/img/patients/Chathusha.jpg";
-import Nishadi from "../../assets/img/patients/Nishadi.jpg";
+import Nishadi from "../../assets/img/patients/Nishadi.jpg"; */
+import { useState, useEffect } from "react";
+import Skeleton from "@mui/material/Skeleton";
+import axiosInstance from "../../axiosInstance";
+import { useAlertSnack, AlertType } from "../AlertSnack";
+
+interface Patient {
+    id: number;
+    referenceNo: string;
+    name: string;
+    user: string;
+    registeredDate: string;
+    image: string;
+}
 
 function PatientList() {
+    const [loading, setLoading] = useState(true);
+    const [patientData, setPatientData] = useState<Patient[]>([]);
+    const { showAlert } = useAlertSnack();
 
-    let patientData = [
-        {
-            id:1, referenceNo: '200311513520', name: 'Chiranga Shalitha', user: 'Dr. Dhashantie',
-            registeredDate: '20/05/2022', image : Chiranga
-        },
-        {
-            id:2, referenceNo: '200331012273', name: 'Nisala Develigoda', user: 'Dr. Banu',
-            registeredDate: '20/05/2022', image : Nisala
-        },
-        {
-            id:3, referenceNo: '200466901046', name: 'Seneli Jayasinghe', user: 'Dr. Suresh',
-            registeredDate: '20/05/2022', image : Seneli
-        },
-        {
-            id:4, referenceNo: '200331020128', name: 'Chathusha Mendis', user: 'Dr. Kushan',
-            registeredDate: '20/05/2022', image : Chathusha
-        },
-        {
-            id:5, referenceNo: '200331020128', name: 'Nishadi Wijesinghe', user: 'Dr. Poorni',
-            registeredDate: '20/05/2022', image : Nishadi
-        }
-    ];
+    useEffect(() => {
+        // Make the api call and fetch patients
+        const fetchData = async () => {
+
+            try {
+                const response = await axiosInstance.get('/api/patient');
+                setPatientData(response.data);
+
+                setLoading(false); // Remove skeletons after fetching data
+            } catch (error) {
+                console.error('Error fetching data:', error); // Handle errors
+                showAlert('Error', 'Something went wrong', AlertType.error);
+            }
+        };
+
+        fetchData();
+    }, []);
 
     return (
         <table className="table">
@@ -42,15 +53,35 @@ function PatientList() {
 
             <tbody>
 
-                {
+                {loading ? (
+                    Array.from({ length: 5 }).map((item, index: number) => {
+                        return (
+                            <tr key={index}>
+                                <th scope="row">
+                                    <Skeleton variant="text" sx={{ fontSize: '1rem' }} />
+                                </th>
+                                <td>
+                                    <div className="patient">
+                                        <Skeleton variant="circular" width={50} height={50} />
+                                        <div>
+                                            <Skeleton variant="text" sx={{ fontSize: '1rem' }} width={150} />
+                                            <Skeleton variant="text" sx={{ fontSize: '1rem' }} width={90} />
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><Skeleton variant="text" sx={{ fontSize: '1rem' }} /></td>
+                                <td><Skeleton variant="text" sx={{ fontSize: '1rem' }} /></td>
+                            </tr>
+                        )
+                    })
+                ) : (
                     patientData.map(patient => {
-
                         return (
                             <tr key={patient.id}>
                                 <th scope="row">{patient.id}</th>
                                 <td>
                                     <div className="patient">
-                                        <img src={patient.image} alt="profile-image" />
+                                        <img src={`./src/assets/img/patients/${patient.image}`} alt="profile-image" />
                                         <div>
                                             <span className="fw-medium">{patient.referenceNo}</span>
                                             <span>{patient.name}</span>
@@ -62,6 +93,7 @@ function PatientList() {
                             </tr>
                         )
                     })
+                )
                 }
 
             </tbody>

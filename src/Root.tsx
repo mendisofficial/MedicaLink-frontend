@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import { Outlet } from "react-router-dom";
 import Sidebar, { SidebarHandle } from './components/sidebar/Sidebar.tsx'
 import Popup, { PopupProvider } from './components/popup/Popup.tsx';
+import AlertSnack, { AlertSnackProvider } from './components/AlertSnack.tsx';
 
 function Root() {
     const sidebarRef = useRef<SidebarHandle>(null);
@@ -37,7 +38,10 @@ function Root() {
                 <div ref={mainContainerRef} id="main-container" className="container-fluid px-md-4 pt-4 pb-1 pb-md-4">
                     <div className="row p-0">
 
-                        <Outlet />
+                        <AlertSnackProvider>
+                            <Outlet />
+                            <AlertSnack />
+                        </AlertSnackProvider>
 
                     </div>
                 </div>
