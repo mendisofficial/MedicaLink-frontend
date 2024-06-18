@@ -208,7 +208,7 @@ export function ProfileOverview() {
                                     <div className="row">
                                         <div className="profile-group col-12">
                                             <li className="title">Date of Birth</li>
-                                            <li>20th May 2003</li>
+                                            <li>14th June 2003</li>
                                         </div>
 
                                         <div className="profile-group col-6">
@@ -218,12 +218,12 @@ export function ProfileOverview() {
 
                                         <div className="profile-group col-6">
                                             <li className="title">Gender</li>
-                                            <li>Female</li>
+                                            <li>Male</li>
                                         </div>
 
                                         <div className="profile-group col-12">
                                             <li className="title">Address</li>
-                                            <li>No 275, Some Road, Some Town, Some District</li>
+                                            <li>No 1124 Piliyandala road, Kesbewa</li>
                                         </div>
                                     </div>
                                 </div>
@@ -236,17 +236,17 @@ export function ProfileOverview() {
                                     <div className="row">
                                         <div className="profile-group">
                                             <li className="title">Blood Group</li>
-                                            <li>O positive</li>
+                                            <li>B positive</li>
                                         </div>
 
                                         <div className="profile-group col-6">
                                             <li className="title">Height</li>
-                                            <li>5 ft 11 inch</li>
+                                            <li>5 ft 3 inch</li>
                                         </div>
 
                                         <div className="profile-group col-6">
                                             <li className="title">Weight</li>
-                                            <li>50 kg</li>
+                                            <li>55 kg</li>
                                         </div>
 
                                         <div className="profile-group col-12">

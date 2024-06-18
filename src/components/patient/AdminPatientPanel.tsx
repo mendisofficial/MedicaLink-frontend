@@ -12,19 +12,19 @@ function AdminPatientPanel() {
 
     const patientList = [
         {
-            id:1, referenceNo: '200311513520', name: 'Chiranga Shalitha', registeredHospital: 'Hemas PVT LTD',
+            id:1, referenceNo: '200345743765', name: 'Chiranga Shalitha', registeredHospital: 'Hemas PVT LTD',
             registeredDate: '20/05/2022', lastUpdated: '10/05/2024', firstUpdated: '20/05/2022', image : Chiranga
         },
         {
-            id:2, referenceNo: '200331012273', name: 'Nisala Develigoda', registeredHospital: 'Nawaloka Hospitals PVT LTD',
+            id:2, referenceNo: '200356568456', name: 'Nisala Develigoda', registeredHospital: 'Nawaloka Hospitals PVT LTD',
             registeredDate: '20/05/2022', lastUpdated: '10/05/2024', firstUpdated: '20/05/2022', image : Nisala
         },
         {
-            id:3, referenceNo: '200466901046', name: 'Seneli Jayasinghe', registeredHospital: 'Durdans Hospital PVT LTD',
+            id:3, referenceNo: '200445647657', name: 'Seneli Jayasinghe', registeredHospital: 'Durdans Hospital PVT LTD',
             registeredDate: '20/05/2022', lastUpdated: '10/05/2024', firstUpdated: '20/05/2022', image : Seneli
         },
         {
-            id:4, referenceNo: '200331020128', name: 'Chathusha Mendis', registeredHospital: 'Asiri Hospitals PVT LTD',
+            id:4, referenceNo: '200364564568', name: 'Chathusha Mendis', registeredHospital: 'Asiri Hospitals PVT LTD',
             registeredDate: '20/05/2022', lastUpdated: '10/05/2024', firstUpdated: '20/05/2022', image : Chathusha
         },
         {

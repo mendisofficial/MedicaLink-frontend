@@ -16,7 +16,7 @@ export function RecordForm() {
                 <div className="col-12 col-md-6">
                     <div className="record">
                         <span className="title">Medical Institute :</span>
-                        <span className="value">Heymas Hospitals</span>
+                        <span className="value">University Hospital KDU</span>
                     </div>
                 </div>
 
@@ -24,8 +24,7 @@ export function RecordForm() {
                     <div className="record">
                         <span className="title">Notes / Description :</span>
                         <p className="value">
-                            Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                            Quidem voluptate consequatur recusandae harum pariatur placeat, doloremque ipsam ex doloribus hic.
+                            Blood test was done to prepare for upcoming septoplasty. He seems to be very healthy and fit.
                         </p>
                     </div>
                 </div>
@@ -33,14 +32,14 @@ export function RecordForm() {
                 <div className="col-12 col-md-6">
                     <div className="record">
                         <span className="title">Created On :</span>
-                        <span className="value">12/06/2003</span>
+                        <span className="value">12/10/2023</span>
                     </div>
                 </div>
 
                 <div className="col-12 col-md-6">
                     <div className="record">
                         <span className="title">Last Updated :</span>
-                        <span className="value">12/06/2003</span>
+                        <span className="value">12/10/2023</span>
                     </div>
                 </div>
 
