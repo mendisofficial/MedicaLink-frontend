@@ -1,8 +1,3 @@
-/* import Chiranga from "../../assets/img/patients/Chiranga.jpg";
-import Nisala from "../../assets/img/patients/Nisala.jpg";
-import Seneli from "../../assets/img/patients/Seneli.jpg";
-import Chathusha from "../../assets/img/patients/Chathusha.jpg";
-import Nishadi from "../../assets/img/patients/Nishadi.jpg"; */
 import { useState, useEffect } from "react";
 import Skeleton from "@mui/material/Skeleton";
 import axiosInstance from "../../axiosInstance";

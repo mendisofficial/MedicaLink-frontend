@@ -33,25 +33,25 @@ function Root() {
 
     return (
         <PopupProvider>
-            <div id="main" className="py-0">
+            <AlertSnackProvider>
+                <div id="main" className="py-0">
 
-                <div ref={mainContainerRef} id="main-container" className="container-fluid px-md-4 pt-4 pb-1 pb-md-4">
-                    <div className="row p-0">
+                    <div ref={mainContainerRef} id="main-container" className="container-fluid px-md-4 pt-4 pb-1 pb-md-4">
+                        <div className="row p-0">
 
-                        <AlertSnackProvider>
                             <Outlet />
-                            <AlertSnack />
-                        </AlertSnackProvider>
 
+                        </div>
                     </div>
+
+                    <Sidebar ref={sidebarRef} />
+
                 </div>
-
-                <Sidebar ref={sidebarRef} />
-
-            </div>
+                <AlertSnack />
+            </AlertSnackProvider>
             <Popup />
         </PopupProvider>
     )
 }
 
-export default  Root;
+export default Root;

@@ -36,7 +36,7 @@ export default function UpdatedList({ className }: UpdatedListProps) {
                         isLoading? (
                             patientList.map((patient) => {
                                 return (
-                                    <tr>
+                                    <tr key={patient.id}>
                                         <th scope="row" className="d-none d-md-table-cell">
                                             <Skeleton variant="text" sx={{fontSize:'0.8rem'}} width={'20px'}/>
                                         </th>

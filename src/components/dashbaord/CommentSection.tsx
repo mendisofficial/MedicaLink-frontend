@@ -26,7 +26,7 @@ export default function CommentSection({ className }: CommentSectionProps) {
                         return (
                             <div className="comment mb-2" key={index}>
         
-                                <Skeleton variant="circular" sx={{marginRight:'20px'}} width={50} height={50} />
+                                <Skeleton variant="circular" sx={{marginRight:'20px'}} width={'50px'} height={'50px'} />
         
                                 <p>
                                     <Skeleton variant="text" sx={{fontSize: '1rem'}} width={260} />

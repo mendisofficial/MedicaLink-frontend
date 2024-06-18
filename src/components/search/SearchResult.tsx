@@ -1,24 +1,24 @@
-import avatar from '../../assets/img/profie/profile-image.jpg';
 import './SearchResult.css';
 import { NavLink } from 'react-router-dom';
+import { Skeleton } from '@mui/material';
 
 export enum SearchType {
     VIEW = 0,
     EDIT = 1
 }
 
-interface SearchResultProps{
-    searchType : SearchType,
-    referenceNo : string,
-    name : string,
-    registeredHospital : string,
-    registeredDate : string, // Should be date but went with string for testing
-    lastUpdated : string, // Should be date but went with string for testing
-    firstUpdated : string // Should be date but went with string for testing
-    imagePath? : string
+interface SearchResultProps {
+    searchType: SearchType,
+    referenceNo: string,
+    name: string,
+    registeredHospital: string,
+    registeredDate: string, // Should be date but went with string for testing
+    lastUpdated: string, // Should be date but went with string for testing
+    firstUpdated: string // Should be date but went with string for testing
+    imagePath?: string
 }
 
-function SearchResult({ searchType, referenceNo, name, registeredHospital, registeredDate, lastUpdated, firstUpdated, imagePath} : SearchResultProps) {
+function SearchResult({ searchType, referenceNo, name, registeredHospital, registeredDate, lastUpdated, firstUpdated, imagePath }: SearchResultProps) {
     return (
         <div className="patient">
 
@@ -62,6 +62,35 @@ function SearchResult({ searchType, referenceNo, name, registeredHospital, regis
                     </div>
                 )
             }
+        </div>
+    );
+}
+
+export function SearchResultSkeleton() {
+
+    return (
+        <div className="patient">
+
+            <Skeleton variant='circular' width={'60px'} height={'60px'} />
+
+            <div className="info">
+                <Skeleton variant='text' sx={{ fontSize: '1rem' }} width={'200px'} />
+                <Skeleton variant='text' sx={{ fontSize: '0.95rem' }} width={'180px'} />
+            </div>
+
+            <div className="info temp">
+                <Skeleton variant='text' sx={{ fontSize: '0.9rem' }} width={'180px'} />
+                <Skeleton variant='text' sx={{ fontSize: '0.9rem' }} width={'180px'} />
+            </div>
+
+            <div className="info temp">
+                <Skeleton variant='text' sx={{ fontSize: '0.9rem' }} width={'180px'} />
+                <Skeleton variant='text' sx={{ fontSize: '0.9rem' }} width={'180px'} />
+            </div>
+
+            <div className="controls">
+                <Skeleton variant='rounded' sx={{borderRadius:'8px'}} width={'80px'} height={'40px'}/>
+            </div>
         </div>
     );
 }

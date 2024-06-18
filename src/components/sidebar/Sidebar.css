@@ -99,6 +99,7 @@
     text-decoration: none;
     font-size: 25px;
     line-height: 24px;
+    user-select: none;
 }
 
 .sidebar-list-item a span{

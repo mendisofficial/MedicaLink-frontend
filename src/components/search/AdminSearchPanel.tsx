@@ -1,13 +1,15 @@
 import './AdminSearchPanel.css';
-import SearchResult, { SearchType } from './SearchResult';
+import SearchResult, { SearchType, SearchResultSkeleton } from './SearchResult';
 import Searchbar, { FilterCategory, FilterGroup, FilterList, FilterTitle, SearchFilter } from './Searchbar';
 import Chiranga from "../../assets/img/patients/Chiranga.jpg";
 import Nisala from "../../assets/img/patients/Nisala.jpg";
 import Seneli from "../../assets/img/patients/Seneli.jpg";
 import Chathusha from "../../assets/img/patients/Chathusha.jpg";
 import Nishadi from "../../assets/img/patients/Nishadi.jpg";
+import { useState } from 'react';
 
 function AdminSearchPanel() {
+    const [isLoading, setIsLoading] = useState<boolean>(true);
 
     const patientList = [
         {
@@ -99,13 +101,21 @@ function AdminSearchPanel() {
                     <div className="patient-list">
 
                         {
-                            patientList.map(patient => {
-                                return (
-                                    <SearchResult key={patient.id} referenceNo={patient.referenceNo} name={patient.name} registeredHospital={patient.registeredHospital}
-                                        registeredDate={patient.registeredDate} lastUpdated={patient.lastUpdated} firstUpdated={patient.firstUpdated} imagePath={patient.image}
-                                        searchType={SearchType.VIEW}></SearchResult>
-                                );
-                            })
+                            isLoading? (
+                                patientList.map(patient => {
+                                    return (
+                                        <SearchResultSkeleton />
+                                    );
+                                })
+                            ) : (
+                                patientList.map(patient => {
+                                    return (
+                                        <SearchResult key={patient.id} referenceNo={patient.referenceNo} name={patient.name} registeredHospital={patient.registeredHospital}
+                                            registeredDate={patient.registeredDate} lastUpdated={patient.lastUpdated} firstUpdated={patient.firstUpdated} imagePath={patient.image}
+                                            searchType={SearchType.VIEW}></SearchResult>
+                                    );
+                                })
+                            )
                         }
 
                     </div>
