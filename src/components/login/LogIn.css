@@ -10,8 +10,15 @@
     justify-content: center;
     align-items: center;
     height: 500px;
+    width: 350px;
     padding: 40px;
-  }
+}
+
+@media (min-width: 768px){
+  .login-container {
+    width: 500px;
+}
+}
   
 .main-logo {
     width: 15em;

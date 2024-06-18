@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import App from './App.tsx'
 import './index.css'
 import Dashboard from './components/dashbaord/Dashboard.tsx'
+import DoctorDashboard from './components/dashbaord/DoctorDashboard.tsx'
 import AdminSearchPanel from './components/search/AdminSearchPanel.tsx'
 import NotFound from './NotFound.tsx'
 import AdminPatientPanel from './components/patient/AdminPatientPanel.tsx'
@@ -24,7 +25,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <Dashboard />
+        element: <DoctorDashboard />
       },
       {
         path: '/search',
