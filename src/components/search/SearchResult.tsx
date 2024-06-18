@@ -78,17 +78,17 @@ export function SearchResultSkeleton() {
                 <Skeleton variant='text' sx={{ fontSize: '0.95rem' }} width={'180px'} />
             </div>
 
-            <div className="info temp">
+            <div className="info d-none d-md-flex">
+                <Skeleton variant='text' sx={{ fontSize: '0.9rem' }} width={'160px'} />
+                <Skeleton variant='text' sx={{ fontSize: '0.9rem' }} width={'160px'} />
+            </div>
+
+            <div className="info d-none d-lg-flex">
                 <Skeleton variant='text' sx={{ fontSize: '0.9rem' }} width={'180px'} />
                 <Skeleton variant='text' sx={{ fontSize: '0.9rem' }} width={'180px'} />
             </div>
 
-            <div className="info temp">
-                <Skeleton variant='text' sx={{ fontSize: '0.9rem' }} width={'180px'} />
-                <Skeleton variant='text' sx={{ fontSize: '0.9rem' }} width={'180px'} />
-            </div>
-
-            <div className="controls">
+            <div className="controls d-none d-md-flex">
                 <Skeleton variant='rounded' sx={{borderRadius:'8px'}} width={'80px'} height={'40px'}/>
             </div>
         </div>

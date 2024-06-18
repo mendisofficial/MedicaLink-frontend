@@ -1,7 +1,65 @@
 import "./LogIn.css";
 import Logo from "../../assets/img/logo.png";
+import { useState, FormEvent, useEffect } from "react";
+import axiosInstance from "../../axiosInstance";
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
+import { useAlertSnack, AlertType } from "../AlertSnack";
+import { UseUser } from "../auth/UserContext";
+import isLoggedIn from "../auth/CheckUser";
 
-function UserLogIn() {
+function AdminLogIn() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const {setUser} = UseUser();
+  //const { showAlert } = useAlertSnack();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    let user = isLoggedIn();
+    if (user) {
+      setUser(user);
+
+      navigate('/'); // Navigate to the dashboard
+    }
+  }, [navigate]);
+
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    //Validate the fields
+
+    try {
+      let response = await axiosInstance.post("/api/Login", {
+        userName: email,
+        password
+      });
+
+      const token = response.data.token;
+      if (token) {
+        // Store the token and user data in cookies
+        Cookies.set('jwtToken', token, { expires: 1 });
+        Cookies.set('userId', response.data.userId);
+        Cookies.set('userName', response.data.userName);
+        Cookies.set('role', response.data.role);
+
+        // Set the token in Axios defaults
+        let user = isLoggedIn(); // get the user object
+        setUser(user); // Set the user in the context
+
+        //showAlert("Success", "Login successful", AlertType.success);
+        navigate("/");
+      }
+      else {
+        throw new Error("Token not found");
+      }
+    }
+    catch (error) {
+      console.log(error);
+      //showAlert("Error", "Someting went wrong", AlertType.error);
+    }
+  };
+
   return (
     <div className="main-container">
       <div className="col mx-auto d-flex justify-content-center">
@@ -12,7 +70,7 @@ function UserLogIn() {
             </div>
             <div className="col-12">
               <div className="mt-5 mb-3">
-                <form>
+                <form onSubmit={onSubmit}>
                   <div className="form-group">
                     <label htmlFor="input-uid" className="mb-1">
                       Administrator Email
@@ -22,6 +80,8 @@ function UserLogIn() {
                       className="form-control"
                       id="input-uid"
                       placeholder="Email"
+                      value={email}
+                      onChange={e => {setEmail(e.target.value)}}
                     />
                   </div>
                   <div className="form-group mt-3">
@@ -31,6 +91,8 @@ function UserLogIn() {
                       className="form-control mt-1 mb-4"
                       id="input-password"
                       placeholder="******"
+                      value={password}
+                      onChange={e => {setPassword(e.target.value)}}
                     />
                   </div>
                   <div className="form-check">
@@ -64,4 +126,4 @@ function UserLogIn() {
   );
 }
 
-export default UserLogIn;
+export default AdminLogIn;

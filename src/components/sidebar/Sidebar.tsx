@@ -44,7 +44,7 @@ const Sidebar = forwardRef<SidebarHandle ,SidbarProps>((props, ref) => {
     const sideBarData = [
         { id: 1, link: '/', order: 3, icon: 'home' },
         { id: 2, link: '/search', order: 1, icon: 'search'},
-        { id: 3, link: user?.role == 'admin'? '/patient' : '/smarthealth', order: 2, icon: user?.role == 'admin'? 'group' : 'biotech'},
+        { id: 3, link: user?.role == 'Admin'? '/patient' : '/smarthealth', order: 2, icon: user?.role == 'Admin'? 'group' : 'biotech'},
         { id: 4, link: '/comments', order: 4, icon: 'comment'},
         { id: 5, link: '/settings', order: 5, icon: 'settings'}
     ];

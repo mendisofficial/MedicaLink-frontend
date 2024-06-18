@@ -3,13 +3,18 @@ import Skeleton from "@mui/material/Skeleton";
 import axiosInstance from "../../axiosInstance";
 import { useAlertSnack, AlertType } from "../AlertSnack";
 
+interface Admin{
+    id: number;
+    name: string;
+}
 interface Patient {
     id: number;
-    referenceNo: string;
+    nic: string;
     name: string;
     user: string;
     registeredDate: string;
-    image: string;
+    profileImage: string;
+    admin: Admin
 }
 
 function PatientList() {
@@ -23,6 +28,7 @@ function PatientList() {
 
             try {
                 const response = await axiosInstance.get('/api/patient');
+                console.log(response.data);
                 setPatientData(response.data);
 
                 setLoading(false); // Remove skeletons after fetching data
@@ -76,15 +82,15 @@ function PatientList() {
                                 <th scope="row">{patient.id}</th>
                                 <td>
                                     <div className="patient">
-                                        <img src={`./src/assets/img/patients/${patient.image}`} alt="profile-image" />
+                                        <img src={patient.profileImage} alt="profile-image" />
                                         <div>
-                                            <span className="fw-medium">{patient.referenceNo}</span>
+                                            <span className="fw-medium">{patient.nic}</span>
                                             <span>{patient.name}</span>
                                         </div>
                                     </div>
                                 </td>
                                 <td>{patient.registeredDate}</td>
-                                <td>{patient.user}</td>
+                                <td>{patient.admin.name}</td>
                             </tr>
                         )
                     })

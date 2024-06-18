@@ -13,6 +13,7 @@ import { AdminOverview } from './components/admin/AdminOverview.tsx'
 import { PatientRegistrationForm } from './components/patient/PatientRegistrationForm.tsx'
 import { UseUser } from './components/auth/UserContext.tsx'
 import UserLogIn from './components/login/UserLogIn.tsx'
+import AdminLogIn from './components/login/AdminLogIn.tsx';
 
 function App() {
   const { user } = UseUser();
@@ -25,7 +26,7 @@ function App() {
       children: [
         {
           path: '/',
-          element: user?.role == 'admin' ? <AdminDashboard /> : <ProfileOverview />,
+          element: user?.role == 'Admin' ? <AdminDashboard /> : <ProfileOverview />,
           children: user?.role == 'user' ? [
             {
               index: true,
@@ -39,7 +40,7 @@ function App() {
         },
         {
           path: '/search',
-          element: user?.role == 'admin' ? <AdminSearchPanel /> : <ProfileReports />,
+          element: user?.role == 'Admin' ? <AdminSearchPanel /> : <ProfileReports />,
           children: user?.role == 'user' ? [
             {
               index: true,
@@ -53,7 +54,7 @@ function App() {
         },
         {
           path: '/patient',
-          element: user?.role == 'admin' ? <AdminPatientPanel /> : <NotFound />
+          element: user?.role == 'Admin' ? <AdminPatientPanel /> : <NotFound />
         },
         {
           path: '/smarthealth',
@@ -61,7 +62,7 @@ function App() {
         },
         {
           path: '/patient/add',
-          element: user?.role == 'admin' ? <PatientRegistrationForm /> : <NotFound />
+          element: user?.role == 'Admin' ? <PatientRegistrationForm /> : <NotFound />
         },
         {
           path: '/comments',
@@ -73,7 +74,7 @@ function App() {
         },
         {
           path: '/patient/:patientId',
-          element: user?.role == 'admin' ? <Profile /> : <Navigate to="/notfound"/>,
+          element: user?.role == 'Admin' ? <Profile /> : <Navigate to="/notfound"/>,
           children: [
             {
               path: 'overview',
@@ -114,7 +115,7 @@ function App() {
     },
     {
       path: '/login',
-      element: <UserLogIn />
+      element: <AdminLogIn />
     }
   ]);
 

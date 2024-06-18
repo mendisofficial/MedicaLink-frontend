@@ -76,6 +76,10 @@
         margin-left: 20px;
     }
 
+    .patient-list .patient .info .MuiSkeleton-text{
+        width: 160px !important;
+    }
+
     .patient-list .patient .info.temp{
         display: none;
     }
