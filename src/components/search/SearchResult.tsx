@@ -8,6 +8,7 @@ export enum SearchType {
 }
 
 interface SearchResultProps {
+    id: number;
     searchType: SearchType,
     referenceNo: string,
     name: string,
@@ -18,7 +19,7 @@ interface SearchResultProps {
     imagePath?: string
 }
 
-function SearchResult({ searchType, referenceNo, name, registeredHospital, registeredDate, lastUpdated, firstUpdated, imagePath }: SearchResultProps) {
+function SearchResult({ id, searchType, referenceNo, name, registeredHospital, registeredDate, lastUpdated, firstUpdated, imagePath }: SearchResultProps) {
     return (
         <div className="patient">
 
@@ -41,7 +42,7 @@ function SearchResult({ searchType, referenceNo, name, registeredHospital, regis
 
             {
                 (searchType == SearchType.VIEW) ? (
-                    <NavLink to={'/patient/1/overview'} className="view-btn d-none d-md-flex">
+                    <NavLink to={`/patient/${id}/overview`} className="view-btn d-none d-md-flex">
                         <span className="me-2">View Profile</span>
                         <span className="material-symbols-outlined">
                             visibility

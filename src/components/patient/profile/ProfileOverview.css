@@ -20,7 +20,7 @@
     margin-bottom: 80px;
 }
 
-.profile-image img{
+.profile-image img,.profile-image span{
     position: absolute;
     bottom: 0;
     transform: translateY(40%);

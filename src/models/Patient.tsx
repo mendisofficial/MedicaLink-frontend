@@ -15,11 +15,13 @@ export interface Patient {
 
     weight: number;
 
-    dateOfBirth: Date;
+    dateOfBirth: string;
 
     address: string;
 
     gender: string;
+
+    age? : number;
 
     contactNumber: string;
 

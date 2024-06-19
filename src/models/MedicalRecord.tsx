@@ -12,7 +12,7 @@ export interface MedicalRecord{
 
     description: string;
 
-    date: Date;
+    date: string;
 
     filePath: string;
 

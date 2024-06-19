@@ -11,7 +11,7 @@ export interface Vaccination{
 
     vaccineBrandId: number;
 
-    dateOfVaccination: Date;
+    dateOfVaccination: string;
 
     dose: string;
 
