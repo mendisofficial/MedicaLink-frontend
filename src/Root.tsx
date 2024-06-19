@@ -10,7 +10,7 @@ function Root() {
 
     useEffect(() => {
         const handleResize = () => {
-            console.log('working');
+            
             // Check the sidebarref for null pointers
             if (sidebarRef && sidebarRef.current) {
 
@@ -33,7 +33,6 @@ function Root() {
 
     return (
         <PopupProvider>
-            <AlertSnackProvider>
                 <div id="main" className="py-0">
 
                     <div ref={mainContainerRef} id="main-container" className="container-fluid px-md-4 pt-4 pb-1 pb-md-4">
@@ -47,8 +46,6 @@ function Root() {
                     <Sidebar ref={sidebarRef} />
 
                 </div>
-                <AlertSnack />
-            </AlertSnackProvider>
             <Popup />
         </PopupProvider>
     )

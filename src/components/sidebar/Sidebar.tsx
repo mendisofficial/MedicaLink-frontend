@@ -23,7 +23,6 @@ const Sidebar = forwardRef<SidebarHandle ,SidbarProps>((props, ref) => {
             setSidebarPosition(windowHeight : number){
                 const sidebarHeight : number = (sidebarRef.current?.clientHeight) || 0;
                 const contentHeight = sidebarHeight + windowHeight;
-                console.log(contentHeight,window.innerHeight);
 
                 if(contentHeight >= window.innerHeight){
                     // remove the top 100% styles

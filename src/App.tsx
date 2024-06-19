@@ -12,8 +12,8 @@ import ProfileReports, { MedicalRecordsTable, VaccinationTable } from './compone
 import { AdminOverview } from './components/admin/AdminOverview.tsx'
 import { PatientRegistrationForm } from './components/patient/PatientRegistrationForm.tsx'
 import { UseUser } from './components/auth/UserContext.tsx'
-import UserLogIn from './components/login/UserLogIn.tsx'
 import AdminLogIn from './components/login/AdminLogIn.tsx';
+import AlertSnack, { AlertSnackProvider } from './components/AlertSnack.tsx'
 
 function App() {
   const { user } = UseUser();
@@ -120,7 +120,10 @@ function App() {
   ]);
 
   return (
-    <RouterProvider router={router} />
+    <AlertSnackProvider>
+      <RouterProvider router={router} />
+      <AlertSnack />
+    </AlertSnackProvider>
   );
 }
 

@@ -12,7 +12,7 @@ function AdminLogIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const {setUser} = UseUser();
-  //const { showAlert } = useAlertSnack();
+  const { showAlert } = useAlertSnack();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -47,7 +47,7 @@ function AdminLogIn() {
         let user = isLoggedIn(); // get the user object
         setUser(user); // Set the user in the context
 
-        //showAlert("Success", "Login successful", AlertType.success);
+        showAlert("Success", "Login successful", AlertType.success);
         navigate("/");
       }
       else {
@@ -56,7 +56,7 @@ function AdminLogIn() {
     }
     catch (error) {
       console.log(error);
-      //showAlert("Error", "Someting went wrong", AlertType.error);
+      showAlert("Error", "Someting went wrong", AlertType.error);
     }
   };
 

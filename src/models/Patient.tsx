@@ -7,6 +7,8 @@ export interface Patient {
 
     name: string;
 
+    nic: string;
+
     bloodGroup: string;
 
     height: number;
@@ -23,7 +25,7 @@ export interface Patient {
 
     profileImage: string;
 
-    registeredDate: Date;
+    registeredDate: string;
 
     registeredBy: number;
 

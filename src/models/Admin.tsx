@@ -7,7 +7,7 @@ export interface Admin{
 
     email: string;
 
-    type: string;
+    //type: string;
 
     hospitalId: number;
 

@@ -2,20 +2,7 @@ import { useState, useEffect } from "react";
 import Skeleton from "@mui/material/Skeleton";
 import axiosInstance from "../../axiosInstance";
 import { useAlertSnack, AlertType } from "../AlertSnack";
-
-interface Admin{
-    id: number;
-    name: string;
-}
-interface Patient {
-    id: number;
-    nic: string;
-    name: string;
-    user: string;
-    registeredDate: string;
-    profileImage: string;
-    admin: Admin
-}
+import { Patient } from "../../models/Patient";
 
 function PatientList() {
     const [loading, setLoading] = useState(true);
@@ -27,7 +14,7 @@ function PatientList() {
         const fetchData = async () => {
 
             try {
-                const response = await axiosInstance.get('/api/patient');
+                const response = await axiosInstance.get('/api/patient/latest');
                 console.log(response.data);
                 setPatientData(response.data);
 
