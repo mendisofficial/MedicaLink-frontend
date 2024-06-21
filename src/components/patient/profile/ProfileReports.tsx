@@ -2,9 +2,9 @@ import { ClipboardPulse, Virus2 } from 'react-bootstrap-icons';
 import { NavLink, Outlet, useOutletContext, useParams } from 'react-router-dom';
 import Searchbar, { FilterCategory, FilterGroup, FilterList, FilterTitle, SearchFilter } from '../../search/Searchbar';
 import { usePopup } from '../../popup/Popup';
-import { VaccinationEditForm, VaccinationForm } from './VaccinationForm';
+import { VaccinationInsertForm, VaccinationForm } from './VaccinationForm';
 import './ProfileReports.css';
-import { RecordForm, RecordEditForm } from './RecordForm';
+import { RecordForm, RecordInsertForm } from './RecordForm';
 import { UseUser } from '../../auth/UserContext';
 import { useEffect, useState } from 'react';
 import { Skeleton } from '@mui/material';
@@ -17,15 +17,11 @@ export function MedicalRecordsTable() {
     const { user } = UseUser();
     const { medicalRecords, isLoading, setType } = useOutletContext<searchProps>();
 
-    const handleClick = () => {
-        openPopup(<RecordForm />);
-    }
-
     useEffect(() => {
         setType("Report");
 
-        return () => {}
-    },[]);
+        return () => { }
+    }, []);
 
     return (
         <>
@@ -34,9 +30,9 @@ export function MedicalRecordsTable() {
                 <div className="ms-auto d-flex align-items-center">
                     <span className="me-2 me-md-3 text-nowrap">Showing <span className="result-count">{medicalRecords.length}</span> results</span>
                     {
-                        user?.role == 'admin' ? (
+                        user?.role == 'Admin' ? (
                             <button className="add-btn" onClick={() => {
-                                openPopup(<RecordEditForm />);
+                                openPopup(<RecordInsertForm />);
                             }}>
                                 <span className="me-2 d-none d-md-block">Add Record</span>
                                 <span className="material-symbols-outlined">
@@ -62,14 +58,14 @@ export function MedicalRecordsTable() {
                     <tbody>
 
                         {
-                            isLoading? (
+                            isLoading ? (
                                 medicalRecords.map((medicalRecord: MedicalRecord) => {
                                     return (
-                                        <tr key={medicalRecord.id} onTouchStart={handleClick}>
-                                            <th scope="row" className="d-none d-lg-table-cell"><Skeleton variant='text'/></th>
-                                            <td><Skeleton variant='text'/></td>
-                                            <td className="d-none d-md-table-cell"><Skeleton variant='text'/></td>
-                                            <td><Skeleton variant='text'/></td>
+                                        <tr key={medicalRecord.id}>
+                                            <th scope="row" className="d-none d-lg-table-cell"><Skeleton variant='text' /></th>
+                                            <td><Skeleton variant='text' /></td>
+                                            <td className="d-none d-md-table-cell"><Skeleton variant='text' /></td>
+                                            <td><Skeleton variant='text' /></td>
                                             <td className="d-none d-lg-table-cell">
                                                 <div className="d-none d-lg-flex justify-content-end align-items-center">
                                                     <Skeleton variant="rounded" />
@@ -81,14 +77,18 @@ export function MedicalRecordsTable() {
                             ) : (
                                 medicalRecords.map((medicalRecord: MedicalRecord) => {
                                     return (
-                                        <tr key={medicalRecord.id} onTouchStart={handleClick}>
+                                        <tr key={medicalRecord.id} onTouchStart={() => {
+                                            openPopup(<RecordForm record={medicalRecord}/>);
+                                        }} className={medicalRecord.isEditable ? 'editable' : ''}>
                                             <th scope="row" className="d-none d-lg-table-cell">22 : 25</th>
                                             <td>{medicalRecord.recordType}</td>
                                             <td className="d-none d-md-table-cell">{medicalRecord.admin?.hospital?.name}</td>
                                             <td>{medicalRecord.date}</td>
                                             <td className="d-none d-lg-table-cell">
                                                 <div className="d-none d-lg-flex justify-content-end align-items-center">
-                                                    <button className="view-more" onClick={handleClick}>
+                                                    <button className="view-more" onClick={() => {
+                                                        openPopup(<RecordForm record={medicalRecord}/>);
+                                                    }}>
                                                         <span className="material-symbols-outlined">
                                                             read_more
                                                         </span>
@@ -130,15 +130,11 @@ export function VaccinationTable() {
     const { user } = UseUser();
     const { vaccinations, isLoading, setType } = useOutletContext<searchProps>();
 
-    const handleClick = () => {
-        openPopup(<VaccinationForm />);
-    }
-
     useEffect(() => {
         setType("Vaccination");
 
-        return () => {}
-    },[]);
+        return () => { }
+    }, []);
 
     return (
         <>
@@ -148,9 +144,9 @@ export function VaccinationTable() {
                 <div className="ms-auto d-flex align-items-center">
                     <span className="me-2 me-md-3 text-nowrap">Showing <span className="result-count">{vaccinations.length}</span> results</span>
                     {
-                        user?.role == 'admin' ? (
+                        user?.role == 'Admin' ? (
                             <button className="add-btn" onClick={() => {
-                                openPopup(<VaccinationEditForm />);
+                                openPopup(<VaccinationInsertForm />);
                             }}>
                                 <span className="me-2 d-none d-md-block">Add Vaccination</span>
                                 <span className="material-symbols-outlined">
@@ -199,7 +195,9 @@ export function VaccinationTable() {
                             ) : (
                                 vaccinations.map((vaccination: Vaccination) => {
                                     return (
-                                        <tr key={vaccination.id} onTouchStart={handleClick}>
+                                        <tr key={vaccination.id} onTouchStart={() => {
+                                            openPopup(<VaccinationForm vaccination={vaccination}/>);
+                                        }} className={vaccination.isEditable ? 'editable' : ''}>
                                             <th scope="row" className="d-none d-lg-table-cell">22 : 25</th>
                                             <td>{vaccination.vaccineBrand?.vaccine?.name}</td>
                                             <td className="d-none d-md-table-cell">{vaccination.vaccineBrand?.brandName}</td>
@@ -208,7 +206,9 @@ export function VaccinationTable() {
                                             <td className="d-none d-md-table-cell">{vaccination.dose}</td>
                                             <td className="d-none d-lg-table-cell">
                                                 <div className="d-none d-lg-flex justify-content-end align-items-center">
-                                                    <button className="view-more" onClick={handleClick}>
+                                                    <button className="view-more" onClick={() => {
+                                                        openPopup(<VaccinationForm vaccination={vaccination}/>);
+                                                    }}>
                                                         <span className="material-symbols-outlined">
                                                             read_more
                                                         </span>
@@ -276,13 +276,13 @@ function ProfileReports() {
                 setVaccinations(response.data);
                 setIsLoading(false);
                 console.log(vaccinations);
-                console.log("working");
+                console.log(response);
             } else {
                 let response = await axiosInstance.get(`/api/medicalRecord/search?patientId=${patientId}&query=${searchQuery}&type=${searchType}`);
 
                 setMedicalRecords(response.data);
                 setIsLoading(false);
-                console.log("working");
+                console.log(response);
             }
         } catch (error) {
             console.log(error);
@@ -365,7 +365,7 @@ function ProfileReports() {
                     <hr />
 
                     <div className="record-data mt-4" id="record-data-container">
-                        <Outlet context={{ vaccinations, medicalRecords, isLoading, setType: (type : string) => setReportType(type) }} />
+                        <Outlet context={{ vaccinations, medicalRecords, isLoading, setType: (type: string) => setReportType(type) }} />
                     </div>
                 </div>
 

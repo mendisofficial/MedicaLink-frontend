@@ -19,5 +19,7 @@ export interface Vaccination{
 
     hospital?: Hospital;
 
-    vaccineBrand?: VaccineBrand
+    vaccineBrand?: VaccineBrand;
+
+    isEditable: boolean;
 }

@@ -1,7 +1,7 @@
 .patient-list{
     display: flex;
     flex-direction: column;
-    max-height: 510px;
+    max-height: 505px;
     overflow-y: auto;
 }
 
@@ -30,7 +30,7 @@
 .patient-list .patient .info .highlight{
     font-weight: 500;
     font-size: 18px;
-}Fme
+}
 
 .patient-list .patient .controls{
     border: none;

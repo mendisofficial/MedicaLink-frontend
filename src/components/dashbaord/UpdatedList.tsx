@@ -9,7 +9,7 @@ interface UpdatedListProps {
 }
 
 export default function UpdatedList({ className }: UpdatedListProps) {
-    const [isLoading, setIsLoading] = useState<boolean>(true);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     const patientList = [
         { id: 1, profile: Chathusha, referenceNo: '200331015154', name: 'Chathusha Mendis', date: '22/10/2024', updatedBy: 'Dr. Suresh' },

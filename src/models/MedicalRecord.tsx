@@ -18,5 +18,7 @@ export interface MedicalRecord{
 
     patient: Patient;
 
-    admin: Admin
+    admin: Admin;
+
+    isEditable: boolean;
 }

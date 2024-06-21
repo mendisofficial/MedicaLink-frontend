@@ -6,6 +6,7 @@
     height: 100vh;
     background-color: #0000003f;
     transition: background-color 0.2s ease;
+    z-index: 5;
 }
 
 #pop-up{

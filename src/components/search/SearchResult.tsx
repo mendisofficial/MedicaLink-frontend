@@ -7,9 +7,12 @@ export enum SearchType {
     EDIT = 1
 }
 
-interface SearchResultProps {
-    id: number;
+interface BaseSearchResultsProps{
     searchType: SearchType,
+}
+
+interface SearchResultProps extends BaseSearchResultsProps{
+    id: number;
     referenceNo: string,
     name: string,
     registeredHospital: string,
@@ -67,7 +70,7 @@ function SearchResult({ id, searchType, referenceNo, name, registeredHospital, r
     );
 }
 
-export function SearchResultSkeleton() {
+export function SearchResultSkeleton({searchType} : BaseSearchResultsProps) {
 
     return (
         <div className="patient">
@@ -89,8 +92,17 @@ export function SearchResultSkeleton() {
                 <Skeleton variant='text' sx={{ fontSize: '0.9rem' }} width={'180px'} />
             </div>
 
-            <div className="controls d-none d-md-flex">
-                <Skeleton variant='rounded' sx={{borderRadius:'8px'}} width={'80px'} height={'40px'}/>
+            <div className="controls">
+                {
+                    searchType === SearchType.VIEW? (
+                        <Skeleton variant='rounded' sx={{borderRadius:'8px'}} width={'80px'} height={'40px'}/>
+                    ) : (
+                        <>
+                            <Skeleton variant='rounded' className='me-2' sx={{borderRadius:'8px'}} width={'45px'} height={'40px'}/>
+                            <Skeleton variant='rounded' sx={{borderRadius:'8px'}} width={'45px'} height={'40px'}/>
+                        </>
+                    )
+                }
             </div>
         </div>
     );

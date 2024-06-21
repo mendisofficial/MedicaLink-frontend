@@ -212,7 +212,9 @@
 
 @media (max-width:576px){
 
-    
+    .comment-list .comment p{
+        max-width: 150px;
+    }
 
     .update-container table tr td .update-description{
         max-width: none;

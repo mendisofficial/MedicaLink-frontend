@@ -51,7 +51,7 @@ function PatientList() {
                                 <td>
                                     <div className="patient">
                                         <Skeleton variant="circular" width={50} height={50} />
-                                        <div>
+                                        <div className="d-none d-md-block">
                                             <Skeleton variant="text" sx={{ fontSize: '1rem' }} width={150} />
                                             <Skeleton variant="text" sx={{ fontSize: '1rem' }} width={90} />
                                         </div>

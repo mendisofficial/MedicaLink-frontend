@@ -9,7 +9,7 @@ interface CommentSectionProps {
 }
 
 export default function CommentSection({ className }: CommentSectionProps) {
-    const [isLoading, setIsLoading] = useState<boolean>(true);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     const comments = [
         { id: 1, comment: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit...', date: '10/12/2022 10:05', img: Nishadi },
@@ -32,7 +32,7 @@ export default function CommentSection({ className }: CommentSectionProps) {
                                     <Skeleton variant="text" sx={{fontSize: '1rem'}} width={260} />
                                     <Skeleton variant="text" sx={{fontSize: '0.8rem'}} width={200} />
                                 </p>
-                                <div className="controls ms-auto">
+                                <div className="controls ms-auto d-none d-md-block">
                                     <Skeleton variant="text" sx={{fontSize: '0.6rem', marginBottom: '5px'}} width={70} />
                                     <button>
                                         <span className="material-symbols-outlined">

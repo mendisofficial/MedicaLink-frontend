@@ -89,6 +89,11 @@ export function PatientRegistrationForm() {
                                 <input type="number" className="form-control" id="inputWeight" />
                             </div>
 
+                            <div className="col-12">
+                                <label htmlFor="inputImage" className='form-label'>Profile Photo</label>
+                                <input type="file" name="profile" id="inputImage" className='form-control'/>
+                            </div>
+
                             <div className="col-12 controls">
                                 <button type="submit" id="register-btn" className="my-3 me-2">
                                     <span className="me-2 text-nowrap">Register Patient</span>

@@ -124,7 +124,7 @@ function AdminSearchPanel() {
                             isLoading ? (
                                 Array.from({ length: 5 }).map((item, index) => {
                                     return (
-                                        <SearchResultSkeleton key={index} />
+                                        <SearchResultSkeleton key={index} searchType={SearchType.VIEW}/>
                                     );
                                 })
                             ) : (
