@@ -1,53 +1,42 @@
 import { ClipboardPulse, Virus2 } from 'react-bootstrap-icons';
-import { NavLink, Outlet, useParams } from 'react-router-dom';
+import { NavLink, Outlet, useOutletContext, useParams } from 'react-router-dom';
 import Searchbar, { FilterCategory, FilterGroup, FilterList, FilterTitle, SearchFilter } from '../../search/Searchbar';
 import { usePopup } from '../../popup/Popup';
 import { VaccinationEditForm, VaccinationForm } from './VaccinationForm';
 import './ProfileReports.css';
 import { RecordForm, RecordEditForm } from './RecordForm';
 import { UseUser } from '../../auth/UserContext';
-
-interface Vaccination {
-    id: number;
-    type: string;
-    brand: string;
-    location: string;
-    date: string;
-    dose: string;
-}
-
-interface MedicalRecord {
-    id: number;
-    type: string;
-    location: string;
-    date: string;
-}
+import { useEffect, useState } from 'react';
+import { Skeleton } from '@mui/material';
+import axiosInstance from '../../../axiosInstance';
+import { Vaccination } from '../../../models/Vaccination';
+import { MedicalRecord } from '../../../models/MedicalRecord';
 
 export function MedicalRecordsTable() {
     const { openPopup } = usePopup();
     const { user } = UseUser();
-
-    const medicalRecords : MedicalRecord[] = [
-        {id: 1, type:'Diagnosis', location: 'Hemas Hospitals', date:'10/06/2024'},
-        {id: 2, type:'Diagnosis', location: 'Hemas Hospitals', date:'10/06/2024'},
-        {id: 3, type:'Diagnosis', location: 'Hemas Hospitals', date:'10/06/2024'},
-        {id: 4, type:'Diagnosis', location: 'Hemas Hospitals', date:'10/06/2024'}
-    ];
+    const { medicalRecords, isLoading, setType } = useOutletContext<searchProps>();
 
     const handleClick = () => {
-        openPopup(<RecordForm/>);
+        openPopup(<RecordForm />);
     }
+
+    useEffect(() => {
+        setType("Report");
+
+        return () => {}
+    },[]);
 
     return (
         <>
             <div className="d-flex align-items-center" id="result-titles">
                 <h5 className="mb-0">Medical Reports</h5>
                 <div className="ms-auto d-flex align-items-center">
-                    <span className="me-2 me-md-3 text-nowrap">Showing <span className="result-count">10</span> results</span>
+                    <span className="me-2 me-md-3 text-nowrap">Showing <span className="result-count">{medicalRecords.length}</span> results</span>
                     {
                         user?.role == 'admin' ? (
                             <button className="add-btn" onClick={() => {
-                                openPopup(<RecordEditForm/>);
+                                openPopup(<RecordEditForm />);
                             }}>
                                 <span className="me-2 d-none d-md-block">Add Record</span>
                                 <span className="material-symbols-outlined">
@@ -73,25 +62,43 @@ export function MedicalRecordsTable() {
                     <tbody>
 
                         {
-                            medicalRecords.map((medicalRecord : MedicalRecord) => {
-                                return (
-                                    <tr key={medicalRecord.id} onTouchStart={handleClick}>
-                                        <th scope="row" className="d-none d-lg-table-cell">22 : 25</th>
-                                        <td>{medicalRecord.type}</td>
-                                        <td className="d-none d-md-table-cell">{medicalRecord.location}</td>
-                                        <td>{medicalRecord.date}</td>
-                                        <td className="d-none d-lg-table-cell">
-                                            <div className="d-none d-lg-flex justify-content-end align-items-center">
-                                                <button className="view-more" onClick={handleClick}>
-                                                    <span className="material-symbols-outlined">
-                                                        read_more
-                                                    </span>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                )
-                            })
+                            isLoading? (
+                                medicalRecords.map((medicalRecord: MedicalRecord) => {
+                                    return (
+                                        <tr key={medicalRecord.id} onTouchStart={handleClick}>
+                                            <th scope="row" className="d-none d-lg-table-cell"><Skeleton variant='text'/></th>
+                                            <td><Skeleton variant='text'/></td>
+                                            <td className="d-none d-md-table-cell"><Skeleton variant='text'/></td>
+                                            <td><Skeleton variant='text'/></td>
+                                            <td className="d-none d-lg-table-cell">
+                                                <div className="d-none d-lg-flex justify-content-end align-items-center">
+                                                    <Skeleton variant="rounded" />
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    )
+                                })
+                            ) : (
+                                medicalRecords.map((medicalRecord: MedicalRecord) => {
+                                    return (
+                                        <tr key={medicalRecord.id} onTouchStart={handleClick}>
+                                            <th scope="row" className="d-none d-lg-table-cell">22 : 25</th>
+                                            <td>{medicalRecord.recordType}</td>
+                                            <td className="d-none d-md-table-cell">{medicalRecord.admin?.hospital?.name}</td>
+                                            <td>{medicalRecord.date}</td>
+                                            <td className="d-none d-lg-table-cell">
+                                                <div className="d-none d-lg-flex justify-content-end align-items-center">
+                                                    <button className="view-more" onClick={handleClick}>
+                                                        <span className="material-symbols-outlined">
+                                                            read_more
+                                                        </span>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    )
+                                })
+                            )
                         }
                     </tbody>
                 </table>
@@ -121,17 +128,17 @@ export function MedicalRecordsTable() {
 export function VaccinationTable() {
     const { openPopup } = usePopup();
     const { user } = UseUser();
-
-    const vaccinations: Vaccination[] = [
-        { id: 1, type: 'BCG', brand: 'TheraCys® BCG', location: 'Nawaloka Hospitals', date: '12/06/2003', dose: '1st Dose' },
-        { id: 2, type: 'BCG', brand: 'TheraCys® BCG', location: 'Nawaloka Hospitals', date: '12/06/2003', dose: '2nd Dose' },
-        { id: 3, type: 'BCG', brand: 'TheraCys® BCG', location: 'Nawaloka Hospitals', date: '12/06/2003', dose: '3rd Dose' },
-        { id: 4, type: 'BCG', brand: 'TheraCys® BCG', location: 'Nawaloka Hospitals', date: '12/06/2003', dose: '4th Dose' }
-    ];
+    const { vaccinations, isLoading, setType } = useOutletContext<searchProps>();
 
     const handleClick = () => {
-        openPopup(<VaccinationForm/>);
+        openPopup(<VaccinationForm />);
     }
+
+    useEffect(() => {
+        setType("Vaccination");
+
+        return () => {}
+    },[]);
 
     return (
         <>
@@ -139,11 +146,11 @@ export function VaccinationTable() {
             <div className="d-flex align-items-center" id="result-titles">
                 <h5 className="mb-0">Vaccination Details</h5>
                 <div className="ms-auto d-flex align-items-center">
-                    <span className="me-2 me-md-3 text-nowrap">Showing <span className="result-count">10</span> results</span>
+                    <span className="me-2 me-md-3 text-nowrap">Showing <span className="result-count">{vaccinations.length}</span> results</span>
                     {
                         user?.role == 'admin' ? (
                             <button className="add-btn" onClick={() => {
-                                openPopup(<VaccinationEditForm/>);
+                                openPopup(<VaccinationEditForm />);
                             }}>
                                 <span className="me-2 d-none d-md-block">Add Vaccination</span>
                                 <span className="material-symbols-outlined">
@@ -171,27 +178,47 @@ export function VaccinationTable() {
                     <tbody>
 
                         {
-                            vaccinations.map((vaccination: Vaccination) => {
-                                return (
-                                    <tr key={vaccination.id} onTouchStart={handleClick}>
-                                        <th scope="row" className="d-none d-lg-table-cell">22 : 25</th>
-                                        <td>{vaccination.type}</td>
-                                        <td className="d-none d-md-table-cell">{vaccination.brand}</td>
-                                        <td>{vaccination.location}</td>
-                                        <td>{vaccination.date}</td>
-                                        <td className="d-none d-md-table-cell">{vaccination.dose}</td>
-                                        <td className="d-none d-lg-table-cell">
-                                            <div className="d-none d-lg-flex justify-content-end align-items-center">
-                                                <button className="view-more" onClick={handleClick}>
-                                                    <span className="material-symbols-outlined">
-                                                        read_more
-                                                    </span>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                )
-                            })
+                            isLoading ? (
+                                Array.from({ length: 5 }).map((item, index) => {
+                                    return (
+                                        <tr key={index}>
+                                            <th scope="row" className="d-none d-lg-table-cell"><Skeleton variant="text" /></th>
+                                            <td><Skeleton variant="text" /></td>
+                                            <td className="d-none d-md-table-cell"><Skeleton variant="text" /></td>
+                                            <td><Skeleton variant="text" /></td>
+                                            <td><Skeleton variant="text" /></td>
+                                            <td className="d-none d-md-table-cell"><Skeleton variant="text" /></td>
+                                            <td className="d-none d-lg-table-cell">
+                                                <div className="d-none d-lg-flex justify-content-end align-items-center">
+                                                    <Skeleton variant="rounded" />
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    )
+                                })
+                            ) : (
+                                vaccinations.map((vaccination: Vaccination) => {
+                                    return (
+                                        <tr key={vaccination.id} onTouchStart={handleClick}>
+                                            <th scope="row" className="d-none d-lg-table-cell">22 : 25</th>
+                                            <td>{vaccination.vaccineBrand?.vaccine?.name}</td>
+                                            <td className="d-none d-md-table-cell">{vaccination.vaccineBrand?.brandName}</td>
+                                            <td>{vaccination.hospital?.name}</td>
+                                            <td>{vaccination.dateOfVaccination}</td>
+                                            <td className="d-none d-md-table-cell">{vaccination.dose}</td>
+                                            <td className="d-none d-lg-table-cell">
+                                                <div className="d-none d-lg-flex justify-content-end align-items-center">
+                                                    <button className="view-more" onClick={handleClick}>
+                                                        <span className="material-symbols-outlined">
+                                                            read_more
+                                                        </span>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    )
+                                })
+                            )
                         }
                     </tbody>
                 </table>
@@ -219,14 +246,64 @@ export function VaccinationTable() {
     );
 }
 
+interface searchProps {
+    vaccinations: Vaccination[];
+    medicalRecords: MedicalRecord[];
+    isLoading: boolean;
+    setType: (reportType: string) => {};
+}
+
 function ProfileReports() {
-    //const { patientId } = useParams(); //Use this for all the backend requests
+    const { patientId } = useParams(); //Use this for all the backend requests
+    const [searchType, setSearchType] = useState("Name");
+    const [searchQuery, setSearchQuery] = useState("");
+    const [isLoading, setIsLoading] = useState<boolean>(true);
+    const [reportType, setReportType] = useState<string>("Vaccination");
+    const [vaccinations, setVaccinations] = useState<Vaccination[]>([]);
+    const [medicalRecords, setMedicalRecords] = useState<MedicalRecord[]>([]);
+
+    const handleSearchTypeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchType(e.target.value);
+    }
+
+    const onSearch = async () => {
+        if (!isLoading) setIsLoading(true);
+
+        try {
+            if (reportType == "Vaccination") {
+                let response = await axiosInstance.get(`/api/vaccinations/search?patientId=${patientId}&query=${searchQuery}&type=${searchType}`);
+
+                setVaccinations(response.data);
+                setIsLoading(false);
+                console.log(vaccinations);
+                console.log("working");
+            } else {
+                let response = await axiosInstance.get(`/api/medicalRecord/search?patientId=${patientId}&query=${searchQuery}&type=${searchType}`);
+
+                setMedicalRecords(response.data);
+                setIsLoading(false);
+                console.log("working");
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    useEffect(() => {
+        const fetchData = async () => {
+            await onSearch();
+        };
+
+        fetchData();
+
+        return () => { };
+    }, [reportType]);
 
     return (
         <>
             <div className="col-12">
 
-                <Searchbar className='mb-4'>
+                <Searchbar className='mb-4' onChange={(e) => setSearchQuery(e.target.value)} onSearch={onSearch}>
 
                     <SearchFilter>
 
@@ -234,9 +311,9 @@ function ProfileReports() {
 
                             <FilterTitle>Select search type</FilterTitle>
                             <FilterList>
-                                <FilterCategory key={1} name='type' value='name' checked={true}># Record Type/ Name</FilterCategory>
-                                <FilterCategory key={2} name='type' value='location'># Record Location</FilterCategory>
-                                <FilterCategory key={3} name='type' value='all'># All</FilterCategory>
+                                <FilterCategory key={1} name='type' value='Name' checked={true} onChange={handleSearchTypeChange}># Record Type/ Name</FilterCategory>
+                                <FilterCategory key={2} name='type' value='Location' onChange={handleSearchTypeChange}># Record Location</FilterCategory>
+                                <FilterCategory key={3} name='type' value='All' onChange={handleSearchTypeChange}># All</FilterCategory>
                             </FilterList>
 
                         </FilterGroup>
@@ -269,11 +346,11 @@ function ProfileReports() {
                         <div className="section-links">
                             <NavLink to="." className="me-2 px-3 py-2 d-flex align-items-center" end>
                                 <span className="d-none d-md-inline">Vaccinations</span>
-                                <Virus2 className='ms-3' size={18}/>
+                                <Virus2 className='ms-3' size={18} />
                             </NavLink>
                             <NavLink to="medicals" className="me-2 px-3 py-2 d-flex align-items-center">
                                 <span className="d-none d-md-inline">Medical Reports</span>
-                                <ClipboardPulse className='ms-3' size={18}/>
+                                <ClipboardPulse className='ms-3' size={18} />
                             </NavLink>
                         </div>
 
@@ -288,9 +365,7 @@ function ProfileReports() {
                     <hr />
 
                     <div className="record-data mt-4" id="record-data-container">
-
-                        <Outlet/>
-
+                        <Outlet context={{ vaccinations, medicalRecords, isLoading, setType: (type : string) => setReportType(type) }} />
                     </div>
                 </div>
 

@@ -88,9 +88,20 @@
     color: white;
 }
 
+#record-data-container .table-container{
+    max-height: 380px;
+    overflow-y: auto;
+}
+
 #record-data-container .table-container table{
     border-collapse: separate;
     border-spacing: 0px 10px;
+}
+
+#record-data-container .table-container table thead tr{
+    position: sticky;
+    top: 0%;
+    background-color: #fff;
 }
 
 #record-data-container .table-container table td, #record-data-container .table-container table th{

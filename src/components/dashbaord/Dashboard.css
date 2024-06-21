@@ -40,11 +40,11 @@
 }
 
 .stat-container .stat .percentage.good{
-    color: green;
+    color: #008000;
 }
 
 .stat-container .stat .percentage.bad{
-    color: rgb(170, 0, 0);
+    color: #aa0000;
 }
 
 .stat-container .stat .icon{

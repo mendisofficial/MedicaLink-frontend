@@ -110,7 +110,7 @@ function AdminPatientPanel() {
                         {
                             patientList.map(patient => {
                                 return (
-                                    <SearchResult key={patient.id} referenceNo={patient.referenceNo} name={patient.name} registeredHospital={patient.registeredHospital}
+                                    <SearchResult key={patient.id} id={patient.id} referenceNo={patient.referenceNo} name={patient.name} registeredHospital={patient.registeredHospital}
                                         registeredDate={patient.registeredDate} lastUpdated={patient.lastUpdated} firstUpdated={patient.firstUpdated} imagePath={patient.image}
                                         searchType={SearchType.EDIT}></SearchResult>
                                 );
