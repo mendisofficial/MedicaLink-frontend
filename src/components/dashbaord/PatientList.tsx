@@ -32,7 +32,7 @@ function PatientList() {
         <table className="table">
             <thead>
                 <tr>
-                    <th scope="col">#</th>
+                    <th scope="col">NO.</th>
                     <th scope="col">Patient</th>
                     <th scope="col">Added Date</th>
                     <th scope="col">Added By</th>

@@ -1,5 +1,5 @@
-import './Dashboard.css';
-import Stats from './Stats';
+import './DoctorDashboard.css';
+import DoctorStats from './DoctorStats';
 import PatientList from './PatientList';
 import Chiranga from "../../assets/img/patients/Chiranga.jpg";
 import Nisala from "../../assets/img/patients/Nisala.jpg";
@@ -11,14 +11,14 @@ function Dashboard() {
 
     return (
         <>
-
+    
             <div className='col-12'>
-                <h2 className='mb-4'>Doctor's Dashboard</h2>
+                <h2 className='mb-4'>Good morning, Dr. Andrew</h2>
             </div>
 
             <div className="col-12" id="stats-section">
 
-                <Stats className="pb-4"/>
+                <DoctorStats className="pb-4"/>
 
             </div>
 
@@ -26,7 +26,7 @@ function Dashboard() {
 
                 <div className="patients-container section-blur">
 
-                    <h4>Recent Encounters</h4>
+                    <h4>Recent Patients</h4>
 
                     <div className="patient-list mt-2">
 
@@ -106,7 +106,6 @@ function Dashboard() {
                 </div>
 
             </div>
-
             <div className="col-12" id="latest-updates-section">
 
                 <div className="update-container section-blur mt-4">
