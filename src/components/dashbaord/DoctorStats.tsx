@@ -5,6 +5,7 @@ interface StatProps {
 function Stats({ className }: StatProps) {
   return (
     <div className={`stat-container ${className}`}>
+      
       <div className="stat section-blur d-flex align-items-center">
         <div className="icon">
           <span className="material-symbols-outlined me-3 display-6">task_alt</span>
@@ -14,6 +15,7 @@ function Stats({ className }: StatProps) {
           <h6>Appointments Today</h6>
         </div>
       </div>
+
       <div className="stat section-blur d-flex align-items-center">
         <div className="icon">
           <span className="material-symbols-outlined me-3 display-6">group</span>
@@ -23,6 +25,7 @@ function Stats({ className }: StatProps) {
           <h6>Total Patients</h6>
         </div>
       </div>
+
       <div className="stat section-blur d-flex align-items-center">
         <div className="icon">
           <span className="material-symbols-outlined me-3 display-6">library_books</span>
@@ -32,6 +35,7 @@ function Stats({ className }: StatProps) {
           <h6>Total Records</h6>
         </div>
       </div>
+
       <div className="stat section-blur d-flex align-items-center">
         <div className="icon">
           <span className="material-symbols-outlined me-3 display-6">star</span>
@@ -41,6 +45,7 @@ function Stats({ className }: StatProps) {
           <h6>Rating</h6>
         </div>
       </div>
+      
     </div>
   );
 }

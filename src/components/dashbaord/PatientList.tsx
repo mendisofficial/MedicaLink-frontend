@@ -21,7 +21,7 @@ function PatientList() {
                 setLoading(false); // Remove skeletons after fetching data
             } catch (error) {
                 console.error('Error fetching data:', error); // Handle errors
-                showAlert('Error', 'Something went wrong', AlertType.error);
+                showAlert('Error', 'Couldn\'t fetch patient data', AlertType.error);
             }
         };
 

@@ -45,7 +45,6 @@ export function AlertSnackProvider({ children }: AlertSnackProviderProps) {
         setIsOpen(false);
         setTitle(null);
         setMessage(null);
-        setType(AlertType.success);
     };
 
     return (

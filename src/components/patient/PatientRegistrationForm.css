@@ -33,4 +33,12 @@
     background-color: #435a88;
 }
 
+.success-alert{
+    background-color: rgba(64, 212, 150, 0.273) !important;
+}
+
+.error-alert{
+    background-color: rgba(212, 64, 64, 0.273) !important;
+}
+
 /* ==== Patient Form End ==== */

@@ -132,7 +132,7 @@ function AdminSearchPanel() {
                                     return (
                                         <SearchResult key={patient.id} id={patient.id} referenceNo={patient.nic} name={patient.name} registeredHospital={patient.admin.hospital?.name || ""}
                                             registeredDate={patient.registeredDate} lastUpdated={patient.registeredDate} firstUpdated={patient.registeredDate} imagePath={patient.profileImage}
-                                            searchType={SearchType.VIEW}></SearchResult>
+                                            searchType={SearchType.VIEW} searchOptions={{query:searchQuery, searchType}}></SearchResult>
                                     );
                                 })
                             )

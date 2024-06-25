@@ -1,6 +1,7 @@
 import './SearchResult.css';
 import { NavLink } from 'react-router-dom';
 import { Skeleton } from '@mui/material';
+import { useEffect } from 'react';
 
 export enum SearchType {
     VIEW = 0,
@@ -11,30 +12,43 @@ interface BaseSearchResultsProps{
     searchType: SearchType,
 }
 
-interface SearchResultProps extends BaseSearchResultsProps{
-    id: number;
-    referenceNo: string,
-    name: string,
-    registeredHospital: string,
-    registeredDate: string, // Should be date but went with string for testing
-    lastUpdated: string, // Should be date but went with string for testing
-    firstUpdated: string // Should be date but went with string for testing
-    imagePath?: string
+interface SearchOptions{
+    query: string;
+    searchType: "Name" | "Hospital" | "Nic" | string;
 }
 
-function SearchResult({ id, searchType, referenceNo, name, registeredHospital, registeredDate, lastUpdated, firstUpdated, imagePath }: SearchResultProps) {
+interface SearchResultProps extends BaseSearchResultsProps{
+    id: number;
+    referenceNo: string;
+    name: string;
+    registeredHospital: string;
+    registeredDate: string; // Should be date but went with string for testing
+    lastUpdated: string; // Should be date but went with string for testing
+    firstUpdated: string; // Should be date but went with string for testing
+    imagePath?: string;
+    searchOptions?: SearchOptions;
+}
+
+function SearchResult({ searchOptions, id, searchType, referenceNo, name, registeredHospital, registeredDate, lastUpdated, firstUpdated, imagePath }: SearchResultProps) {
+
     return (
         <div className="patient">
 
             <img src={imagePath} alt="profile-image" />
 
             <div className="info">
-                <span className="highlight">Reference No: {referenceNo}</span>
-                <span>Name: {name}</span>
+                <span className="highlight">Reference No: {(searchOptions && searchOptions.searchType == "Nic")? (
+                    <HighlightedResult searchQuery={searchOptions.query} searchInput={referenceNo}/>
+                ) : referenceNo}</span>
+                <span>Name: {(searchOptions && searchOptions.searchType == "Name")? (
+                    <HighlightedResult searchQuery={searchOptions.query} searchInput={name}/>
+                ) : name}</span>
             </div>
 
             <div className="info temp">
-                <span>Registered Hospital: {registeredHospital}</span>
+                <span>Registered Hospital: {(searchOptions && searchOptions.searchType == "Hospital")? (
+                    <HighlightedResult searchQuery={searchOptions.query} searchInput={registeredHospital}/>
+                ) : registeredHospital}</span>
                 <span>Registered Date: {registeredDate}</span>
             </div>
 
@@ -53,11 +67,11 @@ function SearchResult({ id, searchType, referenceNo, name, registeredHospital, r
                     </NavLink>
                 ) : (
                     <div className="controls">
-                        <button className="edit mb-2 mb-md-0 me-md-2">
+                        <NavLink to={`/patient/update?id=${id}`} className="edit mb-2 mb-md-0 me-md-2">
                             <span className="material-symbols-outlined">
                                 edit_square
                             </span>
-                        </button>
+                        </NavLink>
                         <button className="delete">
                             <span className="material-symbols-outlined">
                                 delete
@@ -105,6 +119,27 @@ export function SearchResultSkeleton({searchType} : BaseSearchResultsProps) {
                 }
             </div>
         </div>
+    );
+}
+
+interface HighlightedResultProps{
+    searchQuery: string;
+    searchInput: string;
+}
+
+function HighlightedResult({searchQuery, searchInput} : HighlightedResultProps){
+    if(searchQuery == "") return <>{searchInput}</>;
+    const wordBlocks = searchInput.split(new RegExp(`(${searchQuery})`, 'gi'));
+    console.log(wordBlocks);
+
+    return (
+        <>
+            {
+                wordBlocks.map((block, index) => {
+                    return block == searchQuery? <span className='result-highlight'>{block}</span> : block;
+                })
+            }
+        </>
     );
 }
 

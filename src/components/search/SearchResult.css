@@ -40,7 +40,7 @@
     margin-left: auto;
 }
 
-.patient-list .patient .controls button{
+.patient-list .patient .controls button, .patient-list .patient .controls a{
     border: none;
     border-radius: 5px;
     padding: 8px;
@@ -93,4 +93,10 @@
     .patient-list .patient .view-btn{
         margin-left: 10px;
     }
+}
+
+/* For result highlighting */
+span.result-highlight{
+    background-color: blue;
+    color: white;
 }

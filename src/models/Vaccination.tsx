@@ -5,11 +5,11 @@ import { VaccineBrand } from "./VaccineBrand";
 export interface Vaccination{
     id: number;
 
-    patientId: number;
+    patientId: number | string;
 
-    hospitalId: number;
+    hospitalId: number | string;
 
-    vaccineBrandId: number;
+    vaccineBrandId: number | string;
 
     dateOfVaccination: string;
 

@@ -22,9 +22,12 @@ import axiosInstance from '../../../axiosInstance';
 import { useAlertSnack, AlertType } from '../../AlertSnack';
 import { Vaccination } from '../../../models/Vaccination';
 import { MedicalRecord } from '../../../models/MedicalRecord';
+import { UseUser } from '../../auth/UserContext';
 
 export function MedicalRecords() {
-    const { patientId } = useParams();
+    const { user } = UseUser();
+    let { patientId } = useParams();
+    patientId = user?.role == "User"? user.userId.toString() : patientId;
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [medicalRecords, setMedicalRecords] = useState<MedicalRecord[]>([]);
     const headingCellStyles = { fontSize: '14px', fontWeight: 600, fontFamily: 'Poppins', paddingBottom: '10px', paddingTop: '6px' };
@@ -150,7 +153,9 @@ function MedicalTableRow({ medicalRecord }: MedicalTableRowProps) {
 }
 
 export function VaccinationDetails() {
-    const { patientId } = useParams();
+    const { user } = UseUser();
+    let { patientId } = useParams();
+    patientId = user?.role == "User"? user.userId.toString() : patientId;
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [vaccinations, setVaccinations] = useState<Vaccination[]>([]);
     const { showAlert } = useAlertSnack();
@@ -289,7 +294,9 @@ function VaccinationTableRow({ vaccination }: VaccinationTableRowProps) {
 
 export function ProfileOverview() {
     const [isLoading, setIsLoading] = useState<boolean>(true);
-    const { patientId } = useParams();
+    const { user } = UseUser();
+    let { patientId } = useParams();
+    patientId = (user?.role == "User")? user.userId.toString() : patientId;
     const [patient, setPatient] = useState<Patient | null>(null);
     const { showAlert } = useAlertSnack();
 

@@ -10,7 +10,7 @@ import Settings from './components/settings/Settings.tsx'
 import Profile, { MedicalRecords, ProfileOverview, VaccinationDetails } from './components/patient/profile/Profile.tsx'
 import ProfileReports, { MedicalRecordsTable, VaccinationTable } from './components/patient/profile/ProfileReports.tsx'
 import { AdminOverview } from './components/admin/AdminOverview.tsx'
-import { PatientRegistrationForm } from './components/patient/PatientRegistrationForm.tsx'
+import { PatientEditForm, PatientRegistrationForm } from './components/patient/PatientRegistrationForm.tsx'
 import { UseUser } from './components/auth/UserContext.tsx'
 import AdminLogIn from './components/login/AdminLogIn.tsx';
 import AlertSnack, { AlertSnackProvider } from './components/AlertSnack.tsx'
@@ -27,7 +27,7 @@ function App() {
         {
           path: '/',
           element: user?.role == 'Admin' ? <AdminDashboard /> : <ProfileOverview />,
-          children: user?.role == 'user' ? [
+          children: user?.role == 'User' ? [
             {
               index: true,
               element: <VaccinationDetails />
@@ -41,7 +41,7 @@ function App() {
         {
           path: '/search',
           element: user?.role == 'Admin' ? <AdminSearchPanel /> : <ProfileReports />,
-          children: user?.role == 'user' ? [
+          children: user?.role == 'User' ? [
             {
               index: true,
               element: <VaccinationTable />
@@ -58,11 +58,15 @@ function App() {
         },
         {
           path: '/smarthealth',
-          element: user?.role == 'user' ? <WorkingOnIt /> : <NotFound />
+          element: user?.role == 'User' ? <WorkingOnIt /> : <NotFound />
         },
         {
           path: '/patient/add',
-          element: user?.role == 'Admin' ? <PatientRegistrationForm /> : <NotFound />
+          element: user?.role == 'Admin' ? <PatientRegistrationForm isEdit={false}/> : <NotFound />
+        },
+        {
+          path: '/patient/update',
+          element: user?.role == 'Admin' ? <PatientEditForm /> : <NotFound />
         },
         {
           path: '/comments',

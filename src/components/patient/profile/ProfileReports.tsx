@@ -13,9 +13,14 @@ import { Vaccination } from '../../../models/Vaccination';
 import { MedicalRecord } from '../../../models/MedicalRecord';
 
 export function MedicalRecordsTable() {
-    const { openPopup } = usePopup();
+    const { openPopup, closePopup } = usePopup();
     const { user } = UseUser();
-    const { medicalRecords, isLoading, setType } = useOutletContext<searchProps>();
+    const { medicalRecords, isLoading, setType, onSearch } = useOutletContext<searchProps>();
+
+    const onRefresh = () => {
+        if(onSearch) onSearch();
+        closePopup();
+    };
 
     useEffect(() => {
         setType("Report");
@@ -32,7 +37,7 @@ export function MedicalRecordsTable() {
                     {
                         user?.role == 'Admin' ? (
                             <button className="add-btn" onClick={() => {
-                                openPopup(<RecordInsertForm />);
+                                openPopup(<RecordInsertForm onRefresh={onRefresh}/>);
                             }}>
                                 <span className="me-2 d-none d-md-block">Add Record</span>
                                 <span className="material-symbols-outlined">
@@ -44,7 +49,7 @@ export function MedicalRecordsTable() {
                 </div>
             </div>
 
-            <div className="table-container mt-2 py-2 px-md-4">
+            <div className="table-container mt-4 px-md-4">
                 <table className="table mt-md-2 mb-0">
                     <thead>
                         <tr>
@@ -59,9 +64,9 @@ export function MedicalRecordsTable() {
 
                         {
                             isLoading ? (
-                                medicalRecords.map((medicalRecord: MedicalRecord) => {
+                                Array.from({length:5}).map((item,index) => {
                                     return (
-                                        <tr key={medicalRecord.id}>
+                                        <tr key={index}>
                                             <th scope="row" className="d-none d-lg-table-cell"><Skeleton variant='text' /></th>
                                             <td><Skeleton variant='text' /></td>
                                             <td className="d-none d-md-table-cell"><Skeleton variant='text' /></td>
@@ -78,8 +83,9 @@ export function MedicalRecordsTable() {
                                 medicalRecords.map((medicalRecord: MedicalRecord) => {
                                     return (
                                         <tr key={medicalRecord.id} onTouchStart={() => {
-                                            openPopup(<RecordForm record={medicalRecord}/>);
-                                        }} className={medicalRecord.isEditable ? 'editable' : ''}>
+                                            openPopup(<RecordForm record={medicalRecord} onRefresh={onRefresh}/>);
+                                        }} 
+                                        className={(user?.role == "Admin" && medicalRecord.isEditable) ? 'editable' : ''}>
                                             <th scope="row" className="d-none d-lg-table-cell">22 : 25</th>
                                             <td>{medicalRecord.recordType}</td>
                                             <td className="d-none d-md-table-cell">{medicalRecord.admin?.hospital?.name}</td>
@@ -87,7 +93,7 @@ export function MedicalRecordsTable() {
                                             <td className="d-none d-lg-table-cell">
                                                 <div className="d-none d-lg-flex justify-content-end align-items-center">
                                                     <button className="view-more" onClick={() => {
-                                                        openPopup(<RecordForm record={medicalRecord}/>);
+                                                        openPopup(<RecordForm record={medicalRecord} onRefresh={onRefresh}/>);
                                                     }}>
                                                         <span className="material-symbols-outlined">
                                                             read_more
@@ -126,9 +132,14 @@ export function MedicalRecordsTable() {
 }
 
 export function VaccinationTable() {
-    const { openPopup } = usePopup();
+    const { openPopup, closePopup } = usePopup();
     const { user } = UseUser();
-    const { vaccinations, isLoading, setType } = useOutletContext<searchProps>();
+    const { vaccinations, isLoading, setType, onSearch } = useOutletContext<searchProps>();
+
+    const onRefresh = () => {
+        if(onSearch) onSearch();
+        closePopup();
+    };
 
     useEffect(() => {
         setType("Vaccination");
@@ -146,7 +157,7 @@ export function VaccinationTable() {
                     {
                         user?.role == 'Admin' ? (
                             <button className="add-btn" onClick={() => {
-                                openPopup(<VaccinationInsertForm />);
+                                openPopup(<VaccinationInsertForm onRefresh={onRefresh}/>);
                             }}>
                                 <span className="me-2 d-none d-md-block">Add Vaccination</span>
                                 <span className="material-symbols-outlined">
@@ -158,7 +169,7 @@ export function VaccinationTable() {
                 </div>
             </div>
 
-            <div className="table-container mt-2 py-2 px-md-4">
+            <div className="table-container mt-4 px-md-4">
                 <table className="table mt-md-2 mb-0">
                     <thead>
                         <tr>
@@ -196,8 +207,9 @@ export function VaccinationTable() {
                                 vaccinations.map((vaccination: Vaccination) => {
                                     return (
                                         <tr key={vaccination.id} onTouchStart={() => {
-                                            openPopup(<VaccinationForm vaccination={vaccination}/>);
-                                        }} className={vaccination.isEditable ? 'editable' : ''}>
+                                            openPopup(<VaccinationForm vaccination={vaccination} onRefresh={onRefresh}/>);
+                                        }} 
+                                        className={(user?.role == "Admin" && vaccination.isEditable) ? 'editable' : ''}>
                                             <th scope="row" className="d-none d-lg-table-cell">22 : 25</th>
                                             <td>{vaccination.vaccineBrand?.vaccine?.name}</td>
                                             <td className="d-none d-md-table-cell">{vaccination.vaccineBrand?.brandName}</td>
@@ -207,7 +219,7 @@ export function VaccinationTable() {
                                             <td className="d-none d-lg-table-cell">
                                                 <div className="d-none d-lg-flex justify-content-end align-items-center">
                                                     <button className="view-more" onClick={() => {
-                                                        openPopup(<VaccinationForm vaccination={vaccination}/>);
+                                                        openPopup(<VaccinationForm vaccination={vaccination} onRefresh={onRefresh}/>);
                                                     }}>
                                                         <span className="material-symbols-outlined">
                                                             read_more
@@ -251,10 +263,13 @@ interface searchProps {
     medicalRecords: MedicalRecord[];
     isLoading: boolean;
     setType: (reportType: string) => {};
+    onSearch?: () => void;
 }
 
 function ProfileReports() {
-    const { patientId } = useParams(); //Use this for all the backend requests
+    const {user} = UseUser();
+    let { patientId } = useParams(); //Use this for all the backend requests
+    patientId = (user?.role == "User")? user.userId.toString() : patientId;
     const [searchType, setSearchType] = useState("Name");
     const [searchQuery, setSearchQuery] = useState("");
     const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -365,7 +380,7 @@ function ProfileReports() {
                     <hr />
 
                     <div className="record-data mt-4" id="record-data-container">
-                        <Outlet context={{ vaccinations, medicalRecords, isLoading, setType: (type: string) => setReportType(type) }} />
+                        <Outlet context={{ vaccinations, medicalRecords, isLoading, setType: (type: string) => setReportType(type), onSearch }} />
                     </div>
                 </div>
 
