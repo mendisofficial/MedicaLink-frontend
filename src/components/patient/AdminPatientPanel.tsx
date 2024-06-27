@@ -3,7 +3,7 @@ import SearchResult, { SearchResultSkeleton, SearchType } from '../search/Search
 import { NavLink } from 'react-router-dom';
 import Searchbar, { FilterCategory, FilterGroup, FilterList, FilterTitle, SearchFilter } from '../search/Searchbar';
 import axiosInstance from '../../axiosInstance';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { AlertType, useAlertSnack } from '../AlertSnack';
 import { Patient } from '../../models/Patient';
 
@@ -30,15 +30,15 @@ function AdminPatientPanel() {const [isLoading, setIsLoading] = useState<boolean
             console.log(error);
             showAlert("Error", "Something went wrong", AlertType.error);
         }
-    }
+    };
 
     const onSearch = async () => {
         if (!isLoading) setIsLoading(true);
 
         await searchPatients();
-    }
+    };
 
-    useEffect(() => {
+    /* useEffect(() => {
         const fetchData = async () => {
             await searchPatients();
         }
@@ -46,7 +46,7 @@ function AdminPatientPanel() {const [isLoading, setIsLoading] = useState<boolean
         fetchData();
 
         return () => { }
-    }, []);
+    }, []); */
 
     return (
         <>
@@ -120,13 +120,17 @@ function AdminPatientPanel() {const [isLoading, setIsLoading] = useState<boolean
                                     );
                                 })
                             ) : (
-                                patientList.map(patient => {
-                                    return (
-                                        <SearchResult key={patient.id} id={patient.id} referenceNo={patient.nic} name={patient.name} registeredHospital={patient.admin.hospital?.name || ""}
-                                            registeredDate={patient.registeredDate} lastUpdated={patient.registeredDate} firstUpdated={patient.registeredDate} imagePath={patient.profileImage}
-                                            searchType={SearchType.EDIT}></SearchResult>
-                                    );
-                                })
+                                patientList.length < 1? (
+                                    <div className="text-center fs-5 my-5">No patients found</div>
+                                ) : (
+                                    patientList.map(patient => {
+                                        return (
+                                            <SearchResult key={patient.id} id={patient.id} referenceNo={patient.nic} name={patient.name} registeredHospital={patient.admin.hospital?.name || ""}
+                                                registeredDate={patient.registeredDate} lastUpdated={patient.registeredDate} firstUpdated={patient.registeredDate} imagePath={patient.profileImage}
+                                                searchType={SearchType.EDIT} searchOptions={{query:searchQuery, searchType}}></SearchResult>
+                                        );
+                                    })
+                                )
                             )
                         }
 

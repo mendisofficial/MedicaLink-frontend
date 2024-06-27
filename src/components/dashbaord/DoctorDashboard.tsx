@@ -7,7 +7,7 @@ import Seneli from "../../assets/img/patients/Seneli.jpg";
 import Chathusha from "../../assets/img/patients/Chathusha.jpg";
 import Nishadi from "../../assets/img/patients/Nishadi.jpg";
 
-function Dashboard() {
+function DoctorDashboard() {
 
     return (
         <>
@@ -210,4 +210,4 @@ function Dashboard() {
     )
 }
 
-export default Dashboard;
+export default DoctorDashboard;

@@ -51,8 +51,9 @@
 }
 
 .stat-container .stat .icon span{
-    color: #0b7bbe;
+    font-size: 42px !important;
 }
+
 /* ==== Stats Section End */
 
 

@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { Outlet } from "react-router-dom";
 import Sidebar, { SidebarHandle } from './components/sidebar/Sidebar.tsx'
 import Popup, { PopupProvider } from './components/popup/Popup.tsx';
-import AlertSnack, { AlertSnackProvider } from './components/AlertSnack.tsx';
+import AlertDialog, { AlertDialogProvider } from './components/PopUpDialog.tsx';
 
 function Root() {
     const sidebarRef = useRef<SidebarHandle>(null);
@@ -10,7 +10,7 @@ function Root() {
 
     useEffect(() => {
         const handleResize = () => {
-            
+
             // Check the sidebarref for null pointers
             if (sidebarRef && sidebarRef.current) {
 
@@ -32,7 +32,8 @@ function Root() {
     }, []);
 
     return (
-        <PopupProvider>
+        <AlertDialogProvider>
+            <PopupProvider>
                 <div id="main" className="py-0">
 
                     <div ref={mainContainerRef} id="main-container" className="container-fluid px-md-4 pt-4 pb-1 pb-md-4">
@@ -46,8 +47,10 @@ function Root() {
                     <Sidebar ref={sidebarRef} />
 
                 </div>
-            <Popup />
-        </PopupProvider>
+                <Popup />
+            </PopupProvider>
+            <AlertDialog />
+        </AlertDialogProvider>
     )
 }
 

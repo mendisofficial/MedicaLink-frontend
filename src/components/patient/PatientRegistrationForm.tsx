@@ -6,11 +6,11 @@ import axiosInstance from '../../axiosInstance';
 import { Patient } from '../../models/Patient';
 
 interface PatientForm {
-    patientName: string,
+    patientName: string; nic: string;
     dateOfBirth: string;
     gender: string; address: string;
     bloodGroup: string; height: string;
-    weight: string; profileImage: File | null
+    weight: string; profileImage: File | null;
 }
 
 interface PatientFormValidationErrors {
@@ -18,6 +18,7 @@ interface PatientFormValidationErrors {
     gender?: string | null; bloodGroup?: string | null;
     height?: string | null; weight?: string | null;
     profileImage?: string | null; address: string | null;
+    nic: string | null
 }
 
 interface PatientFormValidation {
@@ -25,6 +26,7 @@ interface PatientFormValidation {
     gender: boolean; bloodGroup: boolean;
     height: boolean; weight: boolean;
     profileImage: boolean; address: boolean;
+    nic: boolean
 }
 
 interface PatientRegistrationFormProps {
@@ -37,21 +39,21 @@ export function PatientRegistrationForm({ isEdit = false, patient }: PatientRegi
     const [alertType, setAlertType] = useState<"Success" | "Error">("Success");
     const [link, setLink] = useState<string>("");
     const [pForm, setPForm] = useState<PatientForm>(patient? {
-        patientName: patient.name, dateOfBirth: patient.dateOfBirth, gender: patient.gender,
+        patientName: patient.name, dateOfBirth: patient.dateOfBirth, gender: patient.gender == 0? "Male" : "Female",
         address: patient.address, bloodGroup: patient.bloodGroup, height: patient.height.toString(), weight: patient.weight.toString(),
-        profileImage: null
+        profileImage: null, nic: patient.nic
     } : {
         patientName: "", dateOfBirth: "", gender: "Male",
         address: "", bloodGroup: "none", height: "138", weight: "56",
-        profileImage: null
+        profileImage: null, nic: ""
     });
     const [pFormErrors, setPFormErrors] = useState<PatientFormValidationErrors>({
         patientName: null, dateOfBirth: null, bloodGroup: null, height: null,
-        weight: null, gender: null, address: null
+        weight: null, gender: null, address: null, nic: null
     });
     const [pFormValidation, setPFormValidation] = useState<PatientFormValidation>({
         patientName: false, dateOfBirth: false, bloodGroup: false, height: false, gender: false,
-        weight: false, profileImage: false, address: false
+        weight: false, profileImage: false, address: false, nic: false
     });
 
     const openAlert = (type: "Success" | "Error", link?: string) => {
@@ -155,6 +157,19 @@ export function PatientRegistrationForm({ isEdit = false, patient }: PatientRegi
         return true;
     };
 
+    const validateNicNumber = () => {
+        if (pForm.nic == "") {
+            setPFormErrors((prev) => ({ ...prev, nic: "NIC is required" }));
+            return false;
+        }
+        if (! pForm.nic.match(/^\d{12}$/)) {
+            setPFormErrors((prev) => ({ ...prev, nic: "Please enter a valid NIC number" }));
+            return false;
+        }
+        setPFormErrors((prev) => ({ ...prev, nic: null }));
+        return true;
+    };
+
     // For form fields
     const genderOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setPForm({ ...pForm, gender: e.target.value });
@@ -174,6 +189,7 @@ export function PatientRegistrationForm({ isEdit = false, patient }: PatientRegi
         e.preventDefault();
 
         const pn = validatePatientName();
+        const pnc = validateNicNumber();
         const pd = validateDateOfBirth();
         const pg = validateGender();
         const pb = validateBloodGroup();
@@ -182,12 +198,13 @@ export function PatientRegistrationForm({ isEdit = false, patient }: PatientRegi
         const pa = validateAddress();
         const pi = validateProfileImage();
 
-        if (!(pn && pd && pg && pb && ph && pw && pa && pi)) {
+        if (!(pn && pnc && pd && pg && pb && ph && pw && pa && pi)) {
             return;
         }
 
         const patientData = new FormData();
         patientData.append("name", pForm.patientName);
+        patientData.append("nic",pForm.nic);
         patientData.append("dateOfBirth", pForm.dateOfBirth);
         patientData.append("gender", pForm.gender);
         patientData.append("bloodGroup", pForm.bloodGroup);
@@ -199,7 +216,7 @@ export function PatientRegistrationForm({ isEdit = false, patient }: PatientRegi
         // Make the api call
         if (isEdit) {
             try {
-                const response = await axiosInstance.post('/api/patients', patientData);
+                const response = await axiosInstance.put(`/api/patient/${patient?.id}`, patientData);
 
                 if (response.status == 200) {
                     console.log(response.data);
@@ -211,7 +228,7 @@ export function PatientRegistrationForm({ isEdit = false, patient }: PatientRegi
             }
         } else {
             try {
-                const response = await axiosInstance.post('/api/patients', patientData);
+                const response = await axiosInstance.post('/api/patient', patientData);
 
                 if (response.status == 200) {
                     console.log(response.data);
@@ -239,6 +256,7 @@ export function PatientRegistrationForm({ isEdit = false, patient }: PatientRegi
     useEffect(() => { if (pFormValidation.height) validateHeight() }, [pForm.height]);
     useEffect(() => { if (pFormValidation.weight) validateWeight() }, [pForm.weight]);
     useEffect(() => { if (pFormValidation.address) validateAddress() }, [pForm.address]);
+    useEffect(() => {if(pFormValidation.nic) validateNicNumber()}, [pForm.nic]);
     useEffect(() => { validateProfileImage() }, [pForm.profileImage]);
 
     return (
@@ -264,13 +282,22 @@ export function PatientRegistrationForm({ isEdit = false, patient }: PatientRegi
 
                         <div className="row g-3 mb-4">
 
-                            <div className="col-12">
+                            <div className="col-12 col-md-6">
                                 <label htmlFor="inputName" className="form-label">Patient Full Name :</label>
                                 <input type="text" className="form-control" id="inputName" value={pForm.patientName} onChange={(e) => {
                                     setPForm((prev) => ({ ...prev, patientName: e.target.value }));
                                     setPFormValidation((prev) => ({ ...prev, patientName: true }));
                                 }} onBlur={() => validatePatientName()} />
                                 <label htmlFor="inputName" className="form-label text-danger">{pFormErrors.patientName}</label>
+                            </div>
+
+                            <div className="col-12 col-md-6">
+                                <label htmlFor="inputNIC" className="form-label">NIC Number :</label>
+                                <input type="text" className="form-control" id="inputNIC" value={pForm.nic} onChange={(e) => {
+                                    setPForm((prev) => ({ ...prev, nic: e.target.value }));
+                                    setPFormValidation((prev) => ({ ...prev, nic: true }));
+                                }} onBlur={() => validateNicNumber()} />
+                                <label htmlFor="inputNIC" className="form-label text-danger">{pFormErrors.nic}</label>
                             </div>
 
                             <div className="col-md-6">
@@ -287,23 +314,18 @@ export function PatientRegistrationForm({ isEdit = false, patient }: PatientRegi
                                 <div className="d-flex">
 
                                     <div className="form-check me-3">
-                                        <input className="form-check-input" type="radio" id="gridCheck" name="gender" value="Male" onChange={genderOnChange} />
+                                        <input className="form-check-input" type="radio" id="gridCheck" name="gender" value="Male"
+                                        checked={pForm.gender == "Male"} onChange={genderOnChange} />
                                         <label className="form-check-label" htmlFor="gridCheck">
                                             Male
                                         </label>
                                     </div>
 
                                     <div className="form-check me-3">
-                                        <input className="form-check-input" type="radio" id="gridCheck2" name="gender" value="Female" onChange={genderOnChange} />
+                                        <input className="form-check-input" type="radio" id="gridCheck2" name="gender" value="Female"
+                                        checked={pForm.gender == "Female"} onChange={genderOnChange} />
                                         <label className="form-check-label" htmlFor="gridCheck2">
                                             Female
-                                        </label>
-                                    </div>
-
-                                    <div className="form-check">
-                                        <input className="form-check-input" type="radio" id="gridCheck3" name="gender" value="None" onChange={genderOnChange} />
-                                        <label className="form-check-label" htmlFor="gridCheck3">
-                                            N/A
                                         </label>
                                     </div>
 

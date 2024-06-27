@@ -73,7 +73,7 @@ export default function UpdatedList({ className }: UpdatedListProps) {
                         ) : (
                             patientList.map((patient) => {
                                 return (
-                                    <tr>
+                                    <tr key={patient.id}>
                                         <th scope="row" className="d-none d-md-table-cell">1</th>
                                         <td>
                                             <div className="patient">

@@ -4,11 +4,11 @@ interface StatProps {
 
 function Stats({ className }: StatProps) {
   return (
-    <div className={`stat-container ${className}`}>
+    <div className={`stat-container ${className}`} id="docotor-stats">
       
       <div className="stat section-blur d-flex align-items-center">
-        <div className="icon">
-          <span className="material-symbols-outlined me-3 display-6">task_alt</span>
+        <div className="icon me-2">
+          <span className="material-symbols-outlined">task_alt</span>
         </div>
         <div className="d-flex flex-column gap-0">
           <h4 className="mb-0">10 <span className="percentage good">+10%</span></h4>
@@ -17,8 +17,8 @@ function Stats({ className }: StatProps) {
       </div>
 
       <div className="stat section-blur d-flex align-items-center">
-        <div className="icon">
-          <span className="material-symbols-outlined me-3 display-6">group</span>
+        <div className="icon me-2">
+          <span className="material-symbols-outlined">group</span>
         </div>
         <div className="d-flex flex-column gap-0">
           <h4 className="mb-0">250 <span className="percentage bad">-5%</span></h4>
@@ -27,8 +27,8 @@ function Stats({ className }: StatProps) {
       </div>
 
       <div className="stat section-blur d-flex align-items-center">
-        <div className="icon">
-          <span className="material-symbols-outlined me-3 display-6">library_books</span>
+        <div className="icon me-2">
+          <span className="material-symbols-outlined">library_books</span>
         </div>
         <div className="d-flex flex-column gap-0">
           <h4 className="mb-0">560 <span className="percentage good">+10</span></h4>
@@ -37,8 +37,8 @@ function Stats({ className }: StatProps) {
       </div>
 
       <div className="stat section-blur d-flex align-items-center">
-        <div className="icon">
-          <span className="material-symbols-outlined me-3 display-6">star</span>
+        <div className="icon me-2">
+          <span className="material-symbols-outlined">star</span>
         </div>
         <div className="d-flex flex-column gap-0">
           <h4 className="mb-0">4.5 <span className="percentage good"></span></h4>

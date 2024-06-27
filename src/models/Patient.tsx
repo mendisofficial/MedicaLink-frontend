@@ -19,7 +19,7 @@ export interface Patient {
 
     address: string;
 
-    gender: string;
+    gender: number;
 
     age? : number;
 

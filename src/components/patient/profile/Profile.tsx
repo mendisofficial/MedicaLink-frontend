@@ -450,7 +450,7 @@ export function ProfileOverview() {
 
                                                 <div className="profile-group col-6">
                                                     <li className="title">Gender</li>
-                                                    <li>{patient?.gender == '0' ? 'Male' : 'Female'}</li>
+                                                    <li>{patient?.gender == 0 ? 'Male' : 'Female'}</li>
                                                 </div>
 
                                                 <div className="profile-group col-12">

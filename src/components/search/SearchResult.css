@@ -97,6 +97,7 @@
 
 /* For result highlighting */
 span.result-highlight{
-    background-color: blue;
+    background-color: rgba(109, 109, 210, 0.563);
     color: white;
+    font-size: inherit;
 }

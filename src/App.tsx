@@ -1,5 +1,6 @@
 import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom'
 import Root from './Root'
+import { useEffect, useState } from 'react';
 import './App.css'
 import AdminDashboard from './components/dashbaord/Dashboard.tsx'
 import AdminSearchPanel from './components/search/AdminSearchPanel.tsx'
@@ -12,11 +13,32 @@ import ProfileReports, { MedicalRecordsTable, VaccinationTable } from './compone
 import { AdminOverview } from './components/admin/AdminOverview.tsx'
 import { PatientEditForm, PatientRegistrationForm } from './components/patient/PatientRegistrationForm.tsx'
 import { UseUser } from './components/auth/UserContext.tsx'
-import AdminLogIn from './components/login/AdminLogIn.tsx';
+import LoginForm from './components/login/AdminLogIn.tsx';
 import AlertSnack, { AlertSnackProvider } from './components/AlertSnack.tsx'
+import DoctorDashboard from './components/dashbaord/DoctorDashboard.tsx'
+import isLoggedIn from './components/auth/CheckUser.tsx';
+import Logout from './components/login/Logout.tsx';
 
 function App() {
-  const { user } = UseUser();
+  let { user, setUser } = UseUser();
+  const [loading, setLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    // Fetch the user credentials if a token is present in the cookies
+    const checkUserLogin = () => {
+      let loggedUser = isLoggedIn();
+      setUser(loggedUser);
+      setLoading(false);
+    };
+
+    checkUserLogin();
+
+    return () => { };
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>; // Optional: Show a loading indicator
+  }
 
   // Route definition
   const router = createBrowserRouter([
@@ -26,7 +48,7 @@ function App() {
       children: [
         {
           path: '/',
-          element: user?.role == 'Admin' ? <AdminDashboard /> : <ProfileOverview />,
+          element: user?.role == 'Admin' ? <AdminDashboard /> : (user?.role == "Doctor" ? <DoctorDashboard /> : <ProfileOverview />),
           children: user?.role == 'User' ? [
             {
               index: true,
@@ -62,7 +84,7 @@ function App() {
         },
         {
           path: '/patient/add',
-          element: user?.role == 'Admin' ? <PatientRegistrationForm isEdit={false}/> : <NotFound />
+          element: user?.role == 'Admin' ? <PatientRegistrationForm isEdit={false} /> : <NotFound />
         },
         {
           path: '/patient/update',
@@ -78,7 +100,7 @@ function App() {
         },
         {
           path: '/patient/:patientId',
-          element: user?.role == 'Admin' ? <Profile /> : <Navigate to="/notfound"/>,
+          element: user?.role == 'Admin' ? <Profile /> : <Navigate to="/notfound" />,
           children: [
             {
               path: 'overview',
@@ -119,13 +141,19 @@ function App() {
     },
     {
       path: '/login',
-      element: <AdminLogIn />
+      element: <LoginForm />
+    },
+    {
+      path: '/logout',
+      element: <Logout />
     }
   ]);
 
   return (
     <AlertSnackProvider>
-      <RouterProvider router={router} />
+
+        <RouterProvider router={router} />
+
       <AlertSnack />
     </AlertSnackProvider>
   );

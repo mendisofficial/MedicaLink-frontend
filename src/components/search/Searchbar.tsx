@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Collapse } from 'react-bootstrap';
 import { Search, UiChecksGrid } from 'react-bootstrap-icons';
 import './Searchbar.css';
@@ -72,25 +72,29 @@ interface SearchbarProps {
     value? : string;
     children?: React.ReactElement
     onChange? : (e : React.ChangeEvent<HTMLInputElement>) => void;
-    onSearch? : (e : React.SyntheticEvent<any>) => void;
+    onSearch? : () => void;
 }
 
 function Searchbar({ className, children, value, onChange, onSearch }: SearchbarProps) {
 
     const [open, setOpen] = useState(false);
+    useEffect(() => { if(onSearch) {
+        console.log("Working In searchbar");
+        onSearch();
+    } }, [value])
 
     return (
         <div id="search-controls-section" className={`py-2 px-3 section-blur ${className}`}>
 
             <div className="search-controls d-flex align-items-center">
-                <button className="fs-5" onClick={onSearch}>
+                <button className="fs-5" /* onClick={onSearch} */>
                     <Search color='black' size={18} />
                 </button>
 
                 <input type="text" className="search-bar" placeholder="Search for patients..." value={value} onChange={onChange}
                 onKeyDown={(e) => {
                     if(e.key == 'Enter' && onSearch){
-                        onSearch(e);
+                        onSearch();
                     }
                 }}/>
                 <div className="vr mx-2"></div>

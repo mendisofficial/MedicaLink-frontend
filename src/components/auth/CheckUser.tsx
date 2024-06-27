@@ -10,17 +10,17 @@ import axiosInstance from "../../axiosInstance";
 function isLoggedIn(): null | User {
 
     let token = Cookies.get("jwtToken");
-    let uId = Cookies.get("userId"),
-    uName = Cookies.get("userName"),
-    uRole = Cookies.get("role");
+    let uId = Cookies.get("userId");
+    let uName = Cookies.get("userName");
+    let uRole = Cookies.get("role");
 
-    if (token) {
+    if (token && uId && uName && uRole) {
         axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
         const user = {
-            userName: uName || "",
-            userId: uId ?  parseInt(uId) : 0,
-            role: uRole || ""
+            userName: uName,
+            userId: parseInt(uId),
+            role: uRole
         };
 
         console.log(user);

@@ -1,7 +1,6 @@
 import './SearchResult.css';
 import { NavLink } from 'react-router-dom';
 import { Skeleton } from '@mui/material';
-import { useEffect } from 'react';
 
 export enum SearchType {
     VIEW = 0,
@@ -129,14 +128,20 @@ interface HighlightedResultProps{
 
 function HighlightedResult({searchQuery, searchInput} : HighlightedResultProps){
     if(searchQuery == "") return <>{searchInput}</>;
-    const wordBlocks = searchInput.split(new RegExp(`(${searchQuery})`, 'gi'));
-    console.log(wordBlocks);
+    const lowerInput = searchInput.toLocaleLowerCase();
+    const lowerQuery = searchQuery.toLocaleLowerCase();
+    const wordBlocks = lowerInput.split(new RegExp(`(${lowerQuery})`, 'gi'));
+    let yetToFindMatch : boolean = true;
 
     return (
         <>
             {
                 wordBlocks.map((block, index) => {
-                    return block == searchQuery? <span className='result-highlight'>{block}</span> : block;
+                    if(block == lowerQuery && yetToFindMatch) {
+                        yetToFindMatch = false;
+                        return (<span key={index} className='result-highlight'>{block}</span>);
+                    }
+                    return block;
                 })
             }
         </>
