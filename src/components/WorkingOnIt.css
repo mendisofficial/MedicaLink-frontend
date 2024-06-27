@@ -1,0 +1,87 @@
+/* ==== working on it start ==== */
+#main .row:has(.working-container){
+    height: 100%;
+}
+
+.working-container{
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.working-container .anime{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Josefin Sans", sans-serif;
+}
+
+.working-container .anime .desc h3{
+    font-size: 48px;
+    color: #ffd000;
+    text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.371);
+    text-transform: uppercase;
+}
+
+.working-container .anime .desc p{
+    max-width: 500px;
+}
+
+.working-container .anime .desc a{
+    border: 2px solid #ffd000;
+    color: #ffd000;
+    border-radius: 25px;
+    padding: 10px 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    font-weight: 550;
+}
+
+.working-container .anime .desc a:hover{
+    background-color: #ffd000;
+    color: #000;
+}
+
+@media (max-width: 768px){
+    .working-container .anime{
+        flex-direction: column;
+    }
+
+    .working-container .anime .desc{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 30px;
+    }
+
+    .working-container .anime .desc p, .working-container .anime .desc h3{
+        text-align: center;
+    }
+}
+
+@media (max-width: 576px){
+    .working-container{
+        display: block;
+    }
+
+    .working-container .anime{
+        flex-direction: column;
+        padding: 20px 0px;
+    }
+
+    .working-container .anime .desc p{
+        max-width: 300px;
+    }
+
+    .working-container .anime .desc h3{
+        text-wrap: wrap;
+        font-size: 25px;
+    }
+}
+
+/* ==== working on it end */
