@@ -1,6 +1,4 @@
-import Nisala from "../../assets/img/patients/Nisala.jpg";
-import Chathusha from "../../assets/img/patients/Chathusha.jpg";
-import Nishadi from "../../assets/img/patients/Nishadi.jpg";
+import patientImage from "../../assets/img/patients/patient.png";
 import { useState } from "react";
 import { Skeleton } from "@mui/material";
 
@@ -12,9 +10,9 @@ export default function UpdatedList({ className }: UpdatedListProps) {
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
     const patientList = [
-        { id: 1, profile: Chathusha, referenceNo: '200331015154', name: 'Chathusha Mendis', date: '22/10/2024', updatedBy: 'Dr. Suresh' },
-        { id: 2, profile: Nisala, referenceNo: '200331012273', name: 'Nisala Dulanaka', date: '22/10/2024', updatedBy: 'Dr. Suresh' },
-        { id: 3, profile: Nishadi, referenceNo: '200331015154', name: 'Nishadi Silva', date: '22/10/2024', updatedBy: 'Dr. Suresh' }
+        { id: 1, profile: patientImage, referenceNo: '200331015154', name: 'Chathusha Mendis', date: '22/10/2024', updatedBy: 'Dr. Suresh' },
+        { id: 2, profile: patientImage, referenceNo: '200331012273', name: 'Nisala Dulanaka', date: '22/10/2024', updatedBy: 'Dr. Suresh' },
+        { id: 3, profile: patientImage, referenceNo: '200331015154', name: 'Nishadi Silva', date: '22/10/2024', updatedBy: 'Dr. Suresh' }
     ]
 
     return (
@@ -74,7 +72,7 @@ export default function UpdatedList({ className }: UpdatedListProps) {
                             patientList.map((patient) => {
                                 return (
                                     <tr key={patient.id}>
-                                        <th scope="row" className="d-none d-md-table-cell">1</th>
+                                        <th scope="row" className="d-none d-md-table-cell">{patient.id}</th>
                                         <td>
                                             <div className="patient">
                                                 <img src={patient.profile} alt="profile-image" />

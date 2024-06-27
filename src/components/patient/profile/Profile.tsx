@@ -426,7 +426,7 @@ export function ProfileOverview() {
                     <div className="col-12 col-lg-3">
                         <div className="profile-main section-blur">
                             <div className="profile-image p-4">
-                                <img src={Chiranga} alt="profile" />
+                                <img src={patient?.profileImage} alt="profile" />
                             </div>
                             <h4 className="title text-center">{patient?.name}</h4>
 
