@@ -126,7 +126,7 @@ interface HighlightedResultProps{
     searchInput: string;
 }
 
-function HighlightedResult({searchQuery, searchInput} : HighlightedResultProps){
+export function HighlightedResult({searchQuery, searchInput} : HighlightedResultProps){
     if(searchQuery == "") return <>{searchInput}</>;
     const lowerInput = searchInput.toLocaleLowerCase();
     const lowerQuery = searchQuery.toLocaleLowerCase();

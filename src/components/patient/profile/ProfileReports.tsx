@@ -11,11 +11,12 @@ import { Skeleton } from '@mui/material';
 import axiosInstance from '../../../axiosInstance';
 import { Vaccination } from '../../../models/Vaccination';
 import { MedicalRecord } from '../../../models/MedicalRecord';
+import { HighlightedResult } from '../../search/SearchResult';
 
 export function MedicalRecordsTable() {
     const { openPopup, closePopup } = usePopup();
     const { user } = UseUser();
-    const { medicalRecords, isLoading, setType, onSearch } = useOutletContext<searchProps>();
+    const { medicalRecords, isLoading, setType, onSearch, searchQuery, searchType } = useOutletContext<searchProps>();
 
     const onRefresh = () => {
         if(onSearch) onSearch();
@@ -87,8 +88,18 @@ export function MedicalRecordsTable() {
                                         }} 
                                         className={(user?.role == "Admin" && medicalRecord.isEditable) ? 'editable' : ''}>
                                             <th scope="row" className="d-none d-lg-table-cell">22 : 25</th>
-                                            <td>{medicalRecord.recordType}</td>
-                                            <td className="d-none d-md-table-cell">{medicalRecord.admin?.hospital?.name}</td>
+                                            <td>
+                                                {
+                                                    searchType == "Name"? <HighlightedResult searchInput={medicalRecord.recordType} searchQuery={searchQuery}/>:
+                                                    medicalRecord.recordType
+                                                }
+                                            </td>
+                                            <td className="d-none d-md-table-cell">
+                                                {
+                                                    searchType == "Location"? <HighlightedResult searchInput={medicalRecord.admin?.hospital?.name || ""} searchQuery={searchQuery}/>:
+                                                    medicalRecord.admin?.hospital?.name
+                                                }
+                                            </td>
                                             <td>{medicalRecord.date}</td>
                                             <td className="d-none d-lg-table-cell">
                                                 <div className="d-none d-lg-flex justify-content-end align-items-center">
@@ -134,7 +145,7 @@ export function MedicalRecordsTable() {
 export function VaccinationTable() {
     const { openPopup, closePopup } = usePopup();
     const { user } = UseUser();
-    const { vaccinations, isLoading, setType, onSearch } = useOutletContext<searchProps>();
+    const { vaccinations, isLoading, setType, onSearch, searchQuery, searchType } = useOutletContext<searchProps>();
 
     const onRefresh = () => {
         if(onSearch) onSearch();
@@ -211,9 +222,21 @@ export function VaccinationTable() {
                                         }} 
                                         className={(user?.role == "Admin" && vaccination.isEditable) ? 'editable' : ''}>
                                             <th scope="row" className="d-none d-lg-table-cell">22 : 25</th>
-                                            <td>{vaccination.vaccineBrand?.vaccine?.name}</td>
+                                            <td>
+                                                {
+                                                    searchType == "Name"? 
+                                                    <HighlightedResult searchInput={vaccination.vaccineBrand?.vaccine?.name || ""} searchQuery={searchQuery}/> : 
+                                                    vaccination.vaccineBrand?.vaccine?.name
+                                                }
+                                            </td>
                                             <td className="d-none d-md-table-cell">{vaccination.vaccineBrand?.brandName}</td>
-                                            <td>{vaccination.hospital?.name}</td>
+                                            <td>
+                                                {
+                                                searchType == "Locationom"?
+                                                <HighlightedResult searchInput={vaccination.hospital?.name || ""} searchQuery={searchQuery}/> :
+                                                vaccination.hospital?.name
+                                                }
+                                            </td>
                                             <td>{vaccination.dateOfVaccination}</td>
                                             <td className="d-none d-md-table-cell">{vaccination.dose}</td>
                                             <td className="d-none d-lg-table-cell">
@@ -264,6 +287,8 @@ interface searchProps {
     isLoading: boolean;
     setType: (reportType: string) => {};
     onSearch?: () => void;
+    searchType: string;
+    searchQuery: string;
 }
 
 function ProfileReports() {
@@ -304,7 +329,7 @@ function ProfileReports() {
         }
     };
 
-    useEffect(() => {
+    /* useEffect(() => {
         const fetchData = async () => {
             await onSearch();
         };
@@ -312,7 +337,9 @@ function ProfileReports() {
         fetchData();
 
         return () => { };
-    }, [reportType]);
+    }, [reportType]); */
+
+    useEffect(() => {onSearch()},[searchQuery,reportType]);
 
     return (
         <>
@@ -380,7 +407,7 @@ function ProfileReports() {
                     <hr />
 
                     <div className="record-data mt-4" id="record-data-container">
-                        <Outlet context={{ vaccinations, medicalRecords, isLoading, setType: (type: string) => setReportType(type), onSearch }} />
+                        <Outlet context={{ vaccinations, medicalRecords, isLoading, setType: (type: string) => setReportType(type), onSearch, searchType, searchQuery }} />
                     </div>
                 </div>
 

@@ -62,7 +62,7 @@ function App() {
         },
         {
           path: '/search',
-          element: user?.role == 'Admin' ? <AdminSearchPanel /> : <ProfileReports />,
+          element: (user?.role == 'Admin' || user?.role == 'Doctor' )? <AdminSearchPanel /> : <ProfileReports />,
           children: user?.role == 'User' ? [
             {
               index: true,
@@ -76,11 +76,11 @@ function App() {
         },
         {
           path: '/patient',
-          element: user?.role == 'Admin' ? <AdminPatientPanel /> : <NotFound />
+          element: (user?.role == 'Admin' || user?.role == 'Doctor' ) ? <AdminPatientPanel /> : <NotFound />
         },
         {
           path: '/smarthealth',
-          element: user?.role == 'User' ? <WorkingOnIt /> : <NotFound />
+          element: user?.role == 'User' || user?.role == 'Doctor' ? <WorkingOnIt /> : <NotFound />
         },
         {
           path: '/patient/add',
@@ -100,7 +100,7 @@ function App() {
         },
         {
           path: '/patient/:patientId',
-          element: user?.role == 'Admin' ? <Profile /> : <Navigate to="/notfound" />,
+          element: (user?.role == 'Admin' || user?.role == 'Doctor' ) ? <Profile /> : <Navigate to="/notfound" />,
           children: [
             {
               path: 'overview',

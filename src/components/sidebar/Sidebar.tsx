@@ -1,6 +1,5 @@
 import SidebarLink, { SidebarAvatar } from './SidebarLink';
 import favicon from '../../assets/img/favicon.png';
-import avatar from '../../assets/img/profie/profile-image.jpg';
 import './Sidebar.css';
 import { forwardRef, useImperativeHandle, useRef } from 'react';
 import { UseUser } from '../auth/UserContext';
@@ -76,7 +75,7 @@ const Sidebar = forwardRef<SidebarHandle ,SidbarProps>((props, ref) => {
                 </div>
             </div>
         </>
-    )
+    );
 });
 
 export default Sidebar;
